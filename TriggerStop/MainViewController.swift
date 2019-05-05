@@ -9,10 +9,11 @@
 import UIKit
 import ColorSlider
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, UIImagePickerControllerDelegate {
     // Stores all of the emojis on the screen.
     var emojisInView: [UIImageView] = [UIImageView]()
     
+    @IBOutlet weak var addPhotoButton: UIButton!
     @IBOutlet weak var emojiButton: UIButton!
     
     override func viewDidLoad() {
@@ -42,6 +43,28 @@ class MainViewController: UIViewController {
             height: view.frame.height * 0.75)
         view.addSubview(bodyIV)
         
+    }
+    
+    @IBAction func addPhotoButtonPressed(_ sender: Any) {
+        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
+            print("Button capture")
+            
+//            var imageView: UIImageView!
+//            var chooseBuuton: UIButton!
+            let imagePicker = UIImagePickerController()
+            
+            imagePicker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
+            imagePicker.sourceType = .savedPhotosAlbum
+            imagePicker.allowsEditing = false
+            
+            present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
+        self.dismiss(animated: true, completion: { () -> Void in
+            
+        })
     }
     
     @objc func changedColor(_ slider: ColorSlider) {
@@ -108,6 +131,8 @@ class MainViewController: UIViewController {
             emojiView.center = initialCenter
         }
     }
+    
+    
 
 }
 
