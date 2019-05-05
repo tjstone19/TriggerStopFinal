@@ -1,0 +1,677 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		08D463BA227E4D1900590B8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D463B9227E4D1900590B8F /* AppDelegate.swift */; };
+		08D463BC227E4D1900590B8F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D463BB227E4D1900590B8F /* MainViewController.swift */; };
+		08D463BF227E4D1900590B8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08D463BD227E4D1900590B8F /* Main.storyboard */; };
+		08D463C2227E4D1900590B8F /* TriggerStop.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 08D463C0227E4D1900590B8F /* TriggerStop.xcdatamodeld */; };
+		08D463C4227E4D1A00590B8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08D463C3227E4D1A00590B8F /* Assets.xcassets */; };
+		08D463C7227E4D1A00590B8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08D463C5227E4D1A00590B8F /* LaunchScreen.storyboard */; };
+		08D463D2227E4D1A00590B8F /* TriggerStopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D463D1227E4D1A00590B8F /* TriggerStopTests.swift */; };
+		08D463DD227E4D1A00590B8F /* TriggerStopUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D463DC227E4D1A00590B8F /* TriggerStopUITests.swift */; };
+		E04B04A6EA68C5D774DC9E71 /* Pods_TriggerStop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890A418875EFF0588B68AC0E /* Pods_TriggerStop.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		08D463CE227E4D1A00590B8F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08D463AE227E4D1900590B8F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 08D463B5227E4D1900590B8F;
+			remoteInfo = TriggerStop;
+		};
+		08D463D9227E4D1A00590B8F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08D463AE227E4D1900590B8F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 08D463B5227E4D1900590B8F;
+			remoteInfo = TriggerStop;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		08D463B6227E4D1900590B8F /* TriggerStop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TriggerStop.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		08D463B9227E4D1900590B8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		08D463BB227E4D1900590B8F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		08D463BE227E4D1900590B8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		08D463C1227E4D1900590B8F /* TriggerStop.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TriggerStop.xcdatamodel; sourceTree = "<group>"; };
+		08D463C3227E4D1A00590B8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		08D463C6227E4D1A00590B8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		08D463C8227E4D1A00590B8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		08D463CD227E4D1A00590B8F /* TriggerStopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TriggerStopTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		08D463D1227E4D1A00590B8F /* TriggerStopTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerStopTests.swift; sourceTree = "<group>"; };
+		08D463D3227E4D1A00590B8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		08D463D8227E4D1A00590B8F /* TriggerStopUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TriggerStopUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		08D463DC227E4D1A00590B8F /* TriggerStopUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerStopUITests.swift; sourceTree = "<group>"; };
+		08D463DE227E4D1A00590B8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6480544009C0667D8F15875A /* Pods-TriggerStop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TriggerStop.debug.xcconfig"; path = "Target Support Files/Pods-TriggerStop/Pods-TriggerStop.debug.xcconfig"; sourceTree = "<group>"; };
+		890A418875EFF0588B68AC0E /* Pods_TriggerStop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TriggerStop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F06B07D4950642E6E90A4D47 /* Pods-TriggerStop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TriggerStop.release.xcconfig"; path = "Target Support Files/Pods-TriggerStop/Pods-TriggerStop.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		08D463B3227E4D1900590B8F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E04B04A6EA68C5D774DC9E71 /* Pods_TriggerStop.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		08D463CA227E4D1A00590B8F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		08D463D5227E4D1A00590B8F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08D463AD227E4D1900590B8F = {
+			isa = PBXGroup;
+			children = (
+				08D463B8227E4D1900590B8F /* TriggerStop */,
+				08D463D0227E4D1A00590B8F /* TriggerStopTests */,
+				08D463DB227E4D1A00590B8F /* TriggerStopUITests */,
+				08D463B7227E4D1900590B8F /* Products */,
+				A7315B13411286669CCABB80 /* Pods */,
+				6177C168C3BB9C9074113A3B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		08D463B7227E4D1900590B8F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				08D463B6227E4D1900590B8F /* TriggerStop.app */,
+				08D463CD227E4D1A00590B8F /* TriggerStopTests.xctest */,
+				08D463D8227E4D1A00590B8F /* TriggerStopUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		08D463B8227E4D1900590B8F /* TriggerStop */ = {
+			isa = PBXGroup;
+			children = (
+				08D463B9227E4D1900590B8F /* AppDelegate.swift */,
+				08D463BB227E4D1900590B8F /* MainViewController.swift */,
+				08D463BD227E4D1900590B8F /* Main.storyboard */,
+				08D463C3227E4D1A00590B8F /* Assets.xcassets */,
+				08D463C5227E4D1A00590B8F /* LaunchScreen.storyboard */,
+				08D463C8227E4D1A00590B8F /* Info.plist */,
+				08D463C0227E4D1900590B8F /* TriggerStop.xcdatamodeld */,
+			);
+			path = TriggerStop;
+			sourceTree = "<group>";
+		};
+		08D463D0227E4D1A00590B8F /* TriggerStopTests */ = {
+			isa = PBXGroup;
+			children = (
+				08D463D1227E4D1A00590B8F /* TriggerStopTests.swift */,
+				08D463D3227E4D1A00590B8F /* Info.plist */,
+			);
+			path = TriggerStopTests;
+			sourceTree = "<group>";
+		};
+		08D463DB227E4D1A00590B8F /* TriggerStopUITests */ = {
+			isa = PBXGroup;
+			children = (
+				08D463DC227E4D1A00590B8F /* TriggerStopUITests.swift */,
+				08D463DE227E4D1A00590B8F /* Info.plist */,
+			);
+			path = TriggerStopUITests;
+			sourceTree = "<group>";
+		};
+		6177C168C3BB9C9074113A3B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				890A418875EFF0588B68AC0E /* Pods_TriggerStop.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A7315B13411286669CCABB80 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6480544009C0667D8F15875A /* Pods-TriggerStop.debug.xcconfig */,
+				F06B07D4950642E6E90A4D47 /* Pods-TriggerStop.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		08D463B5227E4D1900590B8F /* TriggerStop */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 08D463E1227E4D1A00590B8F /* Build configuration list for PBXNativeTarget "TriggerStop" */;
+			buildPhases = (
+				05614E1C17FDE11CC2D5CF7D /* [CP] Check Pods Manifest.lock */,
+				08D463B2227E4D1900590B8F /* Sources */,
+				08D463B3227E4D1900590B8F /* Frameworks */,
+				08D463B4227E4D1900590B8F /* Resources */,
+				2D4961D1E9D9DDEB3AA6975C /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TriggerStop;
+			productName = TriggerStop;
+			productReference = 08D463B6227E4D1900590B8F /* TriggerStop.app */;
+			productType = "com.apple.product-type.application";
+		};
+		08D463CC227E4D1A00590B8F /* TriggerStopTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 08D463E4227E4D1A00590B8F /* Build configuration list for PBXNativeTarget "TriggerStopTests" */;
+			buildPhases = (
+				08D463C9227E4D1A00590B8F /* Sources */,
+				08D463CA227E4D1A00590B8F /* Frameworks */,
+				08D463CB227E4D1A00590B8F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				08D463CF227E4D1A00590B8F /* PBXTargetDependency */,
+			);
+			name = TriggerStopTests;
+			productName = TriggerStopTests;
+			productReference = 08D463CD227E4D1A00590B8F /* TriggerStopTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		08D463D7227E4D1A00590B8F /* TriggerStopUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 08D463E7227E4D1A00590B8F /* Build configuration list for PBXNativeTarget "TriggerStopUITests" */;
+			buildPhases = (
+				08D463D4227E4D1A00590B8F /* Sources */,
+				08D463D5227E4D1A00590B8F /* Frameworks */,
+				08D463D6227E4D1A00590B8F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				08D463DA227E4D1A00590B8F /* PBXTargetDependency */,
+			);
+			name = TriggerStopUITests;
+			productName = TriggerStopUITests;
+			productReference = 08D463D8227E4D1A00590B8F /* TriggerStopUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08D463AE227E4D1900590B8F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "T.J. Stone";
+				TargetAttributes = {
+					08D463B5227E4D1900590B8F = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					08D463CC227E4D1A00590B8F = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = 08D463B5227E4D1900590B8F;
+					};
+					08D463D7227E4D1A00590B8F = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = 08D463B5227E4D1900590B8F;
+					};
+				};
+			};
+			buildConfigurationList = 08D463B1227E4D1900590B8F /* Build configuration list for PBXProject "TriggerStop" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 08D463AD227E4D1900590B8F;
+			productRefGroup = 08D463B7227E4D1900590B8F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				08D463B5227E4D1900590B8F /* TriggerStop */,
+				08D463CC227E4D1A00590B8F /* TriggerStopTests */,
+				08D463D7227E4D1A00590B8F /* TriggerStopUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		08D463B4227E4D1900590B8F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				08D463C7227E4D1A00590B8F /* LaunchScreen.storyboard in Resources */,
+				08D463C4227E4D1A00590B8F /* Assets.xcassets in Resources */,
+				08D463BF227E4D1900590B8F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		08D463CB227E4D1A00590B8F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		08D463D6227E4D1A00590B8F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		05614E1C17FDE11CC2D5CF7D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TriggerStop-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2D4961D1E9D9DDEB3AA6975C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TriggerStop/Pods-TriggerStop-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ColorSlider/ColorSlider.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ColorSlider.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TriggerStop/Pods-TriggerStop-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		08D463B2227E4D1900590B8F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				08D463C2227E4D1900590B8F /* TriggerStop.xcdatamodeld in Sources */,
+				08D463BC227E4D1900590B8F /* MainViewController.swift in Sources */,
+				08D463BA227E4D1900590B8F /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		08D463C9227E4D1A00590B8F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				08D463D2227E4D1A00590B8F /* TriggerStopTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		08D463D4227E4D1A00590B8F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				08D463DD227E4D1A00590B8F /* TriggerStopUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		08D463CF227E4D1A00590B8F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 08D463B5227E4D1900590B8F /* TriggerStop */;
+			targetProxy = 08D463CE227E4D1A00590B8F /* PBXContainerItemProxy */;
+		};
+		08D463DA227E4D1A00590B8F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 08D463B5227E4D1900590B8F /* TriggerStop */;
+			targetProxy = 08D463D9227E4D1A00590B8F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		08D463BD227E4D1900590B8F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				08D463BE227E4D1900590B8F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		08D463C5227E4D1A00590B8F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				08D463C6227E4D1A00590B8F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		08D463DF227E4D1A00590B8F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		08D463E0227E4D1A00590B8F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		08D463E2227E4D1A00590B8F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6480544009C0667D8F15875A /* Pods-TriggerStop.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TriggerStop/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.JulieKurtz.TriggerStop;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		08D463E3227E4D1A00590B8F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F06B07D4950642E6E90A4D47 /* Pods-TriggerStop.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TriggerStop/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.JulieKurtz.TriggerStop;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		08D463E5227E4D1A00590B8F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TriggerStopTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.JulieKurtz.TriggerStopTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TriggerStop.app/TriggerStop";
+			};
+			name = Debug;
+		};
+		08D463E6227E4D1A00590B8F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TriggerStopTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.JulieKurtz.TriggerStopTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TriggerStop.app/TriggerStop";
+			};
+			name = Release;
+		};
+		08D463E8227E4D1A00590B8F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TriggerStopUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.JulieKurtz.TriggerStopUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TriggerStop;
+			};
+			name = Debug;
+		};
+		08D463E9227E4D1A00590B8F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TriggerStopUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.JulieKurtz.TriggerStopUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TriggerStop;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		08D463B1227E4D1900590B8F /* Build configuration list for PBXProject "TriggerStop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				08D463DF227E4D1A00590B8F /* Debug */,
+				08D463E0227E4D1A00590B8F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		08D463E1227E4D1A00590B8F /* Build configuration list for PBXNativeTarget "TriggerStop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				08D463E2227E4D1A00590B8F /* Debug */,
+				08D463E3227E4D1A00590B8F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		08D463E4227E4D1A00590B8F /* Build configuration list for PBXNativeTarget "TriggerStopTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				08D463E5227E4D1A00590B8F /* Debug */,
+				08D463E6227E4D1A00590B8F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		08D463E7227E4D1A00590B8F /* Build configuration list for PBXNativeTarget "TriggerStopUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				08D463E8227E4D1A00590B8F /* Debug */,
+				08D463E9227E4D1A00590B8F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		08D463C0227E4D1900590B8F /* TriggerStop.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				08D463C1227E4D1900590B8F /* TriggerStop.xcdatamodel */,
+			);
+			currentVersion = 08D463C1227E4D1900590B8F /* TriggerStop.xcdatamodel */;
+			path = TriggerStop.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 08D463AE227E4D1900590B8F /* Project object */;
+}
