@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  TriggerStop
 //
 //  Created by T.J. Stone on 5/4/19.
@@ -49,8 +49,6 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
         if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
             print("Button capture")
             
-//            var imageView: UIImageView!
-//            var chooseBuuton: UIButton!
             let imagePicker = UIImagePickerController()
             
             imagePicker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
@@ -105,9 +103,14 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
         self.view.addSubview(emojiView)
     }
     
+    // The initial location of the emoji being moved by the user.
+    var emojiInitialCenter = CGPoint()
     
-    var initialCenter = CGPoint()
-    
+    /***
+     Moves the selected emoji ImageView around the screen.
+     
+     - Parameter sender: The touch event caused by the user touching the screen.
+    */
     @objc func moveEmoji(_ sender: UIPanGestureRecognizer) {
         guard sender.view != nil else {return}
         let emojiView = sender.view!
@@ -117,22 +120,19 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
         
         if sender.state == .began {
             // Save the view's original position.
-            self.initialCenter = emojiView.center
+            self.emojiInitialCenter = emojiView.center
         }
         if sender.state != .cancelled {
             // Add the X and Y translation to the view's original position.
             let newCenter = CGPoint(
-                x: initialCenter.x + translation.x,
-                y: initialCenter.y + translation.y)
+                x: emojiInitialCenter.x + translation.x,
+                y: emojiInitialCenter.y + translation.y)
             emojiView.center = newCenter
         }
         else {
             // On cancellation, return the piece to its original location.
-            emojiView.center = initialCenter
+            emojiView.center = emojiInitialCenter
         }
     }
-    
-    
-
 }
 
