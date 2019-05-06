@@ -72,6 +72,18 @@ internal struct Gradient {
 		if leftColor.hue > rightColor.hue && !leftColor.isGrayscale {
 			scaledPercentage = 1 - scaledPercentage
 		}
+        
+        
+        /*
+         
+         // Values from 0 to 1 at intervals of 0.1
+         let hues: [CGFloat] = [0.99, 0.08, 0.55, 0.4]
+         
+         let nonGrayscaleColors = hues.map({ (hue) -> HSBColor in
+         return HSBColor(hue: hue, saturation: 1, brightness: 1)
+         }).reversed()
+         
+         */
 		
 		return HSBColor.between(color: leftColor, and: rightColor, percent: scaledPercentage)
 	}

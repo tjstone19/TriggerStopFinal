@@ -118,6 +118,8 @@ public class ColorSlider: UIControl {
 	required public init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) and storyboards are unsupported, use init(orientation:) instead.")
 	}
+    
+    public var currentPercentage: CGFloat = 0.0
 	
 	// MARK: - Init
 	
@@ -215,6 +217,7 @@ extension ColorSlider {
 /// :nodoc:
 // MARK: - UIControlEvents
 extension ColorSlider {
+    
 	/// Begins tracking a touch when the user starts dragging.
 	public override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
 		super.beginTracking(touch, with: event)
@@ -275,6 +278,7 @@ fileprivate extension ColorSlider {
 	/// - parameter touch: The touch that triggered the update.
 	/// - parameter touchInside: Whether the touch that triggered the update was inside the control when the event occurred.
 	func update(touch: UITouch, touchInside: Bool) {
+        self.currentPercentage = touch.progress(in: self, withOrientation: orientation)
 		internalColor = gradientView.color(from: internalColor, after: touch, insideSlider: touchInside)
 		previewView?.colorChanged(to: color)
 	}

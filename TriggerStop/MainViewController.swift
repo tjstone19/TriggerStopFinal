@@ -15,34 +15,43 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
     
     @IBOutlet weak var addPhotoButton: UIButton!
     @IBOutlet weak var emojiButton: UIButton!
+    @IBOutlet weak var percentLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        // Create the body background image view.
+        let bodyImage = UIImage(named: "BlackBody")
+        let bodyIV = UIImageView(image: bodyImage)
+        // initial - x=0.2, y 0.2, width 0.75, height 0.75
+        bodyIV.frame = CGRect(
+            x: view.frame.width * 0.15,
+            y: view.frame.height * 0.2,
+            width: view.frame.width * 0.67,
+            height: view.frame.height * 0.7)
+        view.addSubview(bodyIV)
+        
+        // Set the button's image to to the emoji image.
         emojiButton.setImage(UIImage(named: "splash"), for: .normal)
+        
+        // Set up the color slider.
         let colorSlider = ColorSlider(
             orientation: .vertical,
             previewSide: .right)
         
         colorSlider.frame = CGRect(
-            x: view.frame.width * 0.1,
+            x: view.frame.width * 0.05,
             y: view.frame.height * 0.2,
-            width: 50,
-            height: 500)
+            width: view.frame.width * 0.05,
+            height: view.frame.height * 0.70)
         
+        // Set callback function for when the color slider's value changes.
+        colorSlider.addTarget(
+            self,
+            action: #selector(changedColor(_:)),
+            for: .valueChanged)
+
         view.addSubview(colorSlider)
-        colorSlider.addTarget(self, action: #selector(changedColor(_:)), for: .valueChanged)
-        
-        let bodyImage = UIImage(named: "BlackBody")
-        let bodyIV = UIImageView(image: bodyImage)
-        
-        bodyIV.frame = CGRect(
-            x: view.frame.width * 0.2,
-            y: view.frame.height * 0.1,
-            width: view.frame.width * 0.75,
-            height: view.frame.height * 0.75)
-        view.addSubview(bodyIV)
-        
     }
     
     @IBAction func addPhotoButtonPressed(_ sender: Any) {
@@ -66,7 +75,8 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
     }
     
     @objc func changedColor(_ slider: ColorSlider) {
-        let color = slider.color
+        let percentage: CGFloat = slider.currentPercentage * 100
+        percentLabel.text = String(format: "%.2f", percentage)
     }
     
     /***
