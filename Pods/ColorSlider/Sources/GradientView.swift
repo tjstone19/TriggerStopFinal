@@ -53,7 +53,7 @@ public final class GradientView: UIView {
 	
 	/// The percent of space at the beginning (top for orientation `.vertical` and left for orientation `.horizontal`) end of the slider reserved for the color white.
 	/// Defaults to `0.15`.
-	public var whiteInset: CGFloat = 0.15 {
+	public var whiteInset: CGFloat = 0.0 {
 		didSet {
 			gradient = Gradient.colorSliderGradient(saturation: saturation, whiteInset: whiteInset, blackInset: blackInset)
 		}
@@ -61,7 +61,7 @@ public final class GradientView: UIView {
 	
 	/// The percent of space at the end (bottom for orientation `.vertical` and right for orientation `.horizontal`) end of the slider reserved for the color black.
 	/// Defaults to `0.15`.
-	public var blackInset: CGFloat = 0.15 {
+	public var blackInset: CGFloat = 0.0 {
 		didSet {
 			gradient = Gradient.colorSliderGradient(saturation: saturation, whiteInset: whiteInset, blackInset: blackInset)
 		}
@@ -240,8 +240,16 @@ internal extension GradientView {
 
 fileprivate extension Gradient {
 	static func colorSliderGradient(saturation: CGFloat, whiteInset: CGFloat, blackInset: CGFloat) -> Gradient {
-		// Values from 0 to 1 at intervals of 0.1
-		let values: [CGFloat] = [0.01, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.99]
+		
+        /*
+         Color values in ColorSlider:
+             green: 0.4
+             blue: 0.55
+             orange: 0.08
+             red: 0.99
+         */
+        // Values from 0 to 1 at intervals of 0.1
+        let values: [CGFloat] = [0.99, 0.08, 0.55, 0.4]
 		
 		// Use these values as the hues for non-white and non-black colors
 		let hues = values
@@ -250,14 +258,21 @@ fileprivate extension Gradient {
 		}).reversed()
 		
 		// Black and white are at the top and bottom of the slider, insert colors in between
-		let spaceForNonGrayscaleColors = 1 - whiteInset - blackInset
-		let nonGrayscaleLocations = values.map { (location) -> CGFloat in
-			return whiteInset + (location * spaceForNonGrayscaleColors)
-		}
+        // let spaceForNonGrayscaleColors = 1 - whiteInset - blackInset
+        // let nonGrayscaleLocations = values.map { (location) -> CGFloat in
+        //     return whiteInset + (location * spaceForNonGrayscaleColors)
+        //}
+        
+        let nonGrayscaleLocations: [CGFloat] = [0.0, 0.2, 0.80, 1]
 		
 		// Add black and white to locations and colors, set up gradient layer
-		let colors = [HSBColor.white] + nonGrayscaleColors + [HSBColor.black]
-		let locations = [0] + nonGrayscaleLocations + [1]
+        // let colors = [HSBColor.white] + nonGrayscaleColors + [HSBColor.black]
+        // let locations = [0] + nonGrayscaleLocations + [1]
+        let locations = nonGrayscaleLocations
+        let colors = nonGrayscaleColors.map({ (color) -> HSBColor in
+            return color
+        })
+		
 		return Gradient(colors: colors, locations: locations)
 	}
 }
