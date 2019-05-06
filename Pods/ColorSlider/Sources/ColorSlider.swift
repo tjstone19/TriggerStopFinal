@@ -280,7 +280,27 @@ fileprivate extension ColorSlider {
 	func update(touch: UITouch, touchInside: Bool) {
         self.currentPercentage = touch.progress(in: self, withOrientation: orientation)
 		internalColor = gradientView.color(from: internalColor, after: touch, insideSlider: touchInside)
-		previewView?.colorChanged(to: color)
+        
+        var newSliderColor :HSBColor = HSBColor(hue: 0.0, saturation: 1, brightness: 1)
+        
+        
+        if currentPercentage >= 0.0 && currentPercentage <= 0.25 {
+            newSliderColor = HSBColor(hue: 0.4, saturation: 1, brightness: 1)
+        }
+        else if currentPercentage > 0.25 && currentPercentage <= 0.5 {
+            newSliderColor = HSBColor(hue: 0.55, saturation: 1, brightness: 1)
+        }
+        else if currentPercentage > 0.5 && currentPercentage <= 0.75 {
+            newSliderColor = HSBColor(hue: 0.08, saturation: 1, brightness: 1)
+        }
+        else {
+            newSliderColor = HSBColor(hue: 0.99, saturation: 1, brightness: 1)
+        }
+    
+        previewView?.colorChanged(to: UIColor(hsbColor: newSliderColor))
+        
+        // Original line for changing preview color:
+        //previewView?.colorChanged(to: color)
 	}
 }
 
