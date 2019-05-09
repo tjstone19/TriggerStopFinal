@@ -17,22 +17,103 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
     @IBOutlet weak var emojiButton: UIButton!
     @IBOutlet weak var percentLabel: UILabel!
     
+    var faceButton :UIButton!
+    
+    var faceButtonContainer :UIView!
+    
+    var faceImageIV1 :UIImageView!
+    var faceImageIV2 :UIImageView!
+    var faceImageIV3 :UIImageView!
+    var faceImageIV4 :UIImageView!
+    
+    var greenFaceImages = [UIImage]()
+    var blueFaceImages = [UIImage]()
+    var orangeFaceImages = [UIImage]()
+    var redFaceImages = [UIImage]()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Create the body background image view.
         let bodyImage = UIImage(named: "BlackBody")
         let bodyIV = UIImageView(image: bodyImage)
-        // initial - x=0.2, y 0.2, width 0.75, height 0.75
+        
+        faceButtonContainer = UIView(frame:
+            CGRect(x: view.frame.width * 0.3,
+                   y: view.frame.height * 0.1,
+                   width: view.frame.width * 0.7,
+                   height: view.frame.height * 0.1))
+        
+        
+        greenFaceImages.append(UIImage(named: "GreenHappy")!)
+        greenFaceImages.append(UIImage(named: "GreenNoMouth")!)
+        
+        blueFaceImages.append(UIImage(named: "BlueNoMouth")!)
+        blueFaceImages.append(UIImage(named: "BlueSad")!)
+        blueFaceImages.append(UIImage(named: "BlueSilly")!)
+        blueFaceImages.append(UIImage(named: "BlueWorried")!)
+        
+        orangeFaceImages.append(UIImage(named: "OrangeMad")!)
+        orangeFaceImages.append(UIImage(named: "OrangeSad")!)
+        orangeFaceImages.append(UIImage(named: "OrangeSilly")!)
+        orangeFaceImages.append(UIImage(named: "OrangeWorried")!)
+        
+        redFaceImages.append(UIImage(named: "RedMad")!)
+        redFaceImages.append(UIImage(named: "RedSad")!)
+        redFaceImages.append(UIImage(named: "RedWorried")!)
+        
+        let faceButtonWidth = faceButtonContainer.bounds.width * 0.20
+        let faceButtonHeight = faceButtonContainer.bounds.height
+        
+        faceImageIV1 = UIImageView(image: greenFaceImages[0])
+        faceImageIV1.frame = CGRect(
+            x: 0,
+            y: 0,
+            width: faceButtonWidth,
+            height: faceButtonHeight)
+        
+        faceImageIV2 = UIImageView(image: greenFaceImages[1])
+        faceImageIV2.frame = CGRect(
+            x: faceButtonContainer.bounds.width * 0.25,
+            y: 0,
+            width: faceButtonWidth,
+            height: faceButtonHeight)
+        
+        faceImageIV3 = UIImageView()
+        faceImageIV3.frame = CGRect(
+            x: faceButtonContainer.bounds.width * 0.50,
+            y: 0,
+            width: faceButtonWidth,
+            height: faceButtonHeight)
+        
+        faceImageIV4 = UIImageView()
+        faceImageIV4.frame = CGRect(
+            x: faceButtonContainer.bounds.width * 0.75,
+            y: 0,
+            width: faceButtonWidth,
+            height: faceButtonHeight)
+        
+        
+        faceButtonContainer.addSubview(faceImageIV1)
+        faceButtonContainer.addSubview(faceImageIV2)
+        faceButtonContainer.addSubview(faceImageIV3)
+        faceButtonContainer.addSubview(faceImageIV4)
+        
+        faceButtonContainer.contentMode = .center
+        view.addSubview(faceButtonContainer)
+
         bodyIV.frame = CGRect(
             x: view.frame.width * 0.15,
             y: view.frame.height * 0.2,
             width: view.frame.width * 0.67,
-            height: view.frame.height * 0.7)
+            height: view.frame.height * 0.75)
         view.addSubview(bodyIV)
         
         // Set the button's image to to the emoji image.
-        emojiButton.setImage(UIImage(named: "splash"), for: .normal)
+        emojiButton.setImage(
+            UIImage(named: "splash"),
+            for: .normal)
         
         // Set up the color slider.
         let colorSlider = ColorSlider(
@@ -68,15 +149,52 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
         }
     }
     
-    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
+    func imagePickerController(
+        picker: UIImagePickerController!,
+        didFinishPickingImage image: UIImage!,
+        editingInfo: NSDictionary!) {
+        
         self.dismiss(animated: true, completion: { () -> Void in
-            
         })
     }
     
     @objc func changedColor(_ slider: ColorSlider) {
         let percentage: CGFloat = slider.currentPercentage * 100
         percentLabel.text = String(format: "%.2f", percentage)
+        
+        var newImages :[UIImage]
+        
+        if percentage <= 25 {
+            newImages = self.greenFaceImages
+        }
+        else if percentage <= 50 {
+            newImages = self.blueFaceImages
+        }
+        else if percentage <= 75 {
+            newImages = self.orangeFaceImages
+        }
+        else {
+            newImages = self.redFaceImages
+        }
+        
+        DispatchQueue.main.async {
+            self.faceImageIV1.image = newImages[0]
+            self.faceImageIV2.image = newImages[1]
+            
+            if newImages.count >= 3 {
+                self.faceImageIV3.image = newImages[2]
+            }
+            else {
+                self.faceImageIV3.image = nil
+            }
+            
+            if newImages.count == 4 {
+                self.faceImageIV4.image = newImages[3]
+            }
+            else {
+                self.faceImageIV4.image = nil
+            }
+        }
     }
     
     /***

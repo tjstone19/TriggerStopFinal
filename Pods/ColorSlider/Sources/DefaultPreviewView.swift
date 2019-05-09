@@ -70,10 +70,10 @@ public class DefaultPreviewView: UIView {
 	/// * `.active`: `1.6`
 	public var scaleAmounts: [PreviewState: CGFloat] = [.inactive: 1.0,
 	                                                    .activeFixed: 1.2,
-	                                                    .active: 1.6]
+	                                                    .active: 1.8]
 	
 	/// The number of points to offset the preview view from the slider when the state is set to `.active`. Defaults to `50`.
-	public var offsetAmount: CGFloat = 25 {
+	public var offsetAmount: CGFloat = 50 {
 		didSet {
 			calculateOffset()
 		}

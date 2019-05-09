@@ -18,15 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uzd-7p-yxv">
-                                <rect key="frame" x="31" y="62" width="30" height="30"/>
-                                <connections>
-                                    <action selector="emojiButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jHB-Yj-LNv"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDe-YB-88G">
                                 <rect key="frame" x="320" y="57" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.0" green="0.20938543630000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="addPhotoButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LuG-Nm-BLY"/>
                                 </connections>
@@ -37,15 +33,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uzd-7p-yxv">
+                                <rect key="frame" x="384" y="438" width="30" height="30"/>
+                                <connections>
+                                    <action selector="emojiButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jHB-Yj-LNv"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="HDe-YB-88G" secondAttribute="trailing" constant="48" id="5T1-pi-HvQ"/>
                             <constraint firstItem="rSk-uO-p6P" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="18" id="HdY-CU-mYa"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uzd-7p-yxv" secondAttribute="trailing" id="TRo-bZ-s5l"/>
                             <constraint firstItem="HDe-YB-88G" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="13" id="dsS-xT-LVE"/>
                             <constraint firstItem="rSk-uO-p6P" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="gcs-Y1-2uc"/>
-                            <constraint firstItem="uzd-7p-yxv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="31" id="jxj-tl-i8s"/>
-                            <constraint firstItem="uzd-7p-yxv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="18" id="wfv-26-OxZ"/>
+                            <constraint firstItem="uzd-7p-yxv" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="oOJ-o3-Abo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

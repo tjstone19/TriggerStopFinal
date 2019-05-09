@@ -263,7 +263,7 @@ fileprivate extension Gradient {
         //     return whiteInset + (location * spaceForNonGrayscaleColors)
         //}
         
-        let nonGrayscaleLocations: [CGFloat] = [0.0, 0.2, 0.80, 1]
+        let nonGrayscaleLocations: [CGFloat] = [0.1, 0.25, 0.8, 1]
 		
 		// Add black and white to locations and colors, set up gradient layer
         // let colors = [HSBColor.white] + nonGrayscaleColors + [HSBColor.black]
