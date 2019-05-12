@@ -27,34 +27,16 @@
                                     <action selector="addPhotoButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LuG-Nm-BLY"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSk-uO-p6P">
-                                <rect key="frame" x="207" y="62" width="0.0" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uzd-7p-yxv">
-                                <rect key="frame" x="384" y="438" width="30" height="30"/>
-                                <connections>
-                                    <action selector="emojiButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jHB-Yj-LNv"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="HDe-YB-88G" secondAttribute="trailing" constant="48" id="5T1-pi-HvQ"/>
-                            <constraint firstItem="rSk-uO-p6P" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="18" id="HdY-CU-mYa"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uzd-7p-yxv" secondAttribute="trailing" id="TRo-bZ-s5l"/>
                             <constraint firstItem="HDe-YB-88G" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="13" id="dsS-xT-LVE"/>
-                            <constraint firstItem="rSk-uO-p6P" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="gcs-Y1-2uc"/>
-                            <constraint firstItem="uzd-7p-yxv" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="oOJ-o3-Abo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="addPhotoButton" destination="HDe-YB-88G" id="ZDW-c1-ilv"/>
-                        <outlet property="emojiButton" destination="uzd-7p-yxv" id="XUr-Mj-eRZ"/>
-                        <outlet property="percentLabel" destination="rSk-uO-p6P" id="gbM-Tq-w9E"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
