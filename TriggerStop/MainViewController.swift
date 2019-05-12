@@ -17,15 +17,23 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
     @IBOutlet weak var emojiButton: UIButton!
     @IBOutlet weak var percentLabel: UILabel!
     
-    var faceButton :UIButton!
+    // Image view for the body.
+    var bodyIV :UIImageView!
     
-    var faceButtonContainer :UIView!
-    
+    // Image view for the face image displayed over the body's head.
+    var faceImageIV :UIImageView!
+
+    // Image views for the face buttons.
     var faceImageIV1 :UIImageView!
     var faceImageIV2 :UIImageView!
     var faceImageIV3 :UIImageView!
     var faceImageIV4 :UIImageView!
     
+    var faceButton :UIButton!
+    
+    // View that contains the face button image views.
+    var faceButtonContainer :UIView!
+
     var greenFaceImages = [UIImage]()
     var blueFaceImages = [UIImage]()
     var orangeFaceImages = [UIImage]()
@@ -36,16 +44,34 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
         super.viewDidLoad()
         
         // Create the body background image view.
-        let bodyImage = UIImage(named: "BlackBody")
-        let bodyIV = UIImageView(image: bodyImage)
+        setBodyImage()
+        initializeFaceButtons()
         
-        faceButtonContainer = UIView(frame:
-            CGRect(x: view.frame.width * 0.3,
-                   y: view.frame.height * 0.1,
-                   width: view.frame.width * 0.7,
-                   height: view.frame.height * 0.1))
+        // Set the button's image to to the emoji image.
+        emojiButton.setImage(
+            UIImage(named: "splash"),
+            for: .normal)
         
-        
+        initializeColorSlider()
+    }
+    
+    /**
+        Sets the background body image and face image.
+     */
+    func setBodyImage() {
+        bodyIV = UIImageView(image: UIImage(named: "BlackBody"))
+        bodyIV.frame = CGRect(
+            x: view.frame.width * 0.15,
+            y: view.frame.height * 0.2,
+            width: view.frame.width * 0.67,
+            height: view.frame.height * 0.75)
+        view.addSubview(bodyIV)
+    }
+    
+    /**
+        Initializes the green, blue, orange, and red lists of face images.
+     */
+    func loadFaceImages() {
         greenFaceImages.append(UIImage(named: "GreenHappy")!)
         greenFaceImages.append(UIImage(named: "GreenNoMouth")!)
         
@@ -62,11 +88,50 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
         redFaceImages.append(UIImage(named: "RedMad")!)
         redFaceImages.append(UIImage(named: "RedSad")!)
         redFaceImages.append(UIImage(named: "RedWorried")!)
+    }
+    
+    /**
+        Creates a container to hold the face image views.
+        Initializes each image view with a tap gesture recognizers that calls the
+        faceButtonPressed method and adds them to the container.
+     */
+    func initializeFaceButtons() {
+        loadFaceImages()
+        
+        // Call the faceButtonPressed function when an image view is selected.
+        let tapGesture1 :UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: Selector(("faceButtonPressed:")))
+        
+        let tapGesture2 :UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: Selector(("faceButtonPressed:")))
+        
+        let tapGesture3 :UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: Selector(("faceButtonPressed:")))
+        
+        let tapGesture4 :UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: Selector(("faceButtonPressed:")))
+        
+        
+        faceButtonContainer = UIView(frame:
+            CGRect(x: view.frame.width * 0.3,
+                   y: view.frame.height * 0.1,
+                   width: view.frame.width * 0.7,
+                   height: view.frame.height * 0.1))
+        
+        faceButtonContainer.contentMode = .center
+        faceButtonContainer.isUserInteractionEnabled = true
         
         let faceButtonWidth = faceButtonContainer.bounds.width * 0.20
         let faceButtonHeight = faceButtonContainer.bounds.height
         
+        
         faceImageIV1 = UIImageView(image: greenFaceImages[0])
+        faceImageIV1.isUserInteractionEnabled = true
+        faceImageIV1.addGestureRecognizer(tapGesture1)
         faceImageIV1.frame = CGRect(
             x: 0,
             y: 0,
@@ -74,6 +139,8 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
             height: faceButtonHeight)
         
         faceImageIV2 = UIImageView(image: greenFaceImages[1])
+        faceImageIV2.isUserInteractionEnabled = true
+        faceImageIV2.addGestureRecognizer(tapGesture2)
         faceImageIV2.frame = CGRect(
             x: faceButtonContainer.bounds.width * 0.25,
             y: 0,
@@ -81,6 +148,8 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
             height: faceButtonHeight)
         
         faceImageIV3 = UIImageView()
+        faceImageIV3.isUserInteractionEnabled = true
+        faceImageIV3.addGestureRecognizer(tapGesture3)
         faceImageIV3.frame = CGRect(
             x: faceButtonContainer.bounds.width * 0.50,
             y: 0,
@@ -88,33 +157,27 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
             height: faceButtonHeight)
         
         faceImageIV4 = UIImageView()
+        faceImageIV4.isUserInteractionEnabled = true
+        faceImageIV4.addGestureRecognizer(tapGesture4)
         faceImageIV4.frame = CGRect(
             x: faceButtonContainer.bounds.width * 0.75,
             y: 0,
             width: faceButtonWidth,
             height: faceButtonHeight)
         
-        
         faceButtonContainer.addSubview(faceImageIV1)
         faceButtonContainer.addSubview(faceImageIV2)
         faceButtonContainer.addSubview(faceImageIV3)
         faceButtonContainer.addSubview(faceImageIV4)
         
-        faceButtonContainer.contentMode = .center
+        
         view.addSubview(faceButtonContainer)
-
-        bodyIV.frame = CGRect(
-            x: view.frame.width * 0.15,
-            y: view.frame.height * 0.2,
-            width: view.frame.width * 0.67,
-            height: view.frame.height * 0.75)
-        view.addSubview(bodyIV)
-        
-        // Set the button's image to to the emoji image.
-        emojiButton.setImage(
-            UIImage(named: "splash"),
-            for: .normal)
-        
+    }
+    
+    /**
+        Sets up the color slider and adds it to the view.
+     */
+    func initializeColorSlider() {
         // Set up the color slider.
         let colorSlider = ColorSlider(
             orientation: .vertical,
@@ -131,8 +194,35 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
             self,
             action: #selector(changedColor(_:)),
             for: .valueChanged)
-
+        
         view.addSubview(colorSlider)
+    }
+    
+    /**
+        Called when a face button is pressed.
+     
+        Creates and image view and sets it's image to the selected
+        face. The image view is presented over the body's head.
+    */
+    @objc func faceButtonPressed(_ sender: UITapGestureRecognizer) {
+        
+        if faceImageIV == nil {
+            faceImageIV = UIImageView(
+                frame: CGRect(x: view.frame.width * 0.325,
+                              y: view.frame.height * 0.2,
+                              width: view.frame.width * 0.32,
+                              height: view.frame.height * 0.22))
+            view.addSubview(faceImageIV)
+        }
+        
+        // Get the face image view that was tapped by the user.
+        let view = sender.view
+        let touchLocation = sender.location(in: view)
+        let selectedFaceIV :UIImageView? = view?.hitTest(touchLocation, with: nil) as? UIImageView
+        
+        DispatchQueue.main.async {
+            self.faceImageIV.image = selectedFaceIV?.image
+        }
     }
     
     @IBAction func addPhotoButtonPressed(_ sender: Any) {
