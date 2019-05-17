@@ -38,6 +38,11 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
     var emojiImageIV4 :UIImageView!
     var emojiImageIV5 :UIImageView!
     
+    var bodyButton1 :UIImageView!
+    var bodyButton2 :UIImageView!
+    var bodyButton3 :UIImageView!
+    var bodyButton4 :UIImageView!
+    
     // View that contains the emoji button image views.
     var emojiButtonContainer :UIView!
 
@@ -51,6 +56,7 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
     var orangeEmojiImages = [UIImage]()
     var redEmojiImages = [UIImage]()
     
+    var bodyImages = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +65,7 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
         setBodyImage()
         initializeFaceButtons()
         initializeEmojiButtons()
+        initializeBodyButtons()
         
         initializeColorSlider()
     }
@@ -125,9 +132,9 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
         
         
         faceButtonContainer = UIView(frame:
-            CGRect(x: view.frame.width * 0.3,
+            CGRect(x: view.frame.width * 0.5,
                    y: view.frame.height * 0.09,
-                   width: view.frame.width * 0.7,
+                   width: view.frame.width * 0.6,
                    height: view.frame.height * 0.1))
         
         faceButtonContainer.contentMode = .center
@@ -150,7 +157,7 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
         faceImageIV2.isUserInteractionEnabled = true
         faceImageIV2.addGestureRecognizer(tapGesture2)
         faceImageIV2.frame = CGRect(
-            x: faceButtonContainer.bounds.width * 0.25,
+            x: faceButtonContainer.bounds.width * 0.2,
             y: 0,
             width: faceButtonWidth,
             height: faceButtonHeight)
@@ -159,7 +166,7 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
         faceImageIV3.isUserInteractionEnabled = true
         faceImageIV3.addGestureRecognizer(tapGesture3)
         faceImageIV3.frame = CGRect(
-            x: faceButtonContainer.bounds.width * 0.50,
+            x: faceButtonContainer.bounds.width * 0.4,
             y: 0,
             width: faceButtonWidth,
             height: faceButtonHeight)
@@ -168,7 +175,7 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
         faceImageIV4.isUserInteractionEnabled = true
         faceImageIV4.addGestureRecognizer(tapGesture4)
         faceImageIV4.frame = CGRect(
-            x: faceButtonContainer.bounds.width * 0.75,
+            x: faceButtonContainer.bounds.width * 0.6,
             y: 0,
             width: faceButtonWidth,
             height: faceButtonHeight)
@@ -362,6 +369,128 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
             self.faceImageIV.image = selectedFaceIV?.image
         }
     }
+    
+    func loadBodyImages() {
+        bodyImages.append(UIImage(named: "WhiteBody")!)
+        bodyImages.append(UIImage(named: "YellowBody")!)
+        bodyImages.append(UIImage(named: "BrownBody")!)
+        bodyImages.append(UIImage(named: "BlackBody")!)
+    }
+    
+    /**
+     Creates a container to hold the body buttons image views.
+     Initializes each image view with a tap gesture recognizers that calls the
+     faceButtonPressed method and adds them to the container.
+     */
+    func initializeBodyButtons() {
+        loadBodyImages()
+        
+        // Call the faceButtonPressed function when an image view is selected.
+        let tapGesture1 :UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: Selector(("bodyButtonPressed:")))
+        
+        let tapGesture2 :UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: Selector(("bodyButtonPressed:")))
+        
+        let tapGesture3 :UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: Selector(("bodyButtonPressed:")))
+        
+        let tapGesture4 :UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: Selector(("bodyButtonPressed:")))
+        
+        
+        let bodyButtonContainer = UIView(frame:
+            CGRect(x: view.frame.width * 0.3,
+                   y: view.frame.height * 0.09,
+                   width: view.frame.width * 0.3,
+                   height: view.frame.height * 0.1))
+
+        bodyButtonContainer.contentMode = .center
+        bodyButtonContainer.isUserInteractionEnabled = true
+        
+        
+        let bodyButtonWidth = view.frame.width * 0.1
+        let bodyButtonHeight = view.frame.height * 0.1
+        let bodyButtonX = view.frame.width * 0.02
+        let bodyButtonY = view.frame.height * 0.09
+        
+        bodyButton1 = UIImageView()
+        bodyButton1.image = bodyImages[0]
+        bodyButton1.isUserInteractionEnabled = true
+        bodyButton1.addGestureRecognizer(tapGesture1)
+        bodyButton1.frame = CGRect(
+            x: bodyButtonX,
+            y: bodyButtonY,
+            width: bodyButtonWidth,
+            height: bodyButtonHeight)
+        
+        view.addSubview(bodyButton1)
+        
+        
+        bodyButton2 = UIImageView()
+        bodyButton2.image = bodyImages[1]
+        bodyButton2.isUserInteractionEnabled = true
+        bodyButton2.addGestureRecognizer(tapGesture2)
+        bodyButton2.frame = CGRect(
+            x: bodyButtonX + bodyButtonWidth,
+            y: bodyButtonY,
+            width: bodyButtonWidth,
+            height: bodyButtonHeight)
+        
+        view.addSubview(bodyButton2)
+        
+        bodyButton3 = UIImageView()
+        bodyButton3.image = bodyImages[2]
+        bodyButton3.isUserInteractionEnabled = true
+        bodyButton3.addGestureRecognizer(tapGesture3)
+        bodyButton3.frame = CGRect(
+            x: bodyButtonX + bodyButtonWidth * 2,
+            y: bodyButtonY,
+            width: bodyButtonWidth,
+            height: bodyButtonHeight)
+        
+        view.addSubview(bodyButton3)
+        
+        bodyButton4 = UIImageView()
+        bodyButton4.image = bodyImages[3]
+        bodyButton4.isUserInteractionEnabled = true
+        bodyButton4.addGestureRecognizer(tapGesture4)
+        bodyButton4.frame = CGRect(
+            x: bodyButtonX + bodyButtonWidth * 3,
+            y: bodyButtonY,
+            width: bodyButtonWidth,
+            height: bodyButtonHeight)
+        
+        view.addSubview(bodyButton4)
+    }
+    
+    
+    
+    
+    /**
+     Called when a body button is pressed.
+     
+     Sets the body image to the selected button's image.
+     */
+    @objc func bodyButtonPressed(_ sender: UITapGestureRecognizer) {
+        
+        // Get the face image view that was tapped by the user.
+        let view = sender.view
+        let touchLocation = sender.location(in: view)
+        let selectedBodyIV :UIImageView? = view?.hitTest(touchLocation, with: nil) as? UIImageView
+        if selectedBodyIV == nil {
+            return
+        }
+        DispatchQueue.main.async {
+            self.bodyIV.image = selectedBodyIV?.image
+        }
+    }
+    
+    
     
     @IBAction func addPhotoButtonPressed(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
