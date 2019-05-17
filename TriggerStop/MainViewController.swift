@@ -247,26 +247,25 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
             target: self,
             action: Selector(("emojiButtonPressed:")))
         
-        
         emojiButtonContainer = UIView(frame:
             CGRect(x: view.frame.width * 0.83,
                    y: view.frame.height * 0.25,
                    width: view.frame.width * 0.16,
                    height: view.frame.height * 0.7))
         
-        emojiButtonContainer.contentMode = .center
-        emojiButtonContainer.isUserInteractionEnabled = true
-        
         let emojiButtonWidth = emojiButtonContainer.bounds.width
         let emojiButtonHeight = emojiButtonContainer.bounds.width
         
+        let emojiButtonX :CGFloat = view.frame.width * 0.83
+        let emojiButtonY :CGFloat = view.frame.height * 0.25
+        let emojiYIncrement :CGFloat = emojiButtonHeight + view.frame.height * 0.05
         
         emojiImageIV1 = UIImageView(image: greenEmojiImages[0])
         emojiImageIV1.isUserInteractionEnabled = true
         emojiImageIV1.addGestureRecognizer(tapGesture1)
         emojiImageIV1.frame = CGRect(
-            x: 0,
-            y: 0,
+            x: emojiButtonX,
+            y: emojiButtonY,
             width: emojiButtonWidth,
             height: emojiButtonHeight)
         
@@ -274,8 +273,8 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
         emojiImageIV2.isUserInteractionEnabled = true
         emojiImageIV2.addGestureRecognizer(tapGesture2)
         emojiImageIV2.frame = CGRect(
-            x: 0,
-            y:  emojiButtonContainer.bounds.height * 0.2,
+            x: emojiButtonX,
+            y:  emojiButtonY + emojiYIncrement,
             width: emojiButtonWidth,
             height: emojiButtonHeight)
         
@@ -283,8 +282,8 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
         emojiImageIV3.isUserInteractionEnabled = true
         emojiImageIV3.addGestureRecognizer(tapGesture3)
         emojiImageIV3.frame = CGRect(
-            x:  0,
-            y:  emojiButtonContainer.bounds.height * 0.4,
+            x:  emojiButtonX,
+            y:  emojiButtonY + emojiYIncrement * 2,
             width: emojiButtonWidth,
             height: emojiButtonHeight)
         
@@ -292,8 +291,8 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
         emojiImageIV4.isUserInteractionEnabled = true
         emojiImageIV4.addGestureRecognizer(tapGesture4)
         emojiImageIV4.frame = CGRect(
-            x: 0,
-            y: emojiButtonContainer.bounds.height * 0.6,
+            x: emojiButtonX,
+            y: emojiButtonY + emojiYIncrement * 3,
             width: emojiButtonWidth,
             height: emojiButtonHeight)
         
@@ -301,18 +300,23 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
         emojiImageIV5.isUserInteractionEnabled = true
         emojiImageIV5.addGestureRecognizer(tapGesture5)
         emojiImageIV5.frame = CGRect(
-            x: 0,
-            y: emojiButtonContainer.bounds.height * 0.8,
+            x: emojiButtonX,
+            y: emojiButtonY + emojiYIncrement * 4,
             width: emojiButtonWidth,
             height: emojiButtonHeight)
         
-        emojiButtonContainer.addSubview(emojiImageIV1)
-        emojiButtonContainer.addSubview(emojiImageIV2)
-        emojiButtonContainer.addSubview(emojiImageIV3)
-        emojiButtonContainer.addSubview(emojiImageIV4)
-        emojiButtonContainer.addSubview(emojiImageIV5)
-        
-        view.addSubview(emojiButtonContainer)
+//        emojiButtonContainer.addSubview(emojiImageIV1)
+//        emojiButtonContainer.addSubview(emojiImageIV2)
+//        emojiButtonContainer.addSubview(emojiImageIV3)
+//        emojiButtonContainer.addSubview(emojiImageIV4)
+//        emojiButtonContainer.addSubview(emojiImageIV5)
+//
+//        view.addSubview(emojiButtonContainer)
+        view.addSubview(emojiImageIV1)
+        view.addSubview(emojiImageIV2)
+        view.addSubview(emojiImageIV3)
+        view.addSubview(emojiImageIV4)
+        view.addSubview(emojiImageIV5)
     }
     
     
@@ -566,34 +570,35 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
         }
     }
     
-    
     @objc func emojiButtonPressed(_ sender: UITapGestureRecognizer) {
         
         // Get the emoji image view that was tapped by the user.
         let tapView = sender.view
-        let touchLocation = sender.location(in: tapView)
-        let selectedEmojiIV :UIImageView? = tapView?.hitTest(touchLocation, with: nil) as? UIImageView
+
+        let touchLocationInEmojiButton = sender.location(in: tapView)
+        let touchLocationInView = sender.location(in: self.view)
+        let selectedEmojiIV :UIImageView? = tapView?.hitTest(touchLocationInEmojiButton, with: nil) as? UIImageView
         
         if selectedEmojiIV?.image == nil {
             return
         }
-
-        let emojiView = UIImageView(frame: CGRect(
-            x: emojiButtonContainer.frame.origin.x,
-            y: view.center.y,
+        
+        let emojiView = UIImageView(image: selectedEmojiIV?.image)
+        emojiView.frame = CGRect(
+            x: touchLocationInView.x - view.frame.width * 0.15,
+            y: touchLocationInView.y - view.frame.height * 0.05,
             width: self.view.bounds.width * 0.15,
-            height: self.view.bounds.width * 0.15))
-        
+            height: self.view.bounds.width * 0.15)
+
         emojiView.isUserInteractionEnabled = true
-        emojiView.image = selectedEmojiIV?.image
-        
+    
         let panGesture = UIPanGestureRecognizer(
             target: self,
             action:Selector(("moveEmoji:")))
         
         emojiView.addGestureRecognizer(panGesture)
         self.emojisInView.append(emojiView)
-        
+    
         DispatchQueue.main.async {
             print("Emojies in view: \(self.emojisInView.count)")
             self.view.addSubview(emojiView)
