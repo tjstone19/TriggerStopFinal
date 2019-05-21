@@ -77,9 +77,9 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
         bodyIV = UIImageView(image: UIImage(named: "BlackBody"))
         bodyIV.frame = CGRect(
             x: view.frame.width * 0.15,
-            y: view.frame.height * 0.2,
+            y: view.frame.height * 0.24,
             width: view.frame.width * 0.67,
-            height: view.frame.height * 0.75)
+            height: view.frame.height * 0.74)
         view.addSubview(bodyIV)
     }
     
@@ -135,48 +135,56 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
             CGRect(x: view.frame.width * 0.5,
                    y: view.frame.height * 0.09,
                    width: view.frame.width * 0.6,
-                   height: view.frame.height * 0.1))
+                   height: view.frame.height * 0.11))
         
         faceButtonContainer.contentMode = .center
         faceButtonContainer.isUserInteractionEnabled = true
         
         let faceButtonWidth = faceButtonContainer.bounds.width * 0.20
         let faceButtonHeight = faceButtonContainer.bounds.height
-        
+        let faceButtonXIncrement :CGFloat = 0.2
+        let faceButtonY = view.frame.height * 0.02
+        let faceBorderWidth :CGFloat = 0.5
         
         faceImageIV1 = UIImageView(image: greenFaceImages[0])
+        faceImageIV1.layer.borderColor = UIColor.black.cgColor
+        faceImageIV1.layer.borderWidth = faceBorderWidth
         faceImageIV1.isUserInteractionEnabled = true
         faceImageIV1.addGestureRecognizer(tapGesture1)
         faceImageIV1.frame = CGRect(
             x: 0,
-            y: 0,
+            y: faceButtonY,
             width: faceButtonWidth,
             height: faceButtonHeight)
         
         faceImageIV2 = UIImageView(image: greenFaceImages[1])
         faceImageIV2.isUserInteractionEnabled = true
+        faceImageIV2.layer.borderColor = UIColor.black.cgColor
+        faceImageIV2.layer.borderWidth = faceBorderWidth
         faceImageIV2.addGestureRecognizer(tapGesture2)
         faceImageIV2.frame = CGRect(
-            x: faceButtonContainer.bounds.width * 0.2,
-            y: 0,
+            x: faceButtonContainer.bounds.width * faceButtonXIncrement,
+            y: faceButtonY,
             width: faceButtonWidth,
             height: faceButtonHeight)
         
         faceImageIV3 = UIImageView()
+        faceImageIV3.layer.borderColor = UIColor.black.cgColor
         faceImageIV3.isUserInteractionEnabled = true
         faceImageIV3.addGestureRecognizer(tapGesture3)
         faceImageIV3.frame = CGRect(
-            x: faceButtonContainer.bounds.width * 0.4,
-            y: 0,
+            x: faceButtonContainer.bounds.width * (faceButtonXIncrement * 2),
+            y: faceButtonY,
             width: faceButtonWidth,
             height: faceButtonHeight)
         
         faceImageIV4 = UIImageView()
+        faceImageIV4.layer.borderColor = UIColor.black.cgColor
         faceImageIV4.isUserInteractionEnabled = true
         faceImageIV4.addGestureRecognizer(tapGesture4)
         faceImageIV4.frame = CGRect(
-            x: faceButtonContainer.bounds.width * 0.6,
-            y: 0,
+            x: faceButtonContainer.bounds.width * (faceButtonXIncrement * 3),
+            y: faceButtonY,
             width: faceButtonWidth,
             height: faceButtonHeight)
         
@@ -257,7 +265,7 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
         let emojiButtonHeight = emojiButtonContainer.bounds.width
         
         let emojiButtonX :CGFloat = view.frame.width * 0.83
-        let emojiButtonY :CGFloat = view.frame.height * 0.25
+        let emojiButtonY :CGFloat = view.frame.height * 0.3
         let emojiYIncrement :CGFloat = emojiButtonHeight + view.frame.height * 0.05
         
         emojiImageIV1 = UIImageView(image: greenEmojiImages[0])
@@ -332,9 +340,9 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
         
         colorSlider.frame = CGRect(
             x: view.frame.width * 0.05,
-            y: view.frame.height * 0.2,
+            y: view.frame.height * 0.24,
             width: view.frame.width * 0.05,
-            height: view.frame.height * 0.70)
+            height: view.frame.height * 0.71)
         
         // Set callback function for when the color slider's value changes.
         colorSlider.addTarget(
@@ -356,7 +364,7 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
         if faceImageIV == nil {
             faceImageIV = UIImageView(
                 frame: CGRect(x: view.frame.width * 0.325,
-                              y: view.frame.height * 0.2,
+                              y: view.frame.height * 0.24,
                               width: view.frame.width * 0.32,
                               height: view.frame.height * 0.22))
             view.addSubview(faceImageIV)
@@ -417,13 +425,16 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
         bodyButtonContainer.isUserInteractionEnabled = true
         
         
-        let bodyButtonWidth = view.frame.width * 0.1
-        let bodyButtonHeight = view.frame.height * 0.1
+        let bodyButtonWidth = view.frame.width * 0.11
+        let bodyButtonHeight = view.frame.height * 0.11
         let bodyButtonX = view.frame.width * 0.02
-        let bodyButtonY = view.frame.height * 0.09
+        let bodyButtonY = view.frame.height * 0.11
+        let bodyBorderWidth :CGFloat = 0.5
         
         bodyButton1 = UIImageView()
         bodyButton1.image = bodyImages[0]
+        bodyButton1.layer.borderColor = UIColor.black.cgColor
+        bodyButton1.layer.borderWidth = bodyBorderWidth
         bodyButton1.isUserInteractionEnabled = true
         bodyButton1.addGestureRecognizer(tapGesture1)
         bodyButton1.frame = CGRect(
@@ -437,6 +448,8 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
         
         bodyButton2 = UIImageView()
         bodyButton2.image = bodyImages[1]
+        bodyButton2.layer.borderColor = UIColor.black.cgColor
+        bodyButton2.layer.borderWidth = bodyBorderWidth
         bodyButton2.isUserInteractionEnabled = true
         bodyButton2.addGestureRecognizer(tapGesture2)
         bodyButton2.frame = CGRect(
@@ -449,6 +462,8 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
         
         bodyButton3 = UIImageView()
         bodyButton3.image = bodyImages[2]
+        bodyButton3.layer.borderColor = UIColor.black.cgColor
+        bodyButton3.layer.borderWidth = bodyBorderWidth
         bodyButton3.isUserInteractionEnabled = true
         bodyButton3.addGestureRecognizer(tapGesture3)
         bodyButton3.frame = CGRect(
@@ -461,6 +476,8 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
         
         bodyButton4 = UIImageView()
         bodyButton4.image = bodyImages[3]
+        bodyButton4.layer.borderColor = UIColor.black.cgColor
+        bodyButton4.layer.borderWidth = bodyBorderWidth
         bodyButton4.isUserInteractionEnabled = true
         bodyButton4.addGestureRecognizer(tapGesture4)
         bodyButton4.frame = CGRect(
@@ -556,16 +573,20 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
             
             if newFaceImages.count >= 3 {
                 self.faceImageIV3.image = newFaceImages[2]
+                self.faceImageIV3.layer.borderWidth = 0.5
             }
             else {
                 self.faceImageIV3.image = nil
+                self.faceImageIV3.layer.borderWidth = 0
             }
             
             if newFaceImages.count == 4 {
                 self.faceImageIV4.image = newFaceImages[3]
+                self.faceImageIV4.layer.borderWidth = 0.5
             }
             else {
                 self.faceImageIV4.image = nil
+                self.faceImageIV4.layer.borderWidth = 0
             }
         }
     }
