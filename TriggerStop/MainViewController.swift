@@ -9,7 +9,12 @@
 import UIKit
 import ColorSlider
 
-class MainViewController: UIViewController, UIImagePickerControllerDelegate {
+class MainViewController: UIViewController, UINavigationControllerDelegate {
+    
+    // Allows user to take a picture or select one from their library
+    // if the device does not have a camera.
+    var imagePicker: UIImagePickerController!
+    
     // Stores all of the emojis on the screen.
     var emojisInView: [UIImageView] = [UIImageView]()
     
@@ -325,13 +330,6 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
             width: emojiButtonWidth,
             height: emojiButtonHeight)
         
-//        emojiButtonContainer.addSubview(emojiImageIV1)
-//        emojiButtonContainer.addSubview(emojiImageIV2)
-//        emojiButtonContainer.addSubview(emojiImageIV3)
-//        emojiButtonContainer.addSubview(emojiImageIV4)
-//        emojiButtonContainer.addSubview(emojiImageIV5)
-//
-//        view.addSubview(emojiButtonContainer)
         view.addSubview(emojiImageIV1)
         view.addSubview(emojiImageIV2)
         view.addSubview(emojiImageIV3)
@@ -365,13 +363,8 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
         view.addSubview(colorSlider)
     }
     
-    /**
-        Called when a face button is pressed.
-     
-        Creates and image view and sets it's image to the selected
-        face. The image view is presented over the body's head.
-    */
-    @objc func faceButtonPressed(_ sender: UITapGestureRecognizer) {
+    func setFaceImage(image: UIImage?) {
+        if image == nil {return}
         
         if faceImageIV == nil {
             faceImageIV = UIImageView(
@@ -384,13 +377,26 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
             view.sendSubviewToBack(bodyIV)
         }
         
+        DispatchQueue.main.async {
+            self.faceImageIV.image = image
+        }
+    }
+    
+    /**
+        Called when a face button is pressed.
+     
+        Creates and image view and sets it's image to the selected
+        face. The image view is presented over the body's head.
+    */
+    @objc func faceButtonPressed(_ sender: UITapGestureRecognizer) {
+        
         // Get the face image view that was tapped by the user.
         let view = sender.view
         let touchLocation = sender.location(in: view)
         let selectedFaceIV :UIImageView? = view?.hitTest(touchLocation, with: nil) as? UIImageView
         
         DispatchQueue.main.async {
-            self.faceImageIV.image = selectedFaceIV?.image
+            self.setFaceImage(image: selectedFaceIV?.image)
         }
     }
     
@@ -537,41 +543,6 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
         emojisInView.removeAll()
     }
     
-    @IBAction func addPhotoButtonPressed(_ sender: Any) {
-        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
-            print("Button capture")
-            
-            let imagePicker = UIImagePickerController()
-            
-            imagePicker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
-            imagePicker.sourceType = .photoLibrary
-            imagePicker.allowsEditing = false
-            
-            present(imagePicker, animated: true, completion: nil)
-        }
-    }
-    
-    
-    
-//    @objc func imagePickerController(picker: UIImagePickerController!,
-//                               didFinishPickingImage image: UIImage!,
-//                               editingInfo: NSDictionary!) {
-//
-//        self.dismiss(animated: true, completion: { () -> Void in
-//        })
-//
-//        let emojiWidth = self.view.bounds.width * 0.15
-//        let emojiHeight = emojiWidth
-//        let newEmojiIV :UIImageView = UIImageView(image: image)
-//        newEmojiIV.frame = CGRect(
-//            x: view.frame.width / 2 - emojiWidth,
-//            y: view.frame.height / 2 - emojiHeight,
-//            width: emojiWidth,
-//            height: emojiHeight)
-//
-//        view.addSubview(newEmojiIV)
-//    }
-    
     @objc func changedColor(_ slider: ColorSlider) {
         let percentage: CGFloat = slider.currentPercentage * 100
         
@@ -693,6 +664,71 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
             // On cancellation, return the piece to its original location.
             emojiView.center = emojiInitialCenter
         }
+    }
+    
+    
+    enum ImageSource {
+        case photoLibrary
+        case camera
+    }
+    
+   
+    //MARK: - Take image
+    @IBAction func takePhoto(_ sender: UIButton) {
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+            selectImageFrom(.photoLibrary)
+            return
+        }
+        selectImageFrom(.camera)
+    }
+    
+    func selectImageFrom(_ source: ImageSource){
+        imagePicker =  UIImagePickerController()
+        imagePicker.delegate = self
+        switch source {
+        case .camera:
+            imagePicker.sourceType = .camera
+        case .photoLibrary:
+            imagePicker.sourceType = .photoLibrary
+        }
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    //MARK: - Saving Image here
+    @IBAction func save(_ sender: AnyObject) {
+        guard let selectedImage = faceImageIV.image else {
+            print("Image not found!")
+            return
+        }
+        UIImageWriteToSavedPhotosAlbum(selectedImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+    }
+    
+    //MARK: - Add image to Library
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            // we got back an error!
+            showAlertWith(title: "Save error", message: error.localizedDescription)
+        } else {
+            showAlertWith(title: "Saved!", message: "Your image has been saved to your photos.")
+        }
+    }
+    
+    func showAlertWith(title: String, message: String){
+        let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        present(ac, animated: true)
+    }
+}
+
+extension MainViewController: UIImagePickerControllerDelegate{
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
+        imagePicker.dismiss(animated: true, completion: nil)
+        guard let selectedImage = info[.originalImage] as? UIImage else {
+            print("Image not found!")
+            return
+        }
+        setFaceImage(image: selectedImage)
     }
 }
 
