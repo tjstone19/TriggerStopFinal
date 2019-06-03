@@ -13,8 +13,10 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
     // Stores all of the emojis on the screen.
     var emojisInView: [UIImageView] = [UIImageView]()
     
+    @IBOutlet weak var clearScreenButton: UIButton!
+    
     @IBOutlet weak var addPhotoButton: UIButton!
-    @IBOutlet weak var emojiButton: UIButton!
+
     
     // Image view for the body.
     var bodyIV :UIImageView!
@@ -60,6 +62,16 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        clearScreenButton = UIButton(frame: CGRect(
+//            x: 0,
+//            y: 0,
+//            width: view.frame.width * 0.15,
+//            height: view.frame.height * 0.15))
+        
+        clearScreenButton.imageView?.image = UIImage(named: "Trash")
+        clearScreenButton.addTarget(self, action: Selector(("clearScreen:")), for: .touchUpInside)
+        self.navigationItem.titleView = clearScreenButton
         
         // Create the body background image view.
         setBodyImage()
@@ -261,8 +273,8 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
                    width: view.frame.width * 0.16,
                    height: view.frame.height * 0.7))
         
-        let emojiButtonWidth = emojiButtonContainer.bounds.width
-        let emojiButtonHeight = emojiButtonContainer.bounds.width
+        let emojiButtonWidth :CGFloat = view.frame.width * 0.15
+        let emojiButtonHeight :CGFloat = view.frame.height * 0.07
         
         let emojiButtonX :CGFloat = view.frame.width * 0.83
         let emojiButtonY :CGFloat = view.frame.height * 0.3
@@ -511,7 +523,19 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
         }
     }
     
-    
+    /**
+        Clears the face image and emoji images on the screen.
+    */
+    @IBAction func clearScreen(_ sender: Any) {
+        for emoji in emojisInView {
+            emoji.removeFromSuperview()
+        }
+        
+        if faceImageIV != nil {
+            faceImageIV.image = nil
+        }
+        emojisInView.removeAll()
+    }
     
     @IBAction func addPhotoButtonPressed(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
@@ -520,21 +544,33 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate {
             let imagePicker = UIImagePickerController()
             
             imagePicker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
-            imagePicker.sourceType = .savedPhotosAlbum
+            imagePicker.sourceType = .photoLibrary
             imagePicker.allowsEditing = false
             
             present(imagePicker, animated: true, completion: nil)
         }
     }
     
-    func imagePickerController(
-        picker: UIImagePickerController!,
-        didFinishPickingImage image: UIImage!,
-        editingInfo: NSDictionary!) {
-        
-        self.dismiss(animated: true, completion: { () -> Void in
-        })
-    }
+    
+    
+//    @objc func imagePickerController(picker: UIImagePickerController!,
+//                               didFinishPickingImage image: UIImage!,
+//                               editingInfo: NSDictionary!) {
+//
+//        self.dismiss(animated: true, completion: { () -> Void in
+//        })
+//
+//        let emojiWidth = self.view.bounds.width * 0.15
+//        let emojiHeight = emojiWidth
+//        let newEmojiIV :UIImageView = UIImageView(image: image)
+//        newEmojiIV.frame = CGRect(
+//            x: view.frame.width / 2 - emojiWidth,
+//            y: view.frame.height / 2 - emojiHeight,
+//            width: emojiWidth,
+//            height: emojiHeight)
+//
+//        view.addSubview(newEmojiIV)
+//    }
     
     @objc func changedColor(_ slider: ColorSlider) {
         let percentage: CGFloat = slider.currentPercentage * 100
