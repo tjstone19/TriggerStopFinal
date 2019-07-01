@@ -39,29 +39,34 @@
                     </view>
                     <navigationItem key="navigationItem" id="sxx-7y-sl9">
                         <nil key="title"/>
-                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BAA-6C-qe2">
-                            <rect key="frame" x="183.5" y="4" width="47" height="36"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Clear">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </state>
-                            <connections>
-                                <action selector="clearScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Em3-Sn-8Wa"/>
-                            </connections>
-                        </button>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="Wn6-9V-HNa">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HDe-YB-88G">
-                                <rect key="frame" x="302" y="4" width="92" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Add Photo">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="takePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XO5-IM-ph2"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem style="plain" id="Wn6-9V-HNa">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HDe-YB-88G">
+                                    <rect key="frame" x="277" y="6" width="117" height="32"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <inset key="contentEdgeInsets" minX="55" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <state key="normal" image="camera">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="takePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XO5-IM-ph2"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                            <barButtonItem style="plain" id="Zdg-lQ-bxw">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BAA-6C-qe2">
+                                    <rect key="frame" x="177.5" y="11" width="74" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="19" maxY="0.0"/>
+                                    <state key="normal" image="trash">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="clearScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Em3-Sn-8Wa"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="addPhotoButton" destination="HDe-YB-88G" id="ZDW-c1-ilv"/>
@@ -70,7 +75,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-694" y="27"/>
+            <point key="canvasLocation" x="-694.20289855072474" y="26.785714285714285"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="camera" width="32" height="32"/>
+        <image name="trash" width="32" height="32"/>
+    </resources>
 </document>
