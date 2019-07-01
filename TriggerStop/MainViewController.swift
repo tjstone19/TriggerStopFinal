@@ -11,6 +11,10 @@ import ColorSlider
 
 class MainViewController: UIViewController, UINavigationControllerDelegate {
     
+    // Width and height of the view.
+    var width: CGFloat = 0.0
+    var height: CGFloat = 0.0
+    
     // Allows user to take a picture or select one from their library
     // if the device does not have a camera.
     var imagePicker: UIImagePickerController!
@@ -26,6 +30,12 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     // Image view for the body.
     var bodyIV :UIImageView!
     
+    // Body image coordinates and size as a percentage of view's dimensions.
+    let BODY_IMAGE_X :CGFloat = 0.15
+    let BODY_IMAGE_Y :CGFloat = 0.24
+    let BODY_IMAGE_WIDTH :CGFloat = 0.67
+    let BODY_IMAGE_HEIGHT :CGFloat = 0.74
+    
     // Image view for the face image displayed over the body's head.
     var faceImageIV :UIImageView!
 
@@ -38,6 +48,13 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     // View that contains the face button image views.
     var faceButtonContainer :UIView!
     
+    /* Face button container coordinates and size as a
+       percentage of view's dimensions. */
+    let FACE_BUTTON_CONTAINER_X :CGFloat = 0.5
+    let FACE_BUTTON_CONTAINER_Y :CGFloat = 0.09
+    let FACE_BUTTON_CONTAINER_WIDTH :CGFloat = 0.6
+    let FACE_BUTTON_CONTAINER_HEIGHT :CGFloat = 0.11
+    
     // Image views for the face buttons.
     var emojiImageIV1 :UIImageView!
     var emojiImageIV2 :UIImageView!
@@ -45,13 +62,33 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     var emojiImageIV4 :UIImageView!
     var emojiImageIV5 :UIImageView!
     
+    // Emoji button coordinates and size as a percentage of view's dimensions.
+    let EMOJI_BUTTON_X :CGFloat = 0.83
+    let EMOJI_BUTTON_Y :CGFloat = 0.3
+    let EMOJI_BUTTON_WIDTH: CGFloat = 0.15
+    let EMOJI_BUTTON_HEIGHT: CGFloat = 0.07
+    
+    // Vertical spacing between emoji buttons
+    let EMOJI_BUTTON_Y_SPACING :CGFloat = 0.05
+    
+    // Emoji image coordinates relative to where the user touched the screen.
+    let NEW_EMOJI_X :CGFloat = 0.15
+    let NEW_EMOJI_Y :CGFloat = 0.05
+    
+    // Emoji image widght and height as percentage of view's dimensions.
+    let NEW_EMOJI_WIDTH :CGFloat = 0.15
+    let NEW_EMOJI_HEIGHT :CGFloat = 0.15
+    
+    // Color slider coordinates and size as a percentage of view's dimensions.
+    let COLOR_SLIDER_X :CGFloat = 0.05
+    let COLOR_SLIDER_Y :CGFloat = 0.24
+    let COLOR_SLIDER_WIDTH :CGFloat = 0.05
+    let COLOR_SLIDER_HEIGHT :CGFloat = 0.71
+    
     var bodyButton1 :UIImageView!
     var bodyButton2 :UIImageView!
     var bodyButton3 :UIImageView!
     var bodyButton4 :UIImageView!
-    
-    // View that contains the emoji button image views.
-    var emojiButtonContainer :UIView!
 
     var greenFaceImages = [UIImage]()
     var blueFaceImages = [UIImage]()
@@ -68,11 +105,8 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        clearScreenButton = UIButton(frame: CGRect(
-//            x: 0,
-//            y: 0,
-//            width: view.frame.width * 0.15,
-//            height: view.frame.height * 0.15))
+        width = view.frame.width
+        height = view.frame.height
         
         clearScreenButton.imageView?.image = UIImage(named: "Trash")
         clearScreenButton.addTarget(self, action: Selector(("clearScreen:")), for: .touchUpInside)
@@ -93,12 +127,14 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     func setBodyImage() {
         bodyIV = UIImageView(image: UIImage(named: "BlackBody"))
         bodyIV.frame = CGRect(
-            x: view.frame.width * 0.15,
-            y: view.frame.height * 0.24,
-            width: view.frame.width * 0.67,
-            height: view.frame.height * 0.74)
+            x: width * BODY_IMAGE_X,
+            y: height * BODY_IMAGE_Y,
+            width: width * BODY_IMAGE_WIDTH,
+            height: height * BODY_IMAGE_HEIGHT)
         view.addSubview(bodyIV)
     }
+    
+    //MARK:- Initialize Face images/buttons.
     
     /**
         Initializes the green, blue, orange, and red lists of face images.
@@ -149,10 +185,10 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         
         
         faceButtonContainer = UIView(frame:
-            CGRect(x: view.frame.width * 0.5,
-                   y: view.frame.height * 0.09,
-                   width: view.frame.width * 0.6,
-                   height: view.frame.height * 0.11))
+            CGRect(x: width * FACE_BUTTON_CONTAINER_X,
+                   y: height * FACE_BUTTON_CONTAINER_Y,
+                   width: width * FACE_BUTTON_CONTAINER_WIDTH,
+                   height: height * FACE_BUTTON_CONTAINER_HEIGHT))
         
         faceButtonContainer.contentMode = .center
         faceButtonContainer.isUserInteractionEnabled = true
@@ -160,7 +196,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         let faceButtonWidth = faceButtonContainer.bounds.width * 0.20
         let faceButtonHeight = faceButtonContainer.bounds.height
         let faceButtonXIncrement :CGFloat = 0.2
-        let faceButtonY = view.frame.height * 0.02
+        let faceButtonY = height * 0.02
         let faceBorderWidth :CGFloat = 0.5
         
         faceImageIV1 = UIImageView(image: greenFaceImages[0])
@@ -213,6 +249,8 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         
         view.addSubview(faceButtonContainer)
     }
+    
+    //MARK:- Initialize emoji images/buttons.
     
     func loadEmojiImages() {
         greenEmojiImages.append(UIImage(named: "GreenEmoji1")!)
@@ -272,18 +310,16 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
             target: self,
             action: Selector(("emojiButtonPressed:")))
         
-        emojiButtonContainer = UIView(frame:
-            CGRect(x: view.frame.width * 0.83,
-                   y: view.frame.height * 0.25,
-                   width: view.frame.width * 0.16,
-                   height: view.frame.height * 0.7))
         
-        let emojiButtonWidth :CGFloat = view.frame.width * 0.15
-        let emojiButtonHeight :CGFloat = view.frame.height * 0.07
         
-        let emojiButtonX :CGFloat = view.frame.width * 0.83
-        let emojiButtonY :CGFloat = view.frame.height * 0.3
-        let emojiYIncrement :CGFloat = emojiButtonHeight + view.frame.height * 0.05
+        let emojiButtonWidth :CGFloat = width * EMOJI_BUTTON_WIDTH
+        let emojiButtonHeight :CGFloat = height * EMOJI_BUTTON_HEIGHT
+        
+        let emojiButtonX :CGFloat = width * EMOJI_BUTTON_X
+        let emojiButtonY :CGFloat = height * EMOJI_BUTTON_Y
+        let emojiYIncrement :CGFloat = height * EMOJI_BUTTON_Y_SPACING
+            + emojiButtonHeight
+        
         
         emojiImageIV1 = UIImageView(image: greenEmojiImages[0])
         emojiImageIV1.isUserInteractionEnabled = true
@@ -339,39 +375,17 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     
     
     
-    /**
-        Sets up the color slider and adds it to the view.
-     */
-    func initializeColorSlider() {
-        // Set up the color slider.
-        let colorSlider = ColorSlider(
-            orientation: .vertical,
-            previewSide: .right)
-        
-        colorSlider.frame = CGRect(
-            x: view.frame.width * 0.05,
-            y: view.frame.height * 0.24,
-            width: view.frame.width * 0.05,
-            height: view.frame.height * 0.71)
-        
-        // Set callback function for when the color slider's value changes.
-        colorSlider.addTarget(
-            self,
-            action: #selector(changedColor(_:)),
-            for: .valueChanged)
-        
-        view.addSubview(colorSlider)
-    }
+    //MARK:- Face button functionality.
     
     func setFaceImage(image: UIImage?) {
         if image == nil {return}
         
         if faceImageIV == nil {
             faceImageIV = UIImageView(
-                frame: CGRect(x: view.frame.width * 0.325,
-                              y: view.frame.height * 0.24,
-                              width: view.frame.width * 0.32,
-                              height: view.frame.height * 0.22))
+                frame: CGRect(x: width * 0.325,
+                              y: height * 0.24,
+                              width: width * 0.32,
+                              height: height * 0.22))
             view.addSubview(faceImageIV)
             view.sendSubviewToBack(faceImageIV)
             view.sendSubviewToBack(bodyIV)
@@ -407,6 +421,8 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         bodyImages.append(UIImage(named: "BlackBody")!)
     }
     
+    //MARK: Initialize body buttons.
+    
     /**
      Creates a container to hold the body buttons image views.
      Initializes each image view with a tap gesture recognizers that calls the
@@ -434,19 +450,19 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         
         
         let bodyButtonContainer = UIView(frame:
-            CGRect(x: view.frame.width * 0.3,
-                   y: view.frame.height * 0.09,
-                   width: view.frame.width * 0.3,
-                   height: view.frame.height * 0.1))
+            CGRect(x: width * 0.3,
+                   y: height * 0.09,
+                   width: width * 0.3,
+                   height: height * 0.1))
 
         bodyButtonContainer.contentMode = .center
         bodyButtonContainer.isUserInteractionEnabled = true
         
         
-        let bodyButtonWidth = view.frame.width * 0.11
-        let bodyButtonHeight = view.frame.height * 0.11
-        let bodyButtonX = view.frame.width * 0.02
-        let bodyButtonY = view.frame.height * 0.11
+        let bodyButtonWidth = width * 0.11
+        let bodyButtonHeight = height * 0.11
+        let bodyButtonX = width * 0.02
+        let bodyButtonY = height * 0.11
         let bodyBorderWidth :CGFloat = 0.5
         
         bodyButton1 = UIImageView()
@@ -508,7 +524,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     
-    
+    //MARK: Body Button functionality.
     
     /**
      Called when a body button is pressed.
@@ -541,6 +557,32 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
             faceImageIV.image = nil
         }
         emojisInView.removeAll()
+    }
+    
+    //MARK: - Color Slider
+    
+    /**
+     Sets up the color slider and adds it to the view.
+     */
+    func initializeColorSlider() {
+        // Set up the color slider.
+        let colorSlider = ColorSlider(
+            orientation: .vertical,
+            previewSide: .right)
+        
+        colorSlider.frame = CGRect(
+            x: width * COLOR_SLIDER_X,
+            y: height * COLOR_SLIDER_Y,
+            width: width * COLOR_SLIDER_WIDTH,
+            height: height * COLOR_SLIDER_HEIGHT)
+        
+        // Set callback function for when the color slider's value changes.
+        colorSlider.addTarget(
+            self,
+            action: #selector(changedColor(_:)),
+            for: .valueChanged)
+        
+        view.addSubview(colorSlider)
     }
     
     @objc func changedColor(_ slider: ColorSlider) {
@@ -598,6 +640,8 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         }
     }
     
+    //MARK: Emoji Button functionality.
+    
     @objc func emojiButtonPressed(_ sender: UITapGestureRecognizer) {
         
         // Get the emoji image view that was tapped by the user.
@@ -613,10 +657,10 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         
         let emojiView = UIImageView(image: selectedEmojiIV?.image)
         emojiView.frame = CGRect(
-            x: touchLocationInView.x - view.frame.width * 0.15,
-            y: touchLocationInView.y - view.frame.height * 0.05,
-            width: self.view.bounds.width * 0.15,
-            height: self.view.bounds.width * 0.15)
+            x: touchLocationInView.x - width * NEW_EMOJI_X,
+            y: touchLocationInView.y - height * NEW_EMOJI_Y,
+            width: self.view.bounds.width * NEW_EMOJI_WIDTH,
+            height: self.view.bounds.width * NEW_EMOJI_HEIGHT)
 
         emojiView.isUserInteractionEnabled = true
     
@@ -666,13 +710,13 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         }
     }
     
+    //MARK: Camera/Photo Library functionality.
     
     enum ImageSource {
         case photoLibrary
         case camera
     }
     
-   
     //MARK: - Take image
     @IBAction func takePhoto(_ sender: UIButton) {
         guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
@@ -694,7 +738,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         present(imagePicker, animated: true, completion: nil)
     }
     
-    //MARK: - Saving Image here
+    //MARK: - Save image.
     @IBAction func save(_ sender: AnyObject) {
         guard let selectedImage = faceImageIV.image else {
             print("Image not found!")
@@ -704,25 +748,33 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     //MARK: - Add image to Library
-    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+    @objc func image(_ image: UIImage,
+                     didFinishSavingWithError error: Error?,
+                     contextInfo: UnsafeRawPointer) {
         if let error = error {
-            // we got back an error!
-            showAlertWith(title: "Save error", message: error.localizedDescription)
+            showAlertWith(
+                title: "Save error",
+                message: error.localizedDescription)
         } else {
-            showAlertWith(title: "Saved!", message: "Your image has been saved to your photos.")
+            showAlertWith(
+                title: "Saved!",
+                message: "Your image has been saved to your photos.")
         }
     }
     
-    func showAlertWith(title: String, message: String){
+    func showAlertWith(title: String, message: String) {
         let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
         present(ac, animated: true)
     }
 }
 
-extension MainViewController: UIImagePickerControllerDelegate{
+extension MainViewController: UIImagePickerControllerDelegate {
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
+    //MARK: Get the selected picture from camera or library.
+    
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         imagePicker.dismiss(animated: true, completion: nil)
         guard let selectedImage = info[.originalImage] as? UIImage else {
             print("Image not found!")
