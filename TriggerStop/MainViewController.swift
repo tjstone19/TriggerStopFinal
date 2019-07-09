@@ -40,27 +40,26 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     var faceImageIV :UIImageView!
 
     // Image views for the face buttons.
-    var faceImageIV1 :UIImageView!
-    var faceImageIV2 :UIImageView!
-    var faceImageIV3 :UIImageView!
-    var faceImageIV4 :UIImageView!
+    var faceButton1 :UIButton!
+    var faceButton2 :UIButton!
+    var faceButton3 :UIButton!
+    var faceButton4 :UIButton!
     
-    // View that contains the face button image views.
-    var faceButtonContainer :UIView!
     
     /* Face button container coordinates and size as a
        percentage of view's dimensions. */
-    let FACE_BUTTON_CONTAINER_X :CGFloat = 0.5
-    let FACE_BUTTON_CONTAINER_Y :CGFloat = 0.09
-    let FACE_BUTTON_CONTAINER_WIDTH :CGFloat = 0.6
-    let FACE_BUTTON_CONTAINER_HEIGHT :CGFloat = 0.11
+    let FACE_BUTTON_X :CGFloat = 0.5
+    let FACE_BUTTON_Y :CGFloat = 0.11
+    let FACE_BUTTON_WIDTH :CGFloat = 0.11
+    let FACE_BUTTON_HEIGHT :CGFloat = 0.11
     
-    // Image views for the face buttons.
-    var emojiImageIV1 :UIImageView!
-    var emojiImageIV2 :UIImageView!
-    var emojiImageIV3 :UIImageView!
-    var emojiImageIV4 :UIImageView!
-    var emojiImageIV5 :UIImageView!
+    // Emoji buttons.
+    var emojiButton1: UIButton!
+    var emojiButton2: UIButton!
+    var emojiButton3: UIButton!
+    var emojiButton4: UIButton!
+    var emojiButton5: UIButton!
+    
     
     // Emoji button coordinates and size as a percentage of view's dimensions.
     let EMOJI_BUTTON_X :CGFloat = 0.83
@@ -85,11 +84,12 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     let COLOR_SLIDER_WIDTH :CGFloat = 0.05
     let COLOR_SLIDER_HEIGHT :CGFloat = 0.71
     
-    var bodyButton1 :UIImageView!
-    var bodyButton2 :UIImageView!
-    var bodyButton3 :UIImageView!
-    var bodyButton4 :UIImageView!
-
+    // Body button's that change the body background image.
+    var bodyButton1 :UIButton!
+    var bodyButton2 :UIButton!
+    var bodyButton3 :UIButton!
+    var bodyButton4 :UIButton!
+    
     var greenFaceImages = [UIImage]()
     var blueFaceImages = [UIImage]()
     var orangeFaceImages = [UIImage]()
@@ -109,7 +109,8 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         height = view.frame.height
         
         clearScreenButton.imageView?.image = UIImage(named: "Trash")
-        clearScreenButton.addTarget(self, action: Selector(("clearScreen:")), for: .touchUpInside)
+        clearScreenButton.addTarget(self, action: Selector(("clearScreen:")),
+                                    for: .touchUpInside)
         self.navigationItem.titleView = clearScreenButton
         
         // Create the body background image view.
@@ -166,88 +167,69 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     func initializeFaceButtons() {
         loadFaceImages()
         
-        // Call the faceButtonPressed function when an image view is selected.
-        let tapGesture1 :UITapGestureRecognizer = UITapGestureRecognizer(
-            target: self,
-            action: Selector(("faceButtonPressed:")))
         
-        let tapGesture2 :UITapGestureRecognizer = UITapGestureRecognizer(
-            target: self,
-            action: Selector(("faceButtonPressed:")))
-        
-        let tapGesture3 :UITapGestureRecognizer = UITapGestureRecognizer(
-            target: self,
-            action: Selector(("faceButtonPressed:")))
-        
-        let tapGesture4 :UITapGestureRecognizer = UITapGestureRecognizer(
-            target: self,
-            action: Selector(("faceButtonPressed:")))
-        
-        
-        faceButtonContainer = UIView(frame:
-            CGRect(x: width * FACE_BUTTON_CONTAINER_X,
-                   y: height * FACE_BUTTON_CONTAINER_Y,
-                   width: width * FACE_BUTTON_CONTAINER_WIDTH,
-                   height: height * FACE_BUTTON_CONTAINER_HEIGHT))
-        
-        faceButtonContainer.contentMode = .center
-        faceButtonContainer.isUserInteractionEnabled = true
-        
-        let faceButtonWidth = faceButtonContainer.bounds.width * 0.20
-        let faceButtonHeight = faceButtonContainer.bounds.height
-        let faceButtonXIncrement :CGFloat = 0.2
-        let faceButtonY = height * 0.02
+        let faceButtonWidth = width * FACE_BUTTON_WIDTH
+        let faceButtonHeight = height * FACE_BUTTON_HEIGHT
+        let faceButtonY = height * FACE_BUTTON_HEIGHT
+        let faceButtonX = width * FACE_BUTTON_X
         let faceBorderWidth :CGFloat = 0.5
         
-        faceImageIV1 = UIImageView(image: greenFaceImages[0])
-        faceImageIV1.layer.borderColor = UIColor.black.cgColor
-        faceImageIV1.layer.borderWidth = faceBorderWidth
-        faceImageIV1.isUserInteractionEnabled = true
-        faceImageIV1.addGestureRecognizer(tapGesture1)
-        faceImageIV1.frame = CGRect(
-            x: 0,
+        faceButton1 = UIButton(frame: CGRect(
+            x: faceButtonX,
             y: faceButtonY,
             width: faceButtonWidth,
-            height: faceButtonHeight)
+            height: faceButtonHeight))
+        faceButton1.setImage(greenFaceImages[0], for: .normal)
+        faceButton1.contentVerticalAlignment = .fill
+        faceButton1.contentHorizontalAlignment = .fill
+        faceButton1.layer.borderColor = UIColor.black.cgColor
+        faceButton1.layer.borderWidth = faceBorderWidth
+        faceButton1.addTarget(self, action: Selector(("faceButtonPressed:")),
+                               for: .touchUpInside)
         
-        faceImageIV2 = UIImageView(image: greenFaceImages[1])
-        faceImageIV2.isUserInteractionEnabled = true
-        faceImageIV2.layer.borderColor = UIColor.black.cgColor
-        faceImageIV2.layer.borderWidth = faceBorderWidth
-        faceImageIV2.addGestureRecognizer(tapGesture2)
-        faceImageIV2.frame = CGRect(
-            x: faceButtonContainer.bounds.width * faceButtonXIncrement,
+        
+        faceButton2 = UIButton(frame: CGRect(
+            x: faceButtonX + faceButtonWidth,
             y: faceButtonY,
             width: faceButtonWidth,
-            height: faceButtonHeight)
+            height: faceButtonHeight))
+        faceButton2.setImage(greenFaceImages[1], for: .normal)
+        faceButton2.contentVerticalAlignment = .fill
+        faceButton2.contentHorizontalAlignment = .fill
+        faceButton2.layer.borderColor = UIColor.black.cgColor
+        faceButton2.layer.borderWidth = faceBorderWidth
+        faceButton2.addTarget(self, action: Selector(("faceButtonPressed:")),
+                              for: .touchUpInside)
         
-        faceImageIV3 = UIImageView()
-        faceImageIV3.layer.borderColor = UIColor.black.cgColor
-        faceImageIV3.isUserInteractionEnabled = true
-        faceImageIV3.addGestureRecognizer(tapGesture3)
-        faceImageIV3.frame = CGRect(
-            x: faceButtonContainer.bounds.width * (faceButtonXIncrement * 2),
+        
+        faceButton3 = UIButton(frame: CGRect(
+            x: faceButtonX + faceButtonWidth * 2,
             y: faceButtonY,
             width: faceButtonWidth,
-            height: faceButtonHeight)
+            height: faceButtonHeight))
+        faceButton3.contentVerticalAlignment = .fill
+        faceButton3.contentHorizontalAlignment = .fill
+        faceButton3.layer.borderColor = UIColor.black.cgColor
+        faceButton3.layer.borderWidth = 0
+        faceButton3.addTarget(self, action: Selector(("faceButtonPressed:")),
+                              for: .touchUpInside)
         
-        faceImageIV4 = UIImageView()
-        faceImageIV4.layer.borderColor = UIColor.black.cgColor
-        faceImageIV4.isUserInteractionEnabled = true
-        faceImageIV4.addGestureRecognizer(tapGesture4)
-        faceImageIV4.frame = CGRect(
-            x: faceButtonContainer.bounds.width * (faceButtonXIncrement * 3),
+        faceButton4 = UIButton(frame: CGRect(
+            x: faceButtonX + faceButtonWidth * 3,
             y: faceButtonY,
             width: faceButtonWidth,
-            height: faceButtonHeight)
+            height: faceButtonHeight))
+        faceButton4.contentVerticalAlignment = .fill
+        faceButton4.contentHorizontalAlignment = .fill
+        faceButton4.layer.borderColor = UIColor.black.cgColor
+        faceButton4.layer.borderWidth = 0
+        faceButton4.addTarget(self, action: Selector(("faceButtonPressed:")),
+                              for: .touchUpInside)
         
-        faceButtonContainer.addSubview(faceImageIV1)
-        faceButtonContainer.addSubview(faceImageIV2)
-        faceButtonContainer.addSubview(faceImageIV3)
-        faceButtonContainer.addSubview(faceImageIV4)
-        
-        
-        view.addSubview(faceButtonContainer)
+        view.addSubview(faceButton1)
+        view.addSubview(faceButton2)
+        view.addSubview(faceButton3)
+        view.addSubview(faceButton4)
     }
     
     //MARK:- Initialize emoji images/buttons.
@@ -289,29 +271,6 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     func initializeEmojiButtons() {
         loadEmojiImages()
         
-        // Call the faceButtonPressed function when an image view is selected.
-        let tapGesture1 :UITapGestureRecognizer = UITapGestureRecognizer(
-            target: self,
-            action: Selector(("emojiButtonPressed:")))
-        
-        let tapGesture2 :UITapGestureRecognizer = UITapGestureRecognizer(
-            target: self,
-            action: Selector(("emojiButtonPressed:")))
-        
-        let tapGesture3 :UITapGestureRecognizer = UITapGestureRecognizer(
-            target: self,
-            action: Selector(("emojiButtonPressed:")))
-        
-        let tapGesture4 :UITapGestureRecognizer = UITapGestureRecognizer(
-            target: self,
-            action: Selector(("emojiButtonPressed:")))
-        
-        let tapGesture5 :UITapGestureRecognizer = UITapGestureRecognizer(
-            target: self,
-            action: Selector(("emojiButtonPressed:")))
-        
-        
-        
         let emojiButtonWidth :CGFloat = width * EMOJI_BUTTON_WIDTH
         let emojiButtonHeight :CGFloat = height * EMOJI_BUTTON_HEIGHT
         
@@ -320,59 +279,57 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         let emojiYIncrement :CGFloat = height * EMOJI_BUTTON_Y_SPACING
             + emojiButtonHeight
         
-        
-        emojiImageIV1 = UIImageView(image: greenEmojiImages[0])
-        emojiImageIV1.isUserInteractionEnabled = true
-        emojiImageIV1.addGestureRecognizer(tapGesture1)
-        emojiImageIV1.frame = CGRect(
+        emojiButton1 = UIButton(frame: CGRect(
             x: emojiButtonX,
             y: emojiButtonY,
             width: emojiButtonWidth,
-            height: emojiButtonHeight)
+            height: emojiButtonHeight))
+        emojiButton1.setImage(greenEmojiImages[0], for: .normal)
+        emojiButton1.addTarget(self, action: Selector(("emojiButtonPressed:")),
+                               for: .touchUpInside)
         
-        emojiImageIV2 = UIImageView(image: greenEmojiImages[1])
-        emojiImageIV2.isUserInteractionEnabled = true
-        emojiImageIV2.addGestureRecognizer(tapGesture2)
-        emojiImageIV2.frame = CGRect(
+        emojiButton2 = UIButton(frame: CGRect(
             x: emojiButtonX,
             y:  emojiButtonY + emojiYIncrement,
             width: emojiButtonWidth,
-            height: emojiButtonHeight)
+            height: emojiButtonHeight))
+        emojiButton2.setImage(greenEmojiImages[1], for: .normal)
+        emojiButton2.addTarget(self, action: Selector(("emojiButtonPressed:")),
+                               for: .touchUpInside)
         
-        emojiImageIV3 = UIImageView(image: greenEmojiImages[2])
-        emojiImageIV3.isUserInteractionEnabled = true
-        emojiImageIV3.addGestureRecognizer(tapGesture3)
-        emojiImageIV3.frame = CGRect(
+        emojiButton3 = UIButton(frame: CGRect(
             x:  emojiButtonX,
             y:  emojiButtonY + emojiYIncrement * 2,
             width: emojiButtonWidth,
-            height: emojiButtonHeight)
+            height: emojiButtonHeight))
+        emojiButton3.setImage(greenEmojiImages[2], for: .normal)
+        emojiButton3.addTarget(self, action: Selector(("emojiButtonPressed:")),
+                               for: .touchUpInside)
         
-        emojiImageIV4 = UIImageView(image: greenEmojiImages[3])
-        emojiImageIV4.isUserInteractionEnabled = true
-        emojiImageIV4.addGestureRecognizer(tapGesture4)
-        emojiImageIV4.frame = CGRect(
-            x: emojiButtonX,
-            y: emojiButtonY + emojiYIncrement * 3,
+        emojiButton4 = UIButton(frame: CGRect(
+            x:  emojiButtonX,
+            y:  emojiButtonY + emojiYIncrement * 3,
             width: emojiButtonWidth,
-            height: emojiButtonHeight)
+            height: emojiButtonHeight))
+        emojiButton4.setImage(greenEmojiImages[3], for: .normal)
+        emojiButton4.addTarget(self, action: Selector(("emojiButtonPressed:")),
+                               for: .touchUpInside)
         
-        emojiImageIV5 = UIImageView(image: greenEmojiImages[4])
-        emojiImageIV5.isUserInteractionEnabled = true
-        emojiImageIV5.addGestureRecognizer(tapGesture5)
-        emojiImageIV5.frame = CGRect(
-            x: emojiButtonX,
-            y: emojiButtonY + emojiYIncrement * 4,
+        emojiButton5 = UIButton(frame: CGRect(
+            x:  emojiButtonX,
+            y:  emojiButtonY + emojiYIncrement * 4,
             width: emojiButtonWidth,
-            height: emojiButtonHeight)
-        
-        view.addSubview(emojiImageIV1)
-        view.addSubview(emojiImageIV2)
-        view.addSubview(emojiImageIV3)
-        view.addSubview(emojiImageIV4)
-        view.addSubview(emojiImageIV5)
-    }
+            height: emojiButtonHeight))
+        emojiButton5.setImage(greenEmojiImages[4], for: .normal)
+        emojiButton5.addTarget(self, action: Selector(("emojiButtonPressed:")),
+                               for: .touchUpInside)
     
+        view.addSubview(emojiButton1)
+        view.addSubview(emojiButton2)
+        view.addSubview(emojiButton3)
+        view.addSubview(emojiButton4)
+        view.addSubview(emojiButton5)
+    }
     
     
     //MARK:- Face button functionality.
@@ -402,12 +359,12 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         Creates and image view and sets it's image to the selected
         face. The image view is presented over the body's head.
     */
-    @objc func faceButtonPressed(_ sender: UITapGestureRecognizer) {
+    @objc func faceButtonPressed(_ sender: UIButton) {
+        let selectedFaceIV :UIImageView? = sender.imageView
         
-        // Get the face image view that was tapped by the user.
-        let view = sender.view
-        let touchLocation = sender.location(in: view)
-        let selectedFaceIV :UIImageView? = view?.hitTest(touchLocation, with: nil) as? UIImageView
+        if selectedFaceIV == nil {
+            return
+        }
         
         DispatchQueue.main.async {
             self.setFaceImage(image: selectedFaceIV?.image)
@@ -431,115 +388,77 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     func initializeBodyButtons() {
         loadBodyImages()
         
-        // Call the faceButtonPressed function when an image view is selected.
-        let tapGesture1 :UITapGestureRecognizer = UITapGestureRecognizer(
-            target: self,
-            action: Selector(("bodyButtonPressed:")))
-        
-        let tapGesture2 :UITapGestureRecognizer = UITapGestureRecognizer(
-            target: self,
-            action: Selector(("bodyButtonPressed:")))
-        
-        let tapGesture3 :UITapGestureRecognizer = UITapGestureRecognizer(
-            target: self,
-            action: Selector(("bodyButtonPressed:")))
-        
-        let tapGesture4 :UITapGestureRecognizer = UITapGestureRecognizer(
-            target: self,
-            action: Selector(("bodyButtonPressed:")))
-        
-        
-        let bodyButtonContainer = UIView(frame:
-            CGRect(x: width * 0.3,
-                   y: height * 0.09,
-                   width: width * 0.3,
-                   height: height * 0.1))
-
-        bodyButtonContainer.contentMode = .center
-        bodyButtonContainer.isUserInteractionEnabled = true
-        
-        
         let bodyButtonWidth = width * 0.11
         let bodyButtonHeight = height * 0.11
         let bodyButtonX = width * 0.02
         let bodyButtonY = height * 0.11
         let bodyBorderWidth :CGFloat = 0.5
         
-        bodyButton1 = UIImageView()
-        bodyButton1.image = bodyImages[0]
-        bodyButton1.layer.borderColor = UIColor.black.cgColor
-        bodyButton1.layer.borderWidth = bodyBorderWidth
-        bodyButton1.isUserInteractionEnabled = true
-        bodyButton1.addGestureRecognizer(tapGesture1)
-        bodyButton1.frame = CGRect(
+        bodyButton1 = UIButton(frame: CGRect(
             x: bodyButtonX,
             y: bodyButtonY,
             width: bodyButtonWidth,
-            height: bodyButtonHeight)
-        
+            height: bodyButtonHeight))
+        bodyButton1.setImage(bodyImages[0], for: .normal)
+        bodyButton1.layer.borderColor = UIColor.black.cgColor
+        bodyButton1.layer.borderWidth = bodyBorderWidth
+        bodyButton1.addTarget(self, action: Selector(("bodyButtonPressed:")),
+                               for: .touchUpInside)
         view.addSubview(bodyButton1)
-        
-        
-        bodyButton2 = UIImageView()
-        bodyButton2.image = bodyImages[1]
-        bodyButton2.layer.borderColor = UIColor.black.cgColor
-        bodyButton2.layer.borderWidth = bodyBorderWidth
-        bodyButton2.isUserInteractionEnabled = true
-        bodyButton2.addGestureRecognizer(tapGesture2)
-        bodyButton2.frame = CGRect(
+
+        bodyButton2 = UIButton(frame: CGRect(
             x: bodyButtonX + bodyButtonWidth,
             y: bodyButtonY,
             width: bodyButtonWidth,
-            height: bodyButtonHeight)
-        
+            height: bodyButtonHeight))
+        bodyButton2.setImage(bodyImages[1], for: .normal)
+        bodyButton2.layer.borderColor = UIColor.black.cgColor
+        bodyButton2.layer.borderWidth = bodyBorderWidth
+        bodyButton2.addTarget(self, action: Selector(("bodyButtonPressed:")),
+                              for: .touchUpInside)
         view.addSubview(bodyButton2)
         
-        bodyButton3 = UIImageView()
-        bodyButton3.image = bodyImages[2]
-        bodyButton3.layer.borderColor = UIColor.black.cgColor
-        bodyButton3.layer.borderWidth = bodyBorderWidth
-        bodyButton3.isUserInteractionEnabled = true
-        bodyButton3.addGestureRecognizer(tapGesture3)
-        bodyButton3.frame = CGRect(
+        bodyButton3 = UIButton(frame: CGRect(
             x: bodyButtonX + bodyButtonWidth * 2,
             y: bodyButtonY,
             width: bodyButtonWidth,
-            height: bodyButtonHeight)
-        
+            height: bodyButtonHeight))
+        bodyButton3.setImage(bodyImages[2], for: .normal)
+        bodyButton3.layer.borderColor = UIColor.black.cgColor
+        bodyButton3.layer.borderWidth = bodyBorderWidth
+        bodyButton3.addTarget(self, action: Selector(("bodyButtonPressed:")),
+                              for: .touchUpInside)
         view.addSubview(bodyButton3)
         
-        bodyButton4 = UIImageView()
-        bodyButton4.image = bodyImages[3]
-        bodyButton4.layer.borderColor = UIColor.black.cgColor
-        bodyButton4.layer.borderWidth = bodyBorderWidth
-        bodyButton4.isUserInteractionEnabled = true
-        bodyButton4.addGestureRecognizer(tapGesture4)
-        bodyButton4.frame = CGRect(
+        bodyButton4 = UIButton(frame: CGRect(
             x: bodyButtonX + bodyButtonWidth * 3,
             y: bodyButtonY,
             width: bodyButtonWidth,
-            height: bodyButtonHeight)
-        
+            height: bodyButtonHeight))
+        bodyButton4.setImage(bodyImages[3], for: .normal)
+        bodyButton4.layer.borderColor = UIColor.black.cgColor
+        bodyButton4.layer.borderWidth = bodyBorderWidth
+        bodyButton4.addTarget(self, action: Selector(("bodyButtonPressed:")),
+                              for: .touchUpInside)
         view.addSubview(bodyButton4)
     }
     
     
     //MARK: Body Button functionality.
     
+    
     /**
      Called when a body button is pressed.
      
      Sets the body image to the selected button's image.
      */
-    @objc func bodyButtonPressed(_ sender: UITapGestureRecognizer) {
+    @objc func bodyButtonPressed(_ sender: UIButton) {
         
-        // Get the face image view that was tapped by the user.
-        let view = sender.view
-        let touchLocation = sender.location(in: view)
-        let selectedBodyIV :UIImageView? = view?.hitTest(touchLocation, with: nil) as? UIImageView
+        let selectedBodyIV :UIImageView? = sender.imageView
         if selectedBodyIV == nil {
             return
         }
+        
         DispatchQueue.main.async {
             self.bodyIV.image = selectedBodyIV?.image
         }
@@ -610,46 +529,43 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         
         DispatchQueue.main.async {
             // TODO: Make this nicer.
+            self.emojiButton1.setImage(newEmojiImages[0], for: .normal)
+            self.emojiButton2.setImage(newEmojiImages[1], for: .normal)
+            self.emojiButton3.setImage(newEmojiImages[2], for: .normal)
+            self.emojiButton4.setImage(newEmojiImages[3], for: .normal)
+            self.emojiButton5.setImage(newEmojiImages[4], for: .normal)
             
-            self.emojiImageIV1.image = newEmojiImages[0]
-            self.emojiImageIV2.image = newEmojiImages[1]
-            self.emojiImageIV3.image = newEmojiImages[2]
-            self.emojiImageIV4.image = newEmojiImages[3]
-            self.emojiImageIV5.image = newEmojiImages[4]
-            
-            self.faceImageIV1.image = newFaceImages[0]
-            self.faceImageIV2.image = newFaceImages[1]
+            self.faceButton1.setImage(newFaceImages[0], for: .normal)
+            self.faceButton2.setImage(newFaceImages[1], for: .normal)
             
             if newFaceImages.count >= 3 {
-                self.faceImageIV3.image = newFaceImages[2]
-                self.faceImageIV3.layer.borderWidth = 0.5
+                self.faceButton3.setImage(newFaceImages[2], for: .normal)
+                self.faceButton3.layer.borderWidth = 0.5
             }
             else {
-                self.faceImageIV3.image = nil
-                self.faceImageIV3.layer.borderWidth = 0
+                self.faceButton3.setImage(nil, for: .normal)
+                self.faceButton3.layer.borderWidth = 0
             }
             
             if newFaceImages.count == 4 {
-                self.faceImageIV4.image = newFaceImages[3]
-                self.faceImageIV4.layer.borderWidth = 0.5
+                self.faceButton4.setImage(newFaceImages[3], for: .normal)
+                self.faceButton4.layer.borderWidth = 0.5
             }
             else {
-                self.faceImageIV4.image = nil
-                self.faceImageIV4.layer.borderWidth = 0
+                self.faceButton4.setImage(nil, for: .normal)
+                self.faceButton4.layer.borderWidth = 0
             }
         }
     }
     
     //MARK: Emoji Button functionality.
     
-    @objc func emojiButtonPressed(_ sender: UITapGestureRecognizer) {
+    //MARK: Emoji Button functionality.
+    
+    @objc func emojiButtonPressed(_ sender: UIButton) {
         
-        // Get the emoji image view that was tapped by the user.
-        let tapView = sender.view
-
-        let touchLocationInEmojiButton = sender.location(in: tapView)
-        let touchLocationInView = sender.location(in: self.view)
-        let selectedEmojiIV :UIImageView? = tapView?.hitTest(touchLocationInEmojiButton, with: nil) as? UIImageView
+        let touchLocationInView = sender.frame.origin
+        let selectedEmojiIV :UIImageView? = sender.imageView
         
         if selectedEmojiIV?.image == nil {
             return
@@ -657,20 +573,20 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         
         let emojiView = UIImageView(image: selectedEmojiIV?.image)
         emojiView.frame = CGRect(
-            x: touchLocationInView.x - width * NEW_EMOJI_X,
-            y: touchLocationInView.y - height * NEW_EMOJI_Y,
+            x: touchLocationInView.x - width * 0.1,
+            y: touchLocationInView.y - height * 0.01,
             width: self.view.bounds.width * NEW_EMOJI_WIDTH,
             height: self.view.bounds.width * NEW_EMOJI_HEIGHT)
-
+        
         emojiView.isUserInteractionEnabled = true
-    
+        
         let panGesture = UIPanGestureRecognizer(
             target: self,
             action:Selector(("moveEmoji:")))
         
         emojiView.addGestureRecognizer(panGesture)
         self.emojisInView.append(emojiView)
-    
+        
         DispatchQueue.main.async {
             print("Emojies in view: \(self.emojisInView.count)")
             self.view.addSubview(emojiView)
@@ -783,4 +699,3 @@ extension MainViewController: UIImagePickerControllerDelegate {
         setFaceImage(image: selectedImage)
     }
 }
-

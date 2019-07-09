@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		085BDD4D22D016200012A922 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 085BDD4C22D016200012A922 /* StoreKit.framework */; };
 		08D463BA227E4D1900590B8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D463B9227E4D1900590B8F /* AppDelegate.swift */; };
 		08D463BC227E4D1900590B8F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D463BB227E4D1900590B8F /* MainViewController.swift */; };
 		08D463BF227E4D1900590B8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08D463BD227E4D1900590B8F /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		085BDD4C22D016200012A922 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		08D463B6227E4D1900590B8F /* TriggerStop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TriggerStop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08D463B9227E4D1900590B8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08D463BB227E4D1900590B8F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E04B04A6EA68C5D774DC9E71 /* Pods_TriggerStop.framework in Frameworks */,
+				085BDD4D22D016200012A922 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +141,7 @@
 		6177C168C3BB9C9074113A3B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				085BDD4C22D016200012A922 /* StoreKit.framework */,
 				890A418875EFF0588B68AC0E /* Pods_TriggerStop.framework */,
 			);
 			name = Frameworks;
@@ -222,6 +226,11 @@
 				TargetAttributes = {
 					08D463B5227E4D1900590B8F = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 					08D463CC227E4D1A00590B8F = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -511,13 +520,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 96U96CPNST;
+				DEVELOPMENT_TEAM = 79UQ23VF9M;
 				INFOPLIST_FILE = TriggerStop/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.JulieKurtz.TriggerStop;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JulieKurtz.TriggerStop.BodyDraw;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -530,13 +539,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 96U96CPNST;
+				DEVELOPMENT_TEAM = 79UQ23VF9M;
 				INFOPLIST_FILE = TriggerStop/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.JulieKurtz.TriggerStop;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JulieKurtz.TriggerStop.BodyDraw;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
