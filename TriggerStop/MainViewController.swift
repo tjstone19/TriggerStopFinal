@@ -71,8 +71,8 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     let EMOJI_BUTTON_Y_SPACING :CGFloat = 0.05
     
     // Emoji image coordinates relative to where the user touched the screen.
-    let NEW_EMOJI_X :CGFloat = 0.15
-    let NEW_EMOJI_Y :CGFloat = 0.05
+    let NEW_EMOJI_X: CGFloat = 0.15
+    let NEW_EMOJI_Y: CGFloat = 0.01
     
     // Emoji image widght and height as percentage of view's dimensions.
     let NEW_EMOJI_WIDTH :CGFloat = 0.15
@@ -573,8 +573,8 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         
         let emojiView = UIImageView(image: selectedEmojiIV?.image)
         emojiView.frame = CGRect(
-            x: touchLocationInView.x - width * 0.1,
-            y: touchLocationInView.y - height * 0.01,
+            x: touchLocationInView.x - width * NEW_EMOJI_X,
+            y: touchLocationInView.y - height * NEW_EMOJI_Y,
             width: self.view.bounds.width * NEW_EMOJI_WIDTH,
             height: self.view.bounds.width * NEW_EMOJI_HEIGHT)
         
