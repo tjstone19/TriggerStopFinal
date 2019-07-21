@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		085BDD4D22D016200012A922 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 085BDD4C22D016200012A922 /* StoreKit.framework */; };
+		08CC5CB222E511040081662E /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CC5CB122E511040081662E /* PopUpViewController.swift */; };
 		08D463BA227E4D1900590B8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D463B9227E4D1900590B8F /* AppDelegate.swift */; };
 		08D463BC227E4D1900590B8F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D463BB227E4D1900590B8F /* MainViewController.swift */; };
 		08D463BF227E4D1900590B8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08D463BD227E4D1900590B8F /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		085BDD4C22D016200012A922 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		08CC5CB122E511040081662E /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		08D463B6227E4D1900590B8F /* TriggerStop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TriggerStop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08D463B9227E4D1900590B8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08D463BB227E4D1900590B8F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				08D463C5227E4D1A00590B8F /* LaunchScreen.storyboard */,
 				08D463C8227E4D1A00590B8F /* Info.plist */,
 				08D463C0227E4D1900590B8F /* TriggerStop.xcdatamodeld */,
+				08CC5CB122E511040081662E /* PopUpViewController.swift */,
 			);
 			path = TriggerStop;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				08D463C2227E4D1900590B8F /* TriggerStop.xcdatamodeld in Sources */,
 				08D463BC227E4D1900590B8F /* MainViewController.swift in Sources */,
 				08D463BA227E4D1900590B8F /* AppDelegate.swift in Sources */,
+				08CC5CB222E511040081662E /* PopUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

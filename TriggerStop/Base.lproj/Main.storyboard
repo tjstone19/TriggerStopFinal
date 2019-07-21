@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zqi-vG-obP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,23 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="ARn-SP-vnH">
-            <objects>
-                <navigationController id="zqi-vG-obP" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mnf-Ug-19T">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.15902916622408569" green="0.23280312453535723" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Jwy-OS-3dL"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dSM-mZ-coK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1546" y="27"/>
-        </scene>
         <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -37,49 +20,107 @@
                         <color key="backgroundColor" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="sxx-7y-sl9">
                         <nil key="title"/>
-                        <rightBarButtonItems>
-                            <barButtonItem style="plain" id="Wn6-9V-HNa">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HDe-YB-88G">
-                                    <rect key="frame" x="277" y="6" width="117" height="32"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <inset key="contentEdgeInsets" minX="55" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" image="camera">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="takePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XO5-IM-ph2"/>
-                                    </connections>
-                                </button>
-                            </barButtonItem>
-                            <barButtonItem style="plain" id="Zdg-lQ-bxw">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BAA-6C-qe2">
-                                    <rect key="frame" x="177.5" y="11" width="74" height="22"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="19" maxY="0.0"/>
-                                    <state key="normal" image="trash">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="clearScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Em3-Sn-8Wa"/>
-                                    </connections>
-                                </button>
-                            </barButtonItem>
-                        </rightBarButtonItems>
                     </navigationItem>
-                    <connections>
-                        <outlet property="addPhotoButton" destination="HDe-YB-88G" id="ZDW-c1-ilv"/>
-                        <outlet property="clearScreenButton" destination="BAA-6C-qe2" id="z6d-YV-L80"/>
-                    </connections>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-694.20289855072474" y="26.785714285714285"/>
         </scene>
+        <!--Pop Up View Controller-->
+        <scene sceneID="8xa-mQ-4Jz">
+            <objects>
+                <viewController storyboardIdentifier="helpPage" id="wZS-Gk-gTY" customClass="PopUpViewController" customModule="TriggerStop" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NB4-dI-TD7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="xkC-01-lfB"/>
+                    </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="helpText">
+                            <mutableString key="value">1. Before emotional literacy comes sensory 
+   awareness. Building Sensory and Body 
+   Awareness is essential to children becoming 
+   aware of what is happening in their body 
+   when they are in optimal states of regulation, 
+   hyper-aroused or hyperaroused. We all 
+   experience feelings (ex. Happy, sad, angry, 
+   lonely, frustrated) when something happens 
+   but we also experience sensations within our      
+   body (ex. Twisted, shaky, jumpy, empty, 
+   frozen, tight). 
+2. When a child has a button pushed and is 
+   triggered, they may move from the optimal 
+   state of arousal (calm) to dysregulated or 
+   hyper (anxious, high energy, unfocused, 
+   running away) or hypo aroused (shut down, 
+   dissociative, disconnected, numb, 
+   depressed).
+3. When a child is dysregulated they may not be 
+   able to express themselves with words. 
+   Another way to help children to express 
+   themselves without words is to point to 
+   objects that represent what they feel or
+   experience inside their bodies.
+4. The best way to teach is when a child is calm. 
+   that way their executive part of thinking brain 
+   can really be engaged in the lesson. When 
+   dyseregulated it is difficult to access your 
+   thinking brain because of the intense 
+   emotions. So teaching a child how to use the
+   APP, teaching what each visual object means 
+   and how it is tied to an emotion and 
+   sensation and practicing when they are calm 
+   is recommended.
+5. Walk the child through the thermometer. 
+   Point out when they are in that part of the 
+   thermometer that there are feeling emoji's at 
+   the top that they can drag to the face of the 
+   silhouette body image and there are images 
+   representing sensations they can drag to 
+   where they are feeling that in the body.
+6. The thermometer gauge has four areas:
+     a. Red- Represents emotions such as 
+        anger, anxiety or frustration 
+        (hyperarousal). This is when a child is in 
+        their "fight" part of their survival brain 
+        when triggered. 
+     b. Green- Represents emotions such as 
+        calm, happy, easygoing (optimal 
+        arousal). This is when the brain is calm 
+        and not in a survival mode of FIGHT, 
+        FLIGHT, or FLEE.
+     c. Orange- Represents emotions such as 
+        scared, frightened, terrified 
+        (hyperarousal). This is when the brain is 
+        in a survival mode of FLEE or the need 
+        to run or escape a situation. 
+     d. Blue- Represents emotions such as 
+        numb, empty, disconnected, worried, 
+        anxious (hypo-arousal). This is when the 
+        brain is in a survival mode of FREEZE or 
+        waiting to shut down, numb out or is 
+        frozen or feels empty.
+7. Children can be supported by a caring adult 
+   to slowly express how they feel by dragging 
+   an emoji face to the body or the thermometer 
+   to the color zone they feel or even a 
+   visual image to the body of sensation (as 
+   mentioned in #6) that they are experiencing 
+   in their body and where.
+8. Helping a child be heard, express themselves 
+   verbally or nonverbally can help them calm 
+   and regulate their intense emotions.</mutableString>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CHt-zx-8za" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="233" y="27"/>
+        </scene>
     </scenes>
-    <resources>
-        <image name="camera" width="32" height="32"/>
-        <image name="trash" width="32" height="32"/>
-    </resources>
 </document>

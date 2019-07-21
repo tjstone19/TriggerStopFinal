@@ -22,10 +22,21 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     // Stores all of the emojis on the screen.
     var emojisInView: [UIImageView] = [UIImageView]()
     
-    @IBOutlet weak var clearScreenButton: UIButton!
+    var clearScreenButton: UIButton!
+    var addPhotoButton: UIButton!
+    var helpButton: UIButton!
     
-    @IBOutlet weak var addPhotoButton: UIButton!
-
+    let HELP_BUTTON_Y: CGFloat = 0.053
+    let HELP_BUTTON_HEIGHT: CGFloat = 0.035
+    
+    // Tool bar height as a percentage of the view's height.
+    let TOOLBAR_HEIGHT: CGFloat = 0.1
+    
+    let TOOLBAR_BUTTON_Y: CGFloat = 0.01
+    let TOOLBAR_BUTTON_WIDTH: CGFloat = 0.2
+    let TOOLBAR_BUTTON_HEIGHT: CGFloat = 0.2
+    let TOOLBAR_BUTTON_SPACING: CGFloat = 0.5
+    
     
     // Image view for the body.
     var bodyIV :UIImageView!
@@ -45,7 +56,6 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     var faceButton3 :UIButton!
     var faceButton4 :UIButton!
     
-    
     /* Face button container coordinates and size as a
        percentage of view's dimensions. */
     let FACE_BUTTON_X :CGFloat = 0.5
@@ -59,7 +69,6 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     var emojiButton3: UIButton!
     var emojiButton4: UIButton!
     var emojiButton5: UIButton!
-    
     
     // Emoji button coordinates and size as a percentage of view's dimensions.
     let EMOJI_BUTTON_X :CGFloat = 0.83
@@ -108,18 +117,69 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         width = view.frame.width
         height = view.frame.height
         
-        clearScreenButton.imageView?.image = UIImage(named: "Trash")
-        clearScreenButton.addTarget(self, action: Selector(("clearScreen:")),
-                                    for: .touchUpInside)
-        self.navigationItem.titleView = clearScreenButton
-        
         // Create the body background image view.
         setBodyImage()
         initializeFaceButtons()
         initializeEmojiButtons()
         initializeBodyButtons()
-        
         initializeColorSlider()
+        initializeToolBar()
+    }
+    
+    /**
+     * Sets the up the tool bar view and tool bar buttons:
+     * clear screen, take photo, and help page.
+     */
+    func initializeToolBar() {
+        
+        let toolbarView: UIView = UIView(frame:
+            CGRect(x: 0.0,
+                   y: 0.0,
+                   width: width,
+                   height: height * TOOLBAR_HEIGHT))
+        toolbarView.backgroundColor = UIColor.blue
+        
+        let toolBarButtonY = height * TOOLBAR_BUTTON_Y
+        let toolbarButtonWidth = width * TOOLBAR_BUTTON_WIDTH
+        let toolbarButtonHeight = height * TOOLBAR_HEIGHT
+        
+        
+        // Add the clear screen button in the middle of the toolbar.
+        let clearScreenButtonX: CGFloat = width * 0.5 - toolbarButtonWidth * 0.5
+        clearScreenButton = UIButton(frame: CGRect(
+            x: clearScreenButtonX,
+            y: toolBarButtonY,
+            width: toolbarButtonWidth,
+            height: toolbarButtonHeight))
+        clearScreenButton.setImage(UIImage(named: "trash"), for: .normal)
+        clearScreenButton.addTarget(
+            self,
+            action: Selector(("clearScreen:")),
+            for: .touchUpInside)
+        
+        addPhotoButton = UIButton(frame:
+            CGRect(x: width - toolbarButtonWidth * 2,
+                   y: toolBarButtonY,
+                   width: toolbarButtonWidth,
+                   height: toolbarButtonHeight))
+        addPhotoButton.setImage(UIImage(named: "camera"), for: .normal)
+        addPhotoButton.addTarget(self, action: Selector(("takePhoto:")),
+                                 for: .touchUpInside)
+        
+        helpButton = UIButton(frame:
+            CGRect(x: width - toolbarButtonWidth,
+                   y: height * HELP_BUTTON_HEIGHT,
+                   width: toolbarButtonWidth,
+                   height: height * HELP_BUTTON_Y))
+        helpButton.setImage(UIImage(named: "help"), for: .normal)
+        helpButton.addTarget(self, action: Selector(("showHelpPage:")),
+                                 for: .touchUpInside)
+        
+        view.addSubview(toolbarView)
+        toolbarView.addSubview(clearScreenButton)
+        toolbarView.addSubview(addPhotoButton)
+        toolbarView.addSubview(helpButton)
+        toolbarView.contentMode = .center
     }
     
     /**
@@ -478,6 +538,24 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         emojisInView.removeAll()
     }
     
+    /**
+     * Called when the user clicks the help button.
+     * Displays the help page over the current view.
+     */
+    @IBAction func showHelpPage(_ sender: Any) {
+        let popOverVC: PopUpViewController = UIStoryboard(
+            name: "Main", bundle: nil).instantiateViewController(
+                withIdentifier: "helpPage") as! PopUpViewController
+
+        popOverVC.view.frame = view.frame
+        
+        
+        self.addChild(popOverVC)
+        self.view.addSubview(popOverVC.view)
+        popOverVC.didMove(toParent: self)
+    }
+    
+    
     //MARK: - Color Slider
     
     /**
@@ -557,8 +635,6 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
             }
         }
     }
-    
-    //MARK: Emoji Button functionality.
     
     //MARK: Emoji Button functionality.
     
