@@ -26,8 +26,8 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     var addPhotoButton: UIButton!
     var helpButton: UIButton!
     
-    let HELP_BUTTON_Y: CGFloat = 0.053
-    let HELP_BUTTON_HEIGHT: CGFloat = 0.035
+    let HELP_BUTTON_Y: CGFloat = 0.09
+    let HELP_BUTTON_HEIGHT: CGFloat = 0.02
     
     // Tool bar height as a percentage of the view's height.
     let TOOLBAR_HEIGHT: CGFloat = 0.1
