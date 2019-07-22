@@ -42,79 +42,28 @@
                     </view>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="helpText">
-                            <mutableString key="value">1. Before emotional literacy comes sensory 
-   awareness. Building Sensory and Body 
-   Awareness is essential to children becoming 
-   aware of what is happening in their body 
-   when they are in optimal states of regulation, 
-   hyper-aroused or hyperaroused. We all 
-   experience feelings (ex. Happy, sad, angry, 
-   lonely, frustrated) when something happens 
-   but we also experience sensations within our      
-   body (ex. Twisted, shaky, jumpy, empty, 
-   frozen, tight). 
-2. When a child has a button pushed and is 
-   triggered, they may move from the optimal 
-   state of arousal (calm) to dysregulated or 
-   hyper (anxious, high energy, unfocused, 
-   running away) or hypo aroused (shut down, 
-   dissociative, disconnected, numb, 
-   depressed).
-3. When a child is dysregulated they may not be 
-   able to express themselves with words. 
-   Another way to help children to express 
-   themselves without words is to point to 
-   objects that represent what they feel or
-   experience inside their bodies.
-4. The best way to teach is when a child is calm. 
-   that way their executive part of thinking brain 
-   can really be engaged in the lesson. When 
-   dyseregulated it is difficult to access your 
-   thinking brain because of the intense 
-   emotions. So teaching a child how to use the
-   APP, teaching what each visual object means 
-   and how it is tied to an emotion and 
-   sensation and practicing when they are calm 
-   is recommended.
-5. Walk the child through the thermometer. 
-   Point out when they are in that part of the 
-   thermometer that there are feeling emoji's at 
-   the top that they can drag to the face of the 
-   silhouette body image and there are images 
-   representing sensations they can drag to 
-   where they are feeling that in the body.
+                            <mutableString key="value">1. Before emotional literacy comes sensory awareness. Building Sensory and Body  Awareness is essential to children becoming aware of what is happening in their body when they are in optimal states of regulation, hyper-aroused or hyperaroused. We all experience feelings (ex. Happy, sad, angry, lonely, frustrated) when something happens but we also experience sensations within our body (ex. Twisted, shaky, jumpy, empty, frozen, tight). 
+
+2. When a child has a button pushed and is triggered, they may move from the optimal state of arousal (calm) to dysregulated or hyper (anxious, high energy, unfocused, running away) or hypo aroused (shut down, dissociative, disconnected, numb, depressed).
+
+3. When a child is dysregulated they may not be able to express themselves with words. Another way to help children to express themselves without words is to point to objects that represent what they feel or experience inside their bodies.
+
+4. The best way to teach is when a child is calm. that way their executive part of thinking brain can really be engaged in the lesson. When dyseregulated it is difficult to access your thinking brain because of the intense emotions. So teaching a child how to use theAPP, teaching what each visual object means and how it is tied to an emotion and sensation and practicing when they are calm is recommended.
+
+5. Walk the child through the thermometer. Point out when they are in that part of the thermometer that there are feeling emoji's at the top that they can drag to the face of the silhouette body image and there are images representing sensations they can drag to where they are feeling that in the body.
+
 6. The thermometer gauge has four areas:
-     a. Red- Represents emotions such as 
-        anger, anxiety or frustration 
-        (hyperarousal). This is when a child is in 
-        their "fight" part of their survival brain 
-        when triggered. 
-     b. Green- Represents emotions such as 
-        calm, happy, easygoing (optimal 
-        arousal). This is when the brain is calm 
-        and not in a survival mode of FIGHT, 
-        FLIGHT, or FLEE.
-     c. Orange- Represents emotions such as 
-        scared, frightened, terrified 
-        (hyperarousal). This is when the brain is 
-        in a survival mode of FLEE or the need 
-        to run or escape a situation. 
-     d. Blue- Represents emotions such as 
-        numb, empty, disconnected, worried, 
-        anxious (hypo-arousal). This is when the 
-        brain is in a survival mode of FREEZE or 
-        waiting to shut down, numb out or is 
-        frozen or feels empty.
-7. Children can be supported by a caring adult 
-   to slowly express how they feel by dragging 
-   an emoji face to the body or the thermometer 
-   to the color zone they feel or even a 
-   visual image to the body of sensation (as 
-   mentioned in #6) that they are experiencing 
-   in their body and where.
-8. Helping a child be heard, express themselves 
-   verbally or nonverbally can help them calm 
-   and regulate their intense emotions.</mutableString>
+a. Red- Represents emotions such as anger, anxiety or frustration (hyperarousal). This is when a child is in their "fight" part of their survival brain when triggered. 
+
+b. Green- Represents emotions such as calm, happy, easygoing (optimal arousal). This is when the brain is calm and not in a survival mode of FIGHT, FLIGHT, or FLEE.
+
+c. Orange- Represents emotions such as scared, frightened, terrified (hyperarousal). This is when the brain is in a survival mode of FLEE or the need to run or escape a situation. 
+
+d. Blue- Represents emotions such as numb, empty, disconnected, worried, anxious (hypo-arousal). This is when the brain is in a survival mode of FREEZE or waiting to shut down, numb out or is frozen or feels empty.
+
+7. Children can be supported by a caring adult to slowly express how they feel by dragging an emoji face to the body or the thermometer to the color zone they feel or even a visual image to the body of sensation (as mentioned in #6) that they are experiencing in their body and where.
+
+8. Helping a child be heard, express themselves verbally or nonverbally can help them calm and regulate their intense emotions.</mutableString>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </viewController>

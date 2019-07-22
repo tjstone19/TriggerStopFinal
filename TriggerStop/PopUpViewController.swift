@@ -27,6 +27,13 @@ class PopUpViewController: UIViewController {
     let TEXT_VIEW_WIDTH: CGFloat = 0.85
     let TEXT_VIEW_HEIGHT: CGFloat = 0.83
     
+    let TEXT_VIEW_FONT: String = "Arial"
+    let TEXT_VIEW_FONT_SIZE: CGFloat = 14
+    
+    let SCROLL_VIEW_X: CGFloat = 0.02
+    let SCROLL_VIEW_HEIGHT: CGFloat = 0.85
+    let SCROLL_VIEW_WIDTH: CGFloat = 0.93
+    
     // Close button's dimensions as a percentage of the view's width and height.
     let CLOSE_BUTTON_X: CGFloat = 0.4
     let CLOSE_BUTTON_Y: CGFloat = 0.85
@@ -48,14 +55,20 @@ class PopUpViewController: UIViewController {
         
         // Initialize scroll view and text view.
         scrollView = UIScrollView(frame: CGRect(
+            x: width * SCROLL_VIEW_X,
+            y: height * TEXT_VIEW_Y,
+            width: width * SCROLL_VIEW_WIDTH,
+            height: height * SCROLL_VIEW_HEIGHT))
+
+        textView = UITextView(frame: CGRect(
             x: width * TEXT_VIEW_X,
             y: height * TEXT_VIEW_Y,
             width: width * TEXT_VIEW_WIDTH,
             height: height * TEXT_VIEW_HEIGHT))
-
-        textView = UITextView(frame: scrollView.frame)
         textView.isScrollEnabled = true
         textView.isEditable = false
+        textView.textAlignment = .justified
+        textView.font = UIFont(name: TEXT_VIEW_FONT, size: TEXT_VIEW_FONT_SIZE)
         
         // Set the help page text to the text set in the interface builder.
         textView.text = helpText

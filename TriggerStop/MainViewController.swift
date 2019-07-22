@@ -26,8 +26,8 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     var addPhotoButton: UIButton!
     var helpButton: UIButton!
     
-    let HELP_BUTTON_Y: CGFloat = 0.09
-    let HELP_BUTTON_HEIGHT: CGFloat = 0.02
+    let HELP_BUTTON_Y: CGFloat = 0.11
+    let HELP_BUTTON_HEIGHT: CGFloat = 0.002
     
     // Tool bar height as a percentage of the view's height.
     let TOOLBAR_HEIGHT: CGFloat = 0.1
@@ -168,9 +168,9 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         
         helpButton = UIButton(frame:
             CGRect(x: width - toolbarButtonWidth,
-                   y: height * HELP_BUTTON_HEIGHT,
+                   y: toolBarButtonY,
                    width: toolbarButtonWidth,
-                   height: height * HELP_BUTTON_Y))
+                   height: toolbarButtonHeight))
         helpButton.setImage(UIImage(named: "help"), for: .normal)
         helpButton.addTarget(self, action: Selector(("showHelpPage:")),
                                  for: .touchUpInside)
@@ -179,6 +179,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         toolbarView.addSubview(clearScreenButton)
         toolbarView.addSubview(addPhotoButton)
         toolbarView.addSubview(helpButton)
+        
         toolbarView.contentMode = .center
     }
     
