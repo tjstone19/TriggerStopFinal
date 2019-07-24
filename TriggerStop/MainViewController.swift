@@ -39,6 +39,10 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     var toolbarLabel: UILabel!
     let TOOLBAR_LABEL_TEXT: String = "TriggerStop"
     let TOOLBAR_LABEL_COLOR: UIColor = UIColor.white
+    let TOOLBAR_LABEL_X: CGFloat = 0.03
+    let TOOLBAR_LABEL_WIDTH: CGFloat = 0.4
+    let TOOLBAR_LABEL_FONT_SIZE: CGFloat = 25
+    let TOOLBR_LABEL_FONT: String = "Arial"
     
     var clearScreenButton: UIButton!
     var addPhotoButton: UIButton!
@@ -72,12 +76,12 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     let FACE_BUTTON_WIDTH :CGFloat = 0.11
     let FACE_BUTTON_HEIGHT :CGFloat = 0.11
     
-    // Emoji buttons.
-    var emojiButton1: UIButton!
-    var emojiButton2: UIButton!
-    var emojiButton3: UIButton!
-    var emojiButton4: UIButton!
-    var emojiButton5: UIButton!
+    // EmojiViews currently acting as emoji buttons (user has not moved the emoji yet).
+    var emojiButton1: EmojiView!
+    var emojiButton2: EmojiView!
+    var emojiButton3: EmojiView!
+    var emojiButton4: EmojiView!
+    var emojiButton5: EmojiView!
     
     // Emoji button coordinates and size as a percentage of view's dimensions.
     let EMOJI_BUTTON_X :CGFloat = 0.83
@@ -157,20 +161,17 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         let toolbarButtonWidth = width * TOOLBAR_BUTTON_WIDTH
         let toolbarButtonHeight = height * TOOLBAR_HEIGHT
         
-        // Amount of spacing between the toolbar buttons.
-//        let toolbarButtonSpacing: CGFloat =
-//            toolbarButtonWidth + TOOLBAR_BUTTON_RIGHT_PADDING
-    
-        
-        
-        toolbarLabel = UILabel(frame: CGRect(
-            x: width * 0.03,
-            y: toolBarButtonY,
-            width: width * 0.4,
-            height: toolbarButtonHeight))
+        toolbarLabel = UILabel(
+            frame: CGRect(
+                x: width * TOOLBAR_LABEL_X,
+                y: toolBarButtonY,
+                width: width * TOOLBAR_LABEL_WIDTH,
+                height: toolbarButtonHeight))
         toolbarLabel.text = TOOLBAR_LABEL_TEXT
-        toolbarLabel.font = UIFont(name: "Arial", size: 25)
         toolbarLabel.textColor = TOOLBAR_LABEL_COLOR
+        toolbarLabel.font = UIFont(
+            name: TOOLBR_LABEL_FONT,
+            size: TOOLBAR_LABEL_FONT_SIZE)
         
         helpButton = UIButton(
             frame: CGRect(
@@ -375,85 +376,82 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         let emojiYIncrement :CGFloat = height * EMOJI_BUTTON_Y_SPACING
             + emojiButtonHeight
         
-        // Add pan gesture to move emojis around the screen.
-        
-        
-        let emojiView1: EmojiView = EmojiView(
+        emojiButton1 = EmojiView(
             frame: CGRect(
                 x: emojiButtonX,
                 y: emojiButtonY,
                 width: emojiButtonWidth,
                 height: emojiButtonHeight))
-        emojiView1.image = greenEmojiImages[0]
-        emojiView1.isUserInteractionEnabled = true
-        emojiView1.addGestureRecognizer(
+        emojiButton1.image = greenEmojiImages[0]
+        emojiButton1.isUserInteractionEnabled = true
+        emojiButton1.addGestureRecognizer(
             UIPanGestureRecognizer(
                 target: self,
                 action:Selector(("moveEmoji:"))))
         
-        let emojiView2: EmojiView = EmojiView(
+        emojiButton2 = EmojiView(
             frame: CGRect(
                 x: emojiButtonX,
                 y:  emojiButtonY + emojiYIncrement,
                 width: emojiButtonWidth,
                 height: emojiButtonHeight))
-        emojiView2.image = greenEmojiImages[1]
-        emojiView2.isUserInteractionEnabled = true
-        emojiView2.addGestureRecognizer(
+        emojiButton2.image = greenEmojiImages[1]
+        emojiButton2.isUserInteractionEnabled = true
+        emojiButton2.addGestureRecognizer(
             UIPanGestureRecognizer(
                 target: self,
                 action:Selector(("moveEmoji:"))))
         
-        let emojiView3: EmojiView = EmojiView(
+        emojiButton3 = EmojiView(
             frame: CGRect(
                 x:  emojiButtonX,
                 y:  emojiButtonY + emojiYIncrement * 2,
                 width: emojiButtonWidth,
                 height: emojiButtonHeight))
-        emojiView3.image = greenEmojiImages[2]
-        emojiView3.isUserInteractionEnabled = true
-        emojiView3.addGestureRecognizer(
+        emojiButton3.image = greenEmojiImages[2]
+        emojiButton3.isUserInteractionEnabled = true
+        emojiButton3.addGestureRecognizer(
             UIPanGestureRecognizer(
                 target: self,
                 action:Selector(("moveEmoji:"))))
         
-        let emojiView4: EmojiView = EmojiView(
+        emojiButton4 = EmojiView(
             frame: CGRect(
                 x:  emojiButtonX,
                 y:  emojiButtonY + emojiYIncrement * 3,
                 width: emojiButtonWidth,
                 height: emojiButtonHeight))
-        emojiView4.image = greenEmojiImages[3]
-        emojiView4.isUserInteractionEnabled = true
-        emojiView4.addGestureRecognizer(
+        emojiButton4.image = greenEmojiImages[3]
+        emojiButton4.isUserInteractionEnabled = true
+        emojiButton4.addGestureRecognizer(
             UIPanGestureRecognizer(
                 target: self,
                 action:Selector(("moveEmoji:"))))
         
-        let emojiView5: EmojiView = EmojiView(
+        emojiButton5 = EmojiView(
             frame: CGRect(
                 x:  emojiButtonX,
                 y:  emojiButtonY + emojiYIncrement * 4,
                 width: emojiButtonWidth,
                 height: emojiButtonHeight))
-        emojiView5.image = greenEmojiImages[4]
-        emojiView5.isUserInteractionEnabled = true
-        emojiView5.addGestureRecognizer(
+        emojiButton5.image = greenEmojiImages[4]
+        emojiButton5.isUserInteractionEnabled = true
+        emojiButton5.addGestureRecognizer(
             UIPanGestureRecognizer(
                 target: self,
                 action:Selector(("moveEmoji:"))))
         
-        emojisInView.append(emojiView1)
-        emojisInView.append(emojiView2)
-        emojisInView.append(emojiView3)
-        emojisInView.append(emojiView4)
-        emojisInView.append(emojiView5)
+        emojisInView.append(emojiButton1)
+        emojisInView.append(emojiButton2)
+        emojisInView.append(emojiButton3)
+        emojisInView.append(emojiButton4)
+        emojisInView.append(emojiButton5)
 
-        view.addSubview(emojiView1)
-        view.addSubview(emojiView2)
-        view.addSubview(emojiView3)
-        view.addSubview(emojiView4)
-        view.addSubview(emojiView5)
+        view.addSubview(emojiButton1)
+        view.addSubview(emojiButton2)
+        view.addSubview(emojiButton3)
+        view.addSubview(emojiButton4)
+        view.addSubview(emojiButton5)
     }
     
     
@@ -678,11 +676,11 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         
         DispatchQueue.main.async {
             // TODO: Make this nicer.
-            self.emojiButton1.setImage(newEmojiImages[0], for: .normal)
-            self.emojiButton2.setImage(newEmojiImages[1], for: .normal)
-            self.emojiButton3.setImage(newEmojiImages[2], for: .normal)
-            self.emojiButton4.setImage(newEmojiImages[3], for: .normal)
-            self.emojiButton5.setImage(newEmojiImages[4], for: .normal)
+            self.emojiButton1.image = newEmojiImages[0]
+            self.emojiButton2.image = newEmojiImages[1]
+            self.emojiButton3.image = newEmojiImages[2]
+            self.emojiButton4.image = newEmojiImages[3]
+            self.emojiButton5.image = newEmojiImages[4]
             
             self.faceButton1.setImage(newFaceImages[0], for: .normal)
             self.faceButton2.setImage(newFaceImages[1], for: .normal)
@@ -754,12 +752,9 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         
         let emojiView: EmojiView = sender.view! as! EmojiView
         
-//        if !emojisInView.contains(emojiView) {
-//            emojisInView.append(emojiView)
-//        }
-        
         // Emoji is on the right side of the screen in the emoji button column.
         if !emojiView.hasBeenTouched.value {
+            
             emojiView.hasBeenTouched.mutate({$0 = true})
             
             // Add a replacement EmojiView in the emoji button column.
@@ -774,6 +769,21 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
             
             self.view.addSubview(newEmoji)
             DispatchQueue.main.async {
+                if emojiView == self.emojiButton1 {
+                    self.emojiButton1 = newEmoji
+                }
+                else if emojiView == self.emojiButton2 {
+                    self.emojiButton2 = newEmoji
+                }
+                else if emojiView == self.emojiButton3 {
+                    self.emojiButton3 = newEmoji
+                }
+                else if emojiView == self.emojiButton4 {
+                    self.emojiButton4 = newEmoji
+                }
+                else if emojiView == self.emojiButton5 {
+                    self.emojiButton5 = newEmoji
+                }
                 self.emojisInView.append(newEmoji)
                 newEmoji.hasBeenTouched.mutate({ $0 = false })
             }
