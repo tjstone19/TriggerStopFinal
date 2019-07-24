@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0811C2C022E7D44E009AF4ED /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0811C2BF22E7D44E009AF4ED /* EmojiView.swift */; };
 		085BDD4D22D016200012A922 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 085BDD4C22D016200012A922 /* StoreKit.framework */; };
 		08CC5CB222E511040081662E /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CC5CB122E511040081662E /* PopUpViewController.swift */; };
 		08D463BA227E4D1900590B8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D463B9227E4D1900590B8F /* AppDelegate.swift */; };
@@ -17,6 +18,8 @@
 		08D463C7227E4D1A00590B8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08D463C5227E4D1A00590B8F /* LaunchScreen.storyboard */; };
 		08D463D2227E4D1A00590B8F /* TriggerStopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D463D1227E4D1A00590B8F /* TriggerStopTests.swift */; };
 		08D463DD227E4D1A00590B8F /* TriggerStopUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D463DC227E4D1A00590B8F /* TriggerStopUITests.swift */; };
+		08F71EB222E8F06500535AD0 /* UIColorExtenions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F71EB122E8F06500535AD0 /* UIColorExtenions.swift */; };
+		08F71EB422E9030600535AD0 /* AtomicClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F71EB322E9030600535AD0 /* AtomicClass.swift */; };
 		E04B04A6EA68C5D774DC9E71 /* Pods_TriggerStop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890A418875EFF0588B68AC0E /* Pods_TriggerStop.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0811C2BF22E7D44E009AF4ED /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
 		085BDD4C22D016200012A922 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		08CC5CB122E511040081662E /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		08D463B6227E4D1900590B8F /* TriggerStop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TriggerStop.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,6 +58,8 @@
 		08D463D8227E4D1A00590B8F /* TriggerStopUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TriggerStopUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		08D463DC227E4D1A00590B8F /* TriggerStopUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerStopUITests.swift; sourceTree = "<group>"; };
 		08D463DE227E4D1A00590B8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		08F71EB122E8F06500535AD0 /* UIColorExtenions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtenions.swift; sourceTree = "<group>"; };
+		08F71EB322E9030600535AD0 /* AtomicClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicClass.swift; sourceTree = "<group>"; };
 		6480544009C0667D8F15875A /* Pods-TriggerStop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TriggerStop.debug.xcconfig"; path = "Target Support Files/Pods-TriggerStop/Pods-TriggerStop.debug.xcconfig"; sourceTree = "<group>"; };
 		890A418875EFF0588B68AC0E /* Pods_TriggerStop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TriggerStop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F06B07D4950642E6E90A4D47 /* Pods-TriggerStop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TriggerStop.release.xcconfig"; path = "Target Support Files/Pods-TriggerStop/Pods-TriggerStop.release.xcconfig"; sourceTree = "<group>"; };
@@ -119,6 +125,9 @@
 				08D463C8227E4D1A00590B8F /* Info.plist */,
 				08D463C0227E4D1900590B8F /* TriggerStop.xcdatamodeld */,
 				08CC5CB122E511040081662E /* PopUpViewController.swift */,
+				0811C2BF22E7D44E009AF4ED /* EmojiView.swift */,
+				08F71EB122E8F06500535AD0 /* UIColorExtenions.swift */,
+				08F71EB322E9030600535AD0 /* AtomicClass.swift */,
 			);
 			path = TriggerStop;
 			sourceTree = "<group>";
@@ -345,9 +354,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				08D463C2227E4D1900590B8F /* TriggerStop.xcdatamodeld in Sources */,
+				08F71EB422E9030600535AD0 /* AtomicClass.swift in Sources */,
+				08F71EB222E8F06500535AD0 /* UIColorExtenions.swift in Sources */,
 				08D463BC227E4D1900590B8F /* MainViewController.swift in Sources */,
 				08D463BA227E4D1900590B8F /* AppDelegate.swift in Sources */,
 				08CC5CB222E511040081662E /* PopUpViewController.swift in Sources */,
+				0811C2C022E7D44E009AF4ED /* EmojiView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

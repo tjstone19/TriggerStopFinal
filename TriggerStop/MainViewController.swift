@@ -20,7 +20,25 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     var imagePicker: UIImagePickerController!
     
     // Stores all of the emojis on the screen.
-    var emojisInView: [UIImageView] = [UIImageView]()
+    var emojisInView: [EmojiView] = [EmojiView]()
+    
+    // Tool bar height as a percentage of the view's height.
+    let TOOLBAR_HEIGHT: CGFloat = 0.1
+    let TOOLBAR_BUTTON_Y: CGFloat = 0.01
+    let TOOLBAR_BUTTON_WIDTH: CGFloat = 0.15
+    let TOOLBAR_BUTTON_HEIGHT: CGFloat = 0.2
+    
+    // Amount of space between the toolbar buttons and the right edge of the screen.
+    let TOOLBAR_BUTTON_RIGHT_PADDING: CGFloat = 5
+    
+    // Color of the toolbar.  Uses DEFAULT_COLOR if not set in the interface builder.
+    @IBInspectable var toolbarColor: UIColor?
+    let TOOLBAR_DEFAULT_COLOR: UIColor = UIColor(hex: 0x126BED)
+    
+    // Displays application name on the left side of the toolbar.
+    var toolbarLabel: UILabel!
+    let TOOLBAR_LABEL_TEXT: String = "TriggerStop"
+    let TOOLBAR_LABEL_COLOR: UIColor = UIColor.white
     
     var clearScreenButton: UIButton!
     var addPhotoButton: UIButton!
@@ -28,15 +46,6 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     
     let HELP_BUTTON_Y: CGFloat = 0.11
     let HELP_BUTTON_HEIGHT: CGFloat = 0.002
-    
-    // Tool bar height as a percentage of the view's height.
-    let TOOLBAR_HEIGHT: CGFloat = 0.1
-    
-    let TOOLBAR_BUTTON_Y: CGFloat = 0.01
-    let TOOLBAR_BUTTON_WIDTH: CGFloat = 0.2
-    let TOOLBAR_BUTTON_HEIGHT: CGFloat = 0.2
-    let TOOLBAR_BUTTON_SPACING: CGFloat = 0.5
-    
     
     // Image view for the body.
     var bodyIV :UIImageView!
@@ -137,45 +146,71 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
                    y: 0.0,
                    width: width,
                    height: height * TOOLBAR_HEIGHT))
-        toolbarView.backgroundColor = UIColor.blue
+        
+        // Use the default color if value is not set in the interface builder.
+        if toolbarColor == nil {
+            toolbarColor = TOOLBAR_DEFAULT_COLOR
+        }
+        toolbarView.backgroundColor = toolbarColor
         
         let toolBarButtonY = height * TOOLBAR_BUTTON_Y
         let toolbarButtonWidth = width * TOOLBAR_BUTTON_WIDTH
         let toolbarButtonHeight = height * TOOLBAR_HEIGHT
         
+        // Amount of spacing between the toolbar buttons.
+//        let toolbarButtonSpacing: CGFloat =
+//            toolbarButtonWidth + TOOLBAR_BUTTON_RIGHT_PADDING
+    
         
-        // Add the clear screen button in the middle of the toolbar.
-        let clearScreenButtonX: CGFloat = width * 0.5 - toolbarButtonWidth * 0.5
-        clearScreenButton = UIButton(frame: CGRect(
-            x: clearScreenButtonX,
+        
+        toolbarLabel = UILabel(frame: CGRect(
+            x: width * 0.03,
             y: toolBarButtonY,
-            width: toolbarButtonWidth,
+            width: width * 0.4,
             height: toolbarButtonHeight))
+        toolbarLabel.text = TOOLBAR_LABEL_TEXT
+        toolbarLabel.font = UIFont(name: "Arial", size: 25)
+        toolbarLabel.textColor = TOOLBAR_LABEL_COLOR
+        
+        helpButton = UIButton(
+            frame: CGRect(
+                x: (width - toolbarButtonWidth * 3) - TOOLBAR_BUTTON_RIGHT_PADDING,
+                y: toolBarButtonY,
+                width: toolbarButtonWidth,
+                height: toolbarButtonHeight))
+        helpButton.setImage(UIImage(named: "help"), for: .normal)
+        helpButton.addTarget(
+            self,
+            action: Selector(("showHelpPage:")),
+            for: .touchUpInside)
+        
+        clearScreenButton = UIButton(
+            frame: CGRect(
+                x: (width - toolbarButtonWidth * 2) - TOOLBAR_BUTTON_RIGHT_PADDING,
+                y: toolBarButtonY,
+                width: toolbarButtonWidth,
+                height: toolbarButtonHeight))
         clearScreenButton.setImage(UIImage(named: "trash"), for: .normal)
         clearScreenButton.addTarget(
             self,
             action: Selector(("clearScreen:")),
             for: .touchUpInside)
         
-        addPhotoButton = UIButton(frame:
-            CGRect(x: width - toolbarButtonWidth * 2,
-                   y: toolBarButtonY,
-                   width: toolbarButtonWidth,
-                   height: toolbarButtonHeight))
+        addPhotoButton = UIButton(
+            frame: CGRect(
+                x: (width - toolbarButtonWidth) - TOOLBAR_BUTTON_RIGHT_PADDING,
+                y: toolBarButtonY,
+                width: toolbarButtonWidth,
+                height: toolbarButtonHeight))
         addPhotoButton.setImage(UIImage(named: "camera"), for: .normal)
-        addPhotoButton.addTarget(self, action: Selector(("takePhoto:")),
-                                 for: .touchUpInside)
-        
-        helpButton = UIButton(frame:
-            CGRect(x: width - toolbarButtonWidth,
-                   y: toolBarButtonY,
-                   width: toolbarButtonWidth,
-                   height: toolbarButtonHeight))
-        helpButton.setImage(UIImage(named: "help"), for: .normal)
-        helpButton.addTarget(self, action: Selector(("showHelpPage:")),
-                                 for: .touchUpInside)
+        addPhotoButton.addTarget(
+            self,
+            action: Selector(("takePhoto:")),
+            for: .touchUpInside)
+
         
         view.addSubview(toolbarView)
+        view.addSubview(toolbarLabel)
         toolbarView.addSubview(clearScreenButton)
         toolbarView.addSubview(addPhotoButton)
         toolbarView.addSubview(helpButton)
@@ -340,56 +375,85 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         let emojiYIncrement :CGFloat = height * EMOJI_BUTTON_Y_SPACING
             + emojiButtonHeight
         
-        emojiButton1 = UIButton(frame: CGRect(
-            x: emojiButtonX,
-            y: emojiButtonY,
-            width: emojiButtonWidth,
-            height: emojiButtonHeight))
-        emojiButton1.setImage(greenEmojiImages[0], for: .normal)
-        emojiButton1.addTarget(self, action: Selector(("emojiButtonPressed:")),
-                               for: .touchUpInside)
+        // Add pan gesture to move emojis around the screen.
         
-        emojiButton2 = UIButton(frame: CGRect(
-            x: emojiButtonX,
-            y:  emojiButtonY + emojiYIncrement,
-            width: emojiButtonWidth,
-            height: emojiButtonHeight))
-        emojiButton2.setImage(greenEmojiImages[1], for: .normal)
-        emojiButton2.addTarget(self, action: Selector(("emojiButtonPressed:")),
-                               for: .touchUpInside)
         
-        emojiButton3 = UIButton(frame: CGRect(
-            x:  emojiButtonX,
-            y:  emojiButtonY + emojiYIncrement * 2,
-            width: emojiButtonWidth,
-            height: emojiButtonHeight))
-        emojiButton3.setImage(greenEmojiImages[2], for: .normal)
-        emojiButton3.addTarget(self, action: Selector(("emojiButtonPressed:")),
-                               for: .touchUpInside)
+        let emojiView1: EmojiView = EmojiView(
+            frame: CGRect(
+                x: emojiButtonX,
+                y: emojiButtonY,
+                width: emojiButtonWidth,
+                height: emojiButtonHeight))
+        emojiView1.image = greenEmojiImages[0]
+        emojiView1.isUserInteractionEnabled = true
+        emojiView1.addGestureRecognizer(
+            UIPanGestureRecognizer(
+                target: self,
+                action:Selector(("moveEmoji:"))))
         
-        emojiButton4 = UIButton(frame: CGRect(
-            x:  emojiButtonX,
-            y:  emojiButtonY + emojiYIncrement * 3,
-            width: emojiButtonWidth,
-            height: emojiButtonHeight))
-        emojiButton4.setImage(greenEmojiImages[3], for: .normal)
-        emojiButton4.addTarget(self, action: Selector(("emojiButtonPressed:")),
-                               for: .touchUpInside)
+        let emojiView2: EmojiView = EmojiView(
+            frame: CGRect(
+                x: emojiButtonX,
+                y:  emojiButtonY + emojiYIncrement,
+                width: emojiButtonWidth,
+                height: emojiButtonHeight))
+        emojiView2.image = greenEmojiImages[1]
+        emojiView2.isUserInteractionEnabled = true
+        emojiView2.addGestureRecognizer(
+            UIPanGestureRecognizer(
+                target: self,
+                action:Selector(("moveEmoji:"))))
         
-        emojiButton5 = UIButton(frame: CGRect(
-            x:  emojiButtonX,
-            y:  emojiButtonY + emojiYIncrement * 4,
-            width: emojiButtonWidth,
-            height: emojiButtonHeight))
-        emojiButton5.setImage(greenEmojiImages[4], for: .normal)
-        emojiButton5.addTarget(self, action: Selector(("emojiButtonPressed:")),
-                               for: .touchUpInside)
-    
-        view.addSubview(emojiButton1)
-        view.addSubview(emojiButton2)
-        view.addSubview(emojiButton3)
-        view.addSubview(emojiButton4)
-        view.addSubview(emojiButton5)
+        let emojiView3: EmojiView = EmojiView(
+            frame: CGRect(
+                x:  emojiButtonX,
+                y:  emojiButtonY + emojiYIncrement * 2,
+                width: emojiButtonWidth,
+                height: emojiButtonHeight))
+        emojiView3.image = greenEmojiImages[2]
+        emojiView3.isUserInteractionEnabled = true
+        emojiView3.addGestureRecognizer(
+            UIPanGestureRecognizer(
+                target: self,
+                action:Selector(("moveEmoji:"))))
+        
+        let emojiView4: EmojiView = EmojiView(
+            frame: CGRect(
+                x:  emojiButtonX,
+                y:  emojiButtonY + emojiYIncrement * 3,
+                width: emojiButtonWidth,
+                height: emojiButtonHeight))
+        emojiView4.image = greenEmojiImages[3]
+        emojiView4.isUserInteractionEnabled = true
+        emojiView4.addGestureRecognizer(
+            UIPanGestureRecognizer(
+                target: self,
+                action:Selector(("moveEmoji:"))))
+        
+        let emojiView5: EmojiView = EmojiView(
+            frame: CGRect(
+                x:  emojiButtonX,
+                y:  emojiButtonY + emojiYIncrement * 4,
+                width: emojiButtonWidth,
+                height: emojiButtonHeight))
+        emojiView5.image = greenEmojiImages[4]
+        emojiView5.isUserInteractionEnabled = true
+        emojiView5.addGestureRecognizer(
+            UIPanGestureRecognizer(
+                target: self,
+                action:Selector(("moveEmoji:"))))
+        
+        emojisInView.append(emojiView1)
+        emojisInView.append(emojiView2)
+        emojisInView.append(emojiView3)
+        emojisInView.append(emojiView4)
+        emojisInView.append(emojiView5)
+
+        view.addSubview(emojiView1)
+        view.addSubview(emojiView2)
+        view.addSubview(emojiView3)
+        view.addSubview(emojiView4)
+        view.addSubview(emojiView5)
     }
     
     
@@ -529,14 +593,20 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         Clears the face image and emoji images on the screen.
     */
     @IBAction func clearScreen(_ sender: Any) {
-        for emoji in emojisInView {
-            emoji.removeFromSuperview()
+        var i: Int = emojisInView.count - 1
+        while i >= 0  {
+            let emoji: EmojiView = emojisInView[i]
+            if emoji.hasBeenTouched.value {
+                emoji.removeFromSuperview()
+                emojisInView.remove(at: i)
+            }
+            
+            i -= 1
         }
         
         if faceImageIV != nil {
             faceImageIV.image = nil
         }
-        emojisInView.removeAll()
     }
     
     /**
@@ -648,7 +718,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
             return
         }
         
-        let emojiView = UIImageView(image: selectedEmojiIV?.image)
+        let emojiView = EmojiView(image: selectedEmojiIV?.image)
         emojiView.frame = CGRect(
             x: touchLocationInView.x - width * NEW_EMOJI_X,
             y: touchLocationInView.y - height * NEW_EMOJI_Y,
@@ -681,7 +751,34 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     */
     @objc func moveEmoji(_ sender: UIPanGestureRecognizer) {
         guard sender.view != nil else {return}
-        let emojiView = sender.view!
+        
+        let emojiView: EmojiView = sender.view! as! EmojiView
+        
+//        if !emojisInView.contains(emojiView) {
+//            emojisInView.append(emojiView)
+//        }
+        
+        // Emoji is on the right side of the screen in the emoji button column.
+        if !emojiView.hasBeenTouched.value {
+            emojiView.hasBeenTouched.mutate({$0 = true})
+            
+            // Add a replacement EmojiView in the emoji button column.
+            let newEmojiFrame: CGRect = emojiView.frame
+            let newEmoji: EmojiView = EmojiView(frame: newEmojiFrame)
+            
+            newEmoji.image = emojiView.image
+            newEmoji.isUserInteractionEnabled = true
+            newEmoji.addGestureRecognizer(UIPanGestureRecognizer(
+                target: self,
+                action:Selector(("moveEmoji:"))))
+            
+            self.view.addSubview(newEmoji)
+            DispatchQueue.main.async {
+                self.emojisInView.append(newEmoji)
+                newEmoji.hasBeenTouched.mutate({ $0 = false })
+            }
+        }
+
         // Get the changes in the X and Y directions relative to
         // the superview's coordinate space.
         let translation = sender.translation(in: emojiView.superview)
