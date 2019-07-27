@@ -60,6 +60,29 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     let BODY_IMAGE_WIDTH :CGFloat = 0.67
     let BODY_IMAGE_HEIGHT :CGFloat = 0.74
     
+    // Body button dimensions as a percentage of the view's width and height.
+    let BODY_BUTTON_X :CGFloat = 0.02
+    let BODY_BUTTON_Y :CGFloat = 0.11
+    let BODY_BUTTON_WIDTH :CGFloat = 0.11
+    let BODY_BUTTON_HEIGHT :CGFloat = 0.11
+    
+    // Border width for selected/unselected body buttons.
+    let BODY_BUTTON_DEFAULT_BORDER_WIDTH :CGFloat = 0.5
+    let BODY_BUTTON_SELECTED_BORDER_WIDTH :CGFloat = 2.0
+    
+    // Border color for selected/unselected body buttons.
+    let BODY_BUTTON_DEFAULT_BORDER_COLOR :CGColor = UIColor.black.cgColor
+    let BODY_BUTTON_SELECTED_BORDER_COLOR :CGColor = UIColor.red.cgColor
+    
+    // Body button's that change the body background image.
+    var bodyButton1 :UIButton!
+    var bodyButton2 :UIButton!
+    var bodyButton3 :UIButton!
+    var bodyButton4 :UIButton!
+    
+    // Pointer to the currently selected body button.
+    var selectedBodyButton :UIButton!
+    
     // Image view for the face image displayed over the body's head.
     var faceImageIV :UIImageView!
 
@@ -105,12 +128,6 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     let COLOR_SLIDER_Y :CGFloat = 0.24
     let COLOR_SLIDER_WIDTH :CGFloat = 0.05
     let COLOR_SLIDER_HEIGHT :CGFloat = 0.71
-    
-    // Body button's that change the body background image.
-    var bodyButton1 :UIButton!
-    var bodyButton2 :UIButton!
-    var bodyButton3 :UIButton!
-    var bodyButton4 :UIButton!
     
     var greenFaceImages = [UIImage]()
     var blueFaceImages = [UIImage]()
@@ -511,11 +528,10 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     func initializeBodyButtons() {
         loadBodyImages()
         
-        let bodyButtonWidth = width * 0.11
-        let bodyButtonHeight = height * 0.11
-        let bodyButtonX = width * 0.02
-        let bodyButtonY = height * 0.11
-        let bodyBorderWidth :CGFloat = 0.5
+        let bodyButtonWidth = width * BODY_BUTTON_WIDTH
+        let bodyButtonHeight = height * BODY_BUTTON_HEIGHT
+        let bodyButtonX = width * BODY_BUTTON_X
+        let bodyButtonY = height * BODY_BUTTON_Y
         
         bodyButton1 = UIButton(frame: CGRect(
             x: bodyButtonX,
@@ -523,8 +539,8 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
             width: bodyButtonWidth,
             height: bodyButtonHeight))
         bodyButton1.setImage(bodyImages[0], for: .normal)
-        bodyButton1.layer.borderColor = UIColor.black.cgColor
-        bodyButton1.layer.borderWidth = bodyBorderWidth
+        bodyButton1.layer.borderColor = BODY_BUTTON_DEFAULT_BORDER_COLOR
+        bodyButton1.layer.borderWidth = BODY_BUTTON_DEFAULT_BORDER_WIDTH
         bodyButton1.addTarget(self, action: Selector(("bodyButtonPressed:")),
                                for: .touchUpInside)
         view.addSubview(bodyButton1)
@@ -535,8 +551,8 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
             width: bodyButtonWidth,
             height: bodyButtonHeight))
         bodyButton2.setImage(bodyImages[1], for: .normal)
-        bodyButton2.layer.borderColor = UIColor.black.cgColor
-        bodyButton2.layer.borderWidth = bodyBorderWidth
+        bodyButton2.layer.borderColor = BODY_BUTTON_DEFAULT_BORDER_COLOR
+        bodyButton2.layer.borderWidth = BODY_BUTTON_DEFAULT_BORDER_WIDTH
         bodyButton2.addTarget(self, action: Selector(("bodyButtonPressed:")),
                               for: .touchUpInside)
         view.addSubview(bodyButton2)
@@ -547,8 +563,8 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
             width: bodyButtonWidth,
             height: bodyButtonHeight))
         bodyButton3.setImage(bodyImages[2], for: .normal)
-        bodyButton3.layer.borderColor = UIColor.black.cgColor
-        bodyButton3.layer.borderWidth = bodyBorderWidth
+        bodyButton3.layer.borderColor = BODY_BUTTON_DEFAULT_BORDER_COLOR
+        bodyButton3.layer.borderWidth = BODY_BUTTON_DEFAULT_BORDER_WIDTH
         bodyButton3.addTarget(self, action: Selector(("bodyButtonPressed:")),
                               for: .touchUpInside)
         view.addSubview(bodyButton3)
@@ -559,16 +575,16 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
             width: bodyButtonWidth,
             height: bodyButtonHeight))
         bodyButton4.setImage(bodyImages[3], for: .normal)
-        bodyButton4.layer.borderColor = UIColor.black.cgColor
-        bodyButton4.layer.borderWidth = bodyBorderWidth
+        bodyButton4.layer.borderColor = BODY_BUTTON_SELECTED_BORDER_COLOR
+        bodyButton4.layer.borderWidth = BODY_BUTTON_SELECTED_BORDER_WIDTH
         bodyButton4.addTarget(self, action: Selector(("bodyButtonPressed:")),
                               for: .touchUpInside)
         view.addSubview(bodyButton4)
+        
+        selectedBodyButton = bodyButton4
     }
     
-    
-    //MARK: Body Button functionality.
-    
+    // MARK: Body Button functionality.
     
     /**
      Called when a body button is pressed.
@@ -583,6 +599,18 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         }
         
         DispatchQueue.main.async {
+            // Set the previously selected button to default border size/color.
+            self.selectedBodyButton.layer.borderWidth = self.BODY_BUTTON_DEFAULT_BORDER_WIDTH
+            self.selectedBodyButton.layer.borderColor = self.BODY_BUTTON_DEFAULT_BORDER_COLOR
+            
+            // Set the selected body button to the selected border size/color.
+            sender.layer.borderWidth = self.BODY_BUTTON_SELECTED_BORDER_WIDTH
+            sender.layer.borderColor = self.BODY_BUTTON_SELECTED_BORDER_COLOR
+            
+            // Update the selected body button pointer.
+            self.selectedBodyButton = sender
+            
+            // Update the background body image.
             self.bodyIV.image = selectedBodyIV?.image
         }
     }
