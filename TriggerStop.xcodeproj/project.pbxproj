@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		080114F722EE324E0025234D /* UserDefaults+isFirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080114F622EE324E0025234D /* UserDefaults+isFirstLaunch.swift */; };
 		0811C2C022E7D44E009AF4ED /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0811C2BF22E7D44E009AF4ED /* EmojiView.swift */; };
 		085BDD4D22D016200012A922 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 085BDD4C22D016200012A922 /* StoreKit.framework */; };
 		08CC5CB222E511040081662E /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CC5CB122E511040081662E /* PopUpViewController.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		080114F622EE324E0025234D /* UserDefaults+isFirstLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+isFirstLaunch.swift"; sourceTree = "<group>"; };
 		0811C2BF22E7D44E009AF4ED /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
 		085BDD4C22D016200012A922 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		08CC5CB122E511040081662E /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				0811C2BF22E7D44E009AF4ED /* EmojiView.swift */,
 				08F71EB122E8F06500535AD0 /* UIColorExtenions.swift */,
 				08F71EB322E9030600535AD0 /* AtomicClass.swift */,
+				080114F622EE324E0025234D /* UserDefaults+isFirstLaunch.swift */,
 			);
 			path = TriggerStop;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				080114F722EE324E0025234D /* UserDefaults+isFirstLaunch.swift in Sources */,
 				08D463C2227E4D1900590B8F /* TriggerStop.xcdatamodeld in Sources */,
 				08F71EB422E9030600535AD0 /* AtomicClass.swift in Sources */,
 				08F71EB222E8F06500535AD0 /* UIColorExtenions.swift in Sources */,

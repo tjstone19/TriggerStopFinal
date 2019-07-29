@@ -154,6 +154,30 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         initializeBodyButtons()
         initializeColorSlider()
         initializeToolBar()
+        
+        checkFirstLaunch()
+    }
+    
+    /**
+     * Launches the disclaimer page if it is the first launch of the application.
+     */
+    private func checkFirstLaunch() {
+        let isFirstLaunch = UserDefaults.isFirstLaunch()
+        
+        if isFirstLaunch {
+            DispatchQueue.main.async {
+                let popOverVC: PopUpViewController = UIStoryboard(
+                    name: "Main", bundle: nil).instantiateViewController(
+                        withIdentifier: "popUpView") as! PopUpViewController
+                
+                popOverVC.isHelpPage = false
+                popOverVC.view.frame = self.view.frame
+                
+                self.addChild(popOverVC)
+                self.view.addSubview(popOverVC.view)
+                popOverVC.didMove(toParent: self)
+            }
+        }
     }
     
     /**
@@ -500,8 +524,11 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         face. The image view is presented over the body's head.
     */
     @objc func faceButtonPressed(_ sender: UIButton) {
-        let selectedFaceIV :UIImageView? = sender.imageView
+        DispatchQueue.main.async {
+            print(UserDefaults.isFirstLaunch())
+        }
         
+        let selectedFaceIV :UIImageView? = sender.imageView
         if selectedFaceIV == nil {
             return
         }
@@ -642,10 +669,10 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     @IBAction func showHelpPage(_ sender: Any) {
         let popOverVC: PopUpViewController = UIStoryboard(
             name: "Main", bundle: nil).instantiateViewController(
-                withIdentifier: "helpPage") as! PopUpViewController
+                withIdentifier: "popUpView") as! PopUpViewController
 
         popOverVC.view.frame = view.frame
-        
+        popOverVC.isHelpPage = true
         
         self.addChild(popOverVC)
         self.view.addSubview(popOverVC.view)

@@ -38,7 +38,7 @@
         <!--Pop Up View Controller-->
         <scene sceneID="8xa-mQ-4Jz">
             <objects>
-                <viewController storyboardIdentifier="helpPage" id="wZS-Gk-gTY" customClass="PopUpViewController" customModule="TriggerStop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="popUpView" id="wZS-Gk-gTY" customClass="PopUpViewController" customModule="TriggerStop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NB4-dI-TD7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -69,6 +69,11 @@ d. Blue- Represents emotions such as numb, empty, disconnected, worried, anxious
 7. Children can be supported by a caring adult to slowly express how they feel by dragging an emoji face to the body or the thermometer to the color zone they feel or even a visual image to the body of sensation (as mentioned in #6) that they are experiencing in their body and where.
 
 8. Helping a child be heard, express themselves verbally or nonverbally can help them calm and regulate their intense emotions.</mutableString>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="disclaimerText">
+                            <mutableString key="value">Welcome to Trauma Trigger Stop APP. This APP is intended for use for children who might not be able to access their words when their emotions are intense and they become dysregulated in the moment. Whether a result of a trauma trigger or emotional trigger in that moment, a child may not have access to the executive parts of their brain in charge of reasoning, logic or words.  The APP can be used to help a child communicate what they are feeling, experiencing emotionally or the sensations in their body during that emotional charge. An adult who hears how a child feels can better help them calm and regulate their emotions. Sometimes they do not know or cannot access words when dysregulated. This gives them an opportunity to share what they may be xperiencing by dragging images that match their internal state of sensations and emotions. It is best to proactively teach children when they are calm how to use the APP first. Introducing it when they are triggered, emotionally flooded and/or dysregulated is not recommended. Teaching when they are calm how to use the APP and the sensory objects they can use to communicate their emotions will help kids learn to use the APP before they are triggered.
+
+WARNING: This APP is not intended to provide treatment for children.  If there is an emergency or ongoing persistent challenges, referrals for therapy or other evidence-based treatments is recommended.</mutableString>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </viewController>
