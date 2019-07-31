@@ -52,14 +52,14 @@
 		6CE691687DC4341D103F8B43C5D5F747 /* Pods-TriggerStop-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TriggerStop-acknowledgements.markdown"; sourceTree = "<group>"; };
 		7D78B7CF1301F3E82537F6CB5B637897 /* Pods-TriggerStop-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TriggerStop-Info.plist"; sourceTree = "<group>"; };
 		8D396DE648BAA58742EE2DE70C6EBCC9 /* Pods-TriggerStop-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TriggerStop-acknowledgements.plist"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A2C8E9BC5EEAA3A938C781A1D426C992 /* Pods-TriggerStop-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TriggerStop-umbrella.h"; sourceTree = "<group>"; };
 		ABA6A6E1355409A77B99C81DF7EFF792 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		AC440DFE018D0571D4750B802D083B00 /* ColorSlider-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ColorSlider-Info.plist"; sourceTree = "<group>"; };
-		B6AC2742B5B481578D3FA47C1188B6AB /* ColorSlider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ColorSlider.framework; path = ColorSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6AC2742B5B481578D3FA47C1188B6AB /* ColorSlider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ColorSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB352C5FA0AAFC0019047FED2019E7CC /* HSBColor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HSBColor.swift; path = Sources/Internal/HSBColor.swift; sourceTree = "<group>"; };
 		C319DD461E3701A64F491A1FCE84F737 /* PreviewView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PreviewView.swift; path = Sources/PreviewView.swift; sourceTree = "<group>"; };
-		C468EE40CBBAD4FEBDDC400CB7F75528 /* Pods_TriggerStop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_TriggerStop.framework; path = "Pods-TriggerStop.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C468EE40CBBAD4FEBDDC400CB7F75528 /* Pods_TriggerStop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TriggerStop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8095171B206BFE6477A882BC3BD528C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		D400D031BA32A95EFD96F144AC7737D9 /* ColorSlider-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ColorSlider-prefix.pch"; sourceTree = "<group>"; };
 		D9438A035D77353FE964FDB6ECD1DBBB /* Pods-TriggerStop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TriggerStop.release.xcconfig"; sourceTree = "<group>"; };
@@ -142,7 +142,6 @@
 				C319DD461E3701A64F491A1FCE84F737 /* PreviewView.swift */,
 				1E8CA6847F100B0BC7487298634B29F4 /* Support Files */,
 			);
-			name = ColorSlider;
 			path = ColorSlider;
 			sourceTree = "<group>";
 		};
@@ -266,6 +265,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
 			productRefGroup = 0D32047CAB346CAAE334A9634C0A99A2 /* Products */;

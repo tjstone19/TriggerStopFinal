@@ -92,15 +92,16 @@ class PopUpViewController: UIViewController {
     // If true, display help page text.  If false, display disclaimer text.
     var isHelpPage: Bool = true
     
+    deinit {
+        print("Pop Up View de-initialized")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         
         width = view.frame.width
         height = view.frame.height
-        
-        // Set up the text view and scroll view.
-        initializeTextView()
         
         // Set the help page text to the text set in the interface builder.
         if isHelpPage {
@@ -114,7 +115,7 @@ class PopUpViewController: UIViewController {
     /**
      * Initializes the text view and scroll view.
      */
-    private func initializeTextView() {
+    private func initializeTextViewWith(frame: CGRect) {
         // Initialize scroll view and text view.
         scrollView = UIScrollView(frame: CGRect(
             x: width * SCROLL_VIEW_X,
@@ -122,11 +123,7 @@ class PopUpViewController: UIViewController {
             width: width * SCROLL_VIEW_WIDTH,
             height: height * SCROLL_VIEW_HEIGHT))
         
-        textView = UITextView(frame: CGRect(
-            x: width * TEXT_VIEW_X,
-            y: height * TEXT_VIEW_Y,
-            width: width * TEXT_VIEW_WIDTH,
-            height: height * TEXT_VIEW_HEIGHT_HELP_PAGE))
+        textView = UITextView(frame: frame)
         textView.isScrollEnabled = true
         textView.isEditable = false
         textView.textAlignment = .justified
@@ -143,12 +140,12 @@ class PopUpViewController: UIViewController {
      * Accept and Decline button.
      */
     func initializeDisclaimerView() {
-        textView.text = disclaimerText
-        textView.frame = CGRect(
+        initializeTextViewWith(frame: CGRect(
             x: width * TEXT_VIEW_X,
             y: height * TEXT_VIEW_Y,
             width: width * TEXT_VIEW_WIDTH,
-            height: height * TEXT_VIEW_HEIGHT_DISCLAIMER_PAGE)
+            height: height * TEXT_VIEW_HEIGHT_DISCLAIMER_PAGE))
+        textView.text = disclaimerText
         
         // Add label notifying user that they must accept the TOS before using the app.
         let acceptLabelX: CGFloat = width * ACCEPT_TERMS_LABEL_X
@@ -235,6 +232,11 @@ class PopUpViewController: UIViewController {
      * Sets the text to the help page text and initializes the close button.
      */
     func initializeHelpView() {
+        initializeTextViewWith(frame: CGRect(
+            x: width * TEXT_VIEW_X,
+            y: height * TEXT_VIEW_Y,
+            width: width * TEXT_VIEW_WIDTH,
+            height: height * TEXT_VIEW_HEIGHT_HELP_PAGE))
         textView.text = helpText
         
         // Initialize the close button to call closePopUp on click.
@@ -260,7 +262,9 @@ class PopUpViewController: UIViewController {
      *  Removes this view from the super view.
      */
     @objc func closePopUp(_ sender: Any) {
+        self.willMove(toParent: nil)
         self.view.removeFromSuperview()
+        self.removeFromParent()
     }
     
     /**
