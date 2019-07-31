@@ -166,16 +166,16 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         
         if isFirstLaunch {
             DispatchQueue.main.async {
-                let popOverVC: PopUpViewController = UIStoryboard(
+                weak var popOverVC: PopUpViewController? = UIStoryboard(
                     name: "Main", bundle: nil).instantiateViewController(
-                        withIdentifier: "popUpView") as! PopUpViewController
+                        withIdentifier: "popUpView") as? PopUpViewController
                 
-                popOverVC.isHelpPage = false
-                popOverVC.view.frame = self.view.frame
+                popOverVC!.isHelpPage = false
+                popOverVC!.view.frame = self.view.frame
                 
-                self.addChild(popOverVC)
-                self.view.addSubview(popOverVC.view)
-                popOverVC.didMove(toParent: self)
+                self.addChild(popOverVC!)
+                self.view.addSubview(popOverVC!.view)
+                popOverVC!.didMove(toParent: self)
             }
         }
     }

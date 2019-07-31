@@ -92,10 +92,6 @@ class PopUpViewController: UIViewController {
     // If true, display help page text.  If false, display disclaimer text.
     var isHelpPage: Bool = true
     
-    deinit {
-        print("Pop Up View de-initialized")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
@@ -277,7 +273,7 @@ class PopUpViewController: UIViewController {
             UserDefaults.setFirstLaunch(false)
         }
         
-        self.view.removeFromSuperview()
+        self.closePopUp(sender)
     }
     
     /**
