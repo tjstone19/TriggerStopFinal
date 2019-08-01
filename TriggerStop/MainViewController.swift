@@ -123,6 +123,9 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     let NEW_EMOJI_WIDTH :CGFloat = 0.15
     let NEW_EMOJI_HEIGHT :CGFloat = 0.15
     
+    // Emoji's are removed from the view if they are placed beyond the max x.
+    let EMOJI_MAX_X: CGFloat = 0.9
+    
     // Color slider coordinates and size as a percentage of view's dimensions.
     let COLOR_SLIDER_X :CGFloat = 0.05
     let COLOR_SLIDER_Y :CGFloat = 0.24
@@ -851,6 +854,13 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         if sender.state == .began {
             // Save the view's original position.
             self.emojiInitialCenter = emojiView.center
+        }
+        if sender.state == .ended {
+            if emojiView.center.x > width * EMOJI_MAX_X {
+                DispatchQueue.main.async {
+                    emojiView.removeFromSuperview()
+                }
+            }
         }
         if sender.state != .cancelled {
             // Add the X and Y translation to the view's original position.
