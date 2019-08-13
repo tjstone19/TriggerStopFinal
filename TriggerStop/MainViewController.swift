@@ -701,6 +701,8 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
             width: width * COLOR_SLIDER_WIDTH,
             height: height * COLOR_SLIDER_HEIGHT)
         
+        colorSlider.displayPreview(at: CGPoint(x: 0.0, y: 1.0))
+        
         // Set callback function for when the color slider's value changes.
         colorSlider.addTarget(
             self,

@@ -298,11 +298,24 @@ fileprivate extension ColorSlider {
         }
     
         previewView?.colorChanged(to: UIColor(hsbColor: newSliderColor))
-        
-        // Original line for changing preview color:
-        //previewView?.colorChanged(to: color)
 	}
 }
+
+extension ColorSlider {
+    
+    /**
+     * Displays the preview slider at the provided location.
+     *
+     * @param location: Where to display the preview slider relative
+     *      to it's ColorSlider super view.
+     */
+    public func displayPreview(at location: CGPoint) {
+        let sliderColor = HSBColor(hue: 0.4, saturation: 1, brightness: 1)
+        previewView?.colorChanged(to: UIColor(hsbColor: sliderColor))
+        centerPreview(at: location)
+    }
+}
+
 
 /// :nodoc:
 /// MARK: - Increase Tappable Area
