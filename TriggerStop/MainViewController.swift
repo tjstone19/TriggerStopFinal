@@ -124,7 +124,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     let NEW_EMOJI_HEIGHT :CGFloat = 0.15
     
     // Emoji's are removed from the view if they are placed beyond the max x.
-    let EMOJI_MAX_X: CGFloat = 0.9
+    let EMOJI_MAX_X: CGFloat = 0.75
     
     // Color slider coordinates and size as a percentage of view's dimensions.
     let COLOR_SLIDER_X :CGFloat = 0.05
@@ -223,7 +223,8 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
                 y: toolBarButtonY,
                 width: toolbarButtonWidth,
                 height: toolbarButtonHeight))
-        helpButton.setImage(UIImage(named: "help"), for: .normal)
+
+        helpButton.setImage(UIImage(named: "Info"), for: .normal)
         helpButton.addTarget(
             self,
             action: Selector(("showHelpPage:")),
@@ -857,9 +858,11 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         }
         if sender.state == .ended {
             if emojiView.center.x > width * EMOJI_MAX_X {
-                DispatchQueue.main.async {
+                UIView.animate(withDuration: 0.3, animations: {
+                    emojiView.alpha = 0.0
+                }, completion: { (finished) in
                     emojiView.removeFromSuperview()
-                }
+                })
             }
         }
         if sender.state != .cancelled {
