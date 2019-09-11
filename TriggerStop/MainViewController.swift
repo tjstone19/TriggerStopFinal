@@ -85,6 +85,20 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     
     // Image view for the face image displayed over the body's head.
     var faceImageIV :UIImageView!
+    
+    // Face image dimensions as a percentage of the view's width and height.
+    let FACE_IMAGE_X: CGFloat = 0.325
+    let FACE_IMAGE_Y: CGFloat = 0.24
+    let FACE_IMAGE_WIDTH: CGFloat = 0.32
+    let FACE_IMAGE_HEIGHT: CGFloat = 0.22
+    
+    /* Face image is removed from the view if it is placed beyond
+     the max x or below the min y. */
+    let FACE_IMAGE_MAX_X: CGFloat = 0.75
+    let FACE_IMAGE_MIN_Y: CGFloat = 0.25
+    
+    // The initial location of the face image view being moved by the user.
+    var faceInitialCenter = CGPoint()
 
     // Image views for the face buttons.
     var faceButton1 :UIButton!
@@ -123,8 +137,12 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     let NEW_EMOJI_WIDTH :CGFloat = 0.15
     let NEW_EMOJI_HEIGHT :CGFloat = 0.15
     
-    // Emoji's are removed from the view if they are placed beyond the max x.
-    let EMOJI_MAX_X: CGFloat = 0.75
+    // Emojis are removed from the view if they are placed beyond the max x.
+    let EMOJI_VIEW_MAX_X: CGFloat = 0.75
+    
+    // The initial location of the emoji being moved by the user.
+    var emojiInitialCenter = CGPoint()
+
     
     // Color slider coordinates and size as a percentage of view's dimensions.
     let COLOR_SLIDER_X :CGFloat = 0.05
@@ -502,18 +520,31 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     
     //MARK:- Face button functionality.
     
+    /**
+     * Sets the face image to the provided UIImage.
+     *
+     - Parameter image: The image to display in the face image view.
+     */
     func setFaceImage(image: UIImage?) {
         if image == nil {return}
         
         if faceImageIV == nil {
             faceImageIV = UIImageView(
-                frame: CGRect(x: width * 0.325,
-                              y: height * 0.24,
-                              width: width * 0.32,
-                              height: height * 0.22))
+                frame: CGRect(x: width * FACE_IMAGE_X,
+                              y: height * FACE_IMAGE_Y,
+                              width: width * FACE_IMAGE_WIDTH,
+                              height: height * FACE_IMAGE_HEIGHT))
             view.addSubview(faceImageIV)
             view.sendSubviewToBack(faceImageIV)
             view.sendSubviewToBack(bodyIV)
+            
+            faceImageIV!.isUserInteractionEnabled = true
+            
+            let panGesture = UIPanGestureRecognizer(
+                target: self,
+                action:Selector(("moveFace:")))
+            
+            faceImageIV!.addGestureRecognizer(panGesture)
         }
         
         DispatchQueue.main.async {
@@ -528,10 +559,6 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         face. The image view is presented over the body's head.
     */
     @objc func faceButtonPressed(_ sender: UIButton) {
-        DispatchQueue.main.async {
-            print(UserDefaults.isFirstLaunch())
-        }
-        
         let selectedFaceIV :UIImageView? = sender.imageView
         if selectedFaceIV == nil {
             return
@@ -798,158 +825,10 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
             self.view.addSubview(emojiView)
         }
     }
-    
-    
-    // The initial location of the emoji being moved by the user.
-    var emojiInitialCenter = CGPoint()
-    
-    /***
-     Moves the selected emoji ImageView around the screen.
-     
-     - Parameter sender: The touch event caused by the user touching the screen.
-    */
-    @objc func moveEmoji(_ sender: UIPanGestureRecognizer) {
-        guard sender.view != nil else {return}
-        
-        let emojiView: EmojiView = sender.view! as! EmojiView
-        
-        // Emoji is on the right side of the screen in the emoji button column.
-        if !emojiView.hasBeenTouched.value {
-            
-            emojiView.hasBeenTouched.mutate({$0 = true})
-            
-            // Add a replacement EmojiView in the emoji button column.
-            let newEmojiFrame: CGRect = emojiView.frame
-            let newEmoji: EmojiView = EmojiView(frame: newEmojiFrame)
-            
-            newEmoji.image = emojiView.image
-            newEmoji.isUserInteractionEnabled = true
-            newEmoji.addGestureRecognizer(UIPanGestureRecognizer(
-                target: self,
-                action:Selector(("moveEmoji:"))))
-            
-            self.view.addSubview(newEmoji)
-            DispatchQueue.main.async {
-                if emojiView == self.emojiButton1 {
-                    self.emojiButton1 = newEmoji
-                }
-                else if emojiView == self.emojiButton2 {
-                    self.emojiButton2 = newEmoji
-                }
-                else if emojiView == self.emojiButton3 {
-                    self.emojiButton3 = newEmoji
-                }
-                else if emojiView == self.emojiButton4 {
-                    self.emojiButton4 = newEmoji
-                }
-                else if emojiView == self.emojiButton5 {
-                    self.emojiButton5 = newEmoji
-                }
-                self.emojisInView.append(newEmoji)
-                newEmoji.hasBeenTouched.mutate({ $0 = false })
-            }
-        }
-
-        // Get the changes in the X and Y directions relative to
-        // the superview's coordinate space.
-        let translation = sender.translation(in: emojiView.superview)
-        
-        if sender.state == .began {
-            // Save the view's original position.
-            self.emojiInitialCenter = emojiView.center
-        }
-        if sender.state == .ended {
-            if emojiView.center.x > width * EMOJI_MAX_X {
-                UIView.animate(withDuration: 0.3, animations: {
-                    emojiView.alpha = 0.0
-                }, completion: { (finished) in
-                    emojiView.removeFromSuperview()
-                })
-            }
-        }
-        if sender.state != .cancelled {
-            // Add the X and Y translation to the view's original position.
-            let newCenter = CGPoint(
-                x: emojiInitialCenter.x + translation.x,
-                y: emojiInitialCenter.y + translation.y)
-            emojiView.center = newCenter
-        }
-        else {
-            // On cancellation, return the piece to its original location.
-            emojiView.center = emojiInitialCenter
-        }
-    }
-    
-    //MARK: Camera/Photo Library functionality.
-    
-    enum ImageSource {
-        case photoLibrary
-        case camera
-    }
-    
-    //MARK: - Take image
-    @IBAction func takePhoto(_ sender: UIButton) {
-        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
-            selectImageFrom(.photoLibrary)
-            return
-        }
-        selectImageFrom(.camera)
-    }
-    
-    func selectImageFrom(_ source: ImageSource){
-        imagePicker =  UIImagePickerController()
-        imagePicker.delegate = self
-        switch source {
-        case .camera:
-            imagePicker.sourceType = .camera
-        case .photoLibrary:
-            imagePicker.sourceType = .photoLibrary
-        }
-        present(imagePicker, animated: true, completion: nil)
-    }
-    
-    //MARK: - Save image.
-    @IBAction func save(_ sender: AnyObject) {
-        guard let selectedImage = faceImageIV.image else {
-            print("Image not found!")
-            return
-        }
-        UIImageWriteToSavedPhotosAlbum(selectedImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
-    }
-    
-    //MARK: - Add image to Library
-    @objc func image(_ image: UIImage,
-                     didFinishSavingWithError error: Error?,
-                     contextInfo: UnsafeRawPointer) {
-        if let error = error {
-            showAlertWith(
-                title: "Save error",
-                message: error.localizedDescription)
-        } else {
-            showAlertWith(
-                title: "Saved!",
-                message: "Your image has been saved to your photos.")
-        }
-    }
-    
-    func showAlertWith(title: String, message: String) {
-        let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
-        present(ac, animated: true)
-    }
 }
 
-extension MainViewController: UIImagePickerControllerDelegate {
-    
-    //MARK: Get the selected picture from camera or library.
-    
-    func imagePickerController(_ picker: UIImagePickerController,
-                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        imagePicker.dismiss(animated: true, completion: nil)
-        guard let selectedImage = info[.originalImage] as? UIImage else {
-            print("Image not found!")
-            return
-        }
-        setFaceImage(image: selectedImage)
-    }
-}
+
+
+
+
+
