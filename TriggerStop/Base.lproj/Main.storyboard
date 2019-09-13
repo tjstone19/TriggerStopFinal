@@ -46,55 +46,7 @@
                         <viewLayoutGuide key="safeArea" id="xkC-01-lfB"/>
                     </view>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="helpText">
-                            <mutableString key="value">Instructions to Use the APP to Promote Sensory and Emotional Literacy
-
- 
-
-1. Building Sensory, Emotional and Body Awareness is essential for children to gain the ability to regulate their emotions by becoming aware of what is happening in their body.  This Application (APP) helps children identify when they are in an optimal state of arousal, hypo-aroused (FREEZE) or hyper-aroused (FIGHT or FLIGHT). We all experience feelings (ex. happy, sad, angry, lonely, frustrated) when something triggering happens, but along with those feelings, there are also sensations occurring within our body (ex. twisted, shaky, jumpy, empty, frozen, tight) that are associated with that emotionally triggering event. Sensations and feelings are clues, and we can teach a child to be aware of both in order to understand if they are in an triggered state, and if so, how to bring their mind and body back to the optimal state of arousal/regulation.
-
- 
-
-2. When a child has a button pushed and is triggered emotionally, they may move from the optimal state of arousal (calm) to dysregulated or hyper-aroused (fighting, anxious, high energy, unfocused, running away) or hypo-aroused (frozen, unable to respond, shut down, dissociative, disconnected, numb, depressed).
-
- 
-
-3. When a child is dysregulated, they may not be able to express themselves with words. Trauma also impacts the ability to access words to express feelings in a healthy.  Another way to help children to express themselves without words is to point to objects that represent what the sensations and/or feelings they experience inside their bodies when they are dysregulated. 
-
- 
-
-4. The best way to teach is when a child is calm and regulated. That way they are able to engage the executive thinking part of their brain to focus and understand the lesson. When dysregulated, it is difficult to access your thinking brain because of intense emotions. It is best to use the APP to teach a child when they are calm.  Reviewing what each visual object represents, how it might be tied to an emotion or sensation and practicing when they are calm is recommended.  You can read books, ask the child to use the APP to visually express what the characters in the book are feeling and guess as to the sensations that might be occurring in their body.  Then you can begin to explore with the child about if they have ever experienced those same sensations and emotions.  Practice makes permanent!
-
- 
-
-5. The top of the APP (FEELING FACES) is where a child can drag an emoji feeling image to the face of the silhouetted body.  The child can also use the APP to take their own photo and use their personal photo representing their feeling face on the silhouetted body.  You can read books and discuss feelings that the characters in those stories are having and ask the child when they have had that emotion.  Proactively teaching about sensations and feeling words when a child is calm is foundational to using these skills when they are faced with daily emotional triggers.
-
- 
-
-6. The thermometer gauge on the left side of the APP screen has four areas with associated emoji images to the right that help a child identify SENSATIONS in the body:
-
-a. Red- Represents emotions such as anger, anxiety or frustration (hyper-arousal). This is when a child is in the "fight" part of their brain when triggered. When triggered, the survival brain sends messages to fight in order to protect them from a perceived danger.
-
- 
-
-b. Green- Represents emotions such as calm, happy, regulated (optimal state of arousal). This is when the brain is calm, not in a survival mode and a child can learn, engage and focus.
-
- 
-
-c. Orange- Represents emotions such as scared, frightened, terrified (hyper-arousal). This is when the brain is in a survival mode of FLIGHT or the need to escape a situation of perceived danger.
-
- 
-
-d. Blue- Represents emotions such as numb, empty, disconnected, worried, anxious, shut down (hypo-arousal). This is when the brain is in a survival mode of FREEZE or shut down, numb, frozen or feels empty (feels nothing and is unable to engage or be approached/comforted).
-
- 
-
-7. Children can be supported by nurturing and responsive adult caregivers over time to identify and express how they feel by dragging an emoji face to the face of the silhouetted body.  They can also be taught to help express what state they are in by using the thermometer to move across the color zones - green (calm), orange (flight), blue (freeze) or red (fight).  Finally, they can drag an emoji associated with the color zone they are in, and use the visual images to the right of the body on the screen, which can represent any physiological sensations they may be experiencing inside their body (a volcano in my stomach while in the red zone = fight, an iceberg in my body while in the blue zone = freeze, a roller coaster in my feet while in the orange zone = flight, or a rainbow and flower in my heart while in the green zone = optimal arousal/calm).
-
- 
-
-8. Helping a child identify their sensations and feelings so that they may be heard and express themselves verbally or nonverbally will help them calm and regulate their intense emotions. There are four steps children need to learn in order to develop optimal brain and body regulation. You can teach these four steps using the APP:  (1) Identify emotions and sensations in their body, (2) Identify how small, medium or large those emotions and sensations are, (3) If their emotions are medium or large, identify several self-regulation or calming strategies to quiet their brain and body so that they can do the fourth step, (4) Think, think, think through a solution to solve their problem!</mutableString>
-                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="helpText" value="For more information and instructions  on using the APP with children check out the USER Guide."/>
                         <userDefinedRuntimeAttribute type="string" keyPath="disclaimerText">
                             <mutableString key="value">Welcome to Trauma Trigger Stop APP. This APP is intended for use for children who might not be able to access their words when their emotions are intense and they become dysregulated in the moment. Whether a result of a trauma trigger or emotional trigger in that moment, a child may not have access to the executive parts of their brain in charge of reasoning, logic or words.  The APP can be used to help a child communicate what they are feeling, experiencing emotionally or the sensations in their body during that emotional charge. An adult who hears how a child feels can better help them calm and regulate their emotions. Sometimes they do not know or cannot access words when dysregulated. This gives them an opportunity to share what they may be xperiencing by dragging images that match their internal state of sensations and emotions. It is best to proactively teach children when they are calm how to use the APP first. Introducing it when they are triggered, emotionally flooded and/or dysregulated is not recommended. Teaching when they are calm how to use the APP and the sensory objects they can use to communicate their emotions will help kids learn to use the APP before they are triggered.
 

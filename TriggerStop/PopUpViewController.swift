@@ -26,8 +26,7 @@ class PopUpViewController: UIViewController {
     let TEXT_VIEW_HEIGHT_HELP_PAGE: CGFloat = 0.83
     let TEXT_VIEW_HEIGHT_DISCLAIMER_PAGE: CGFloat = 0.6
     
-    let TEXT_VIEW_FONT: String = "Arial"
-    let TEXT_VIEW_FONT_SIZE: CGFloat = 14
+    let TEXT_VIEW_FONT = UIFont(name: "Arial", size: 18)!
     let TEXT_VIEW_SIDE_INSET: CGFloat = 2.0
     
     let SCROLL_VIEW_X: CGFloat = 0.02
@@ -82,9 +81,18 @@ class PopUpViewController: UIViewController {
     let CHECK_BOX_BUTTON_WIDTH: CGFloat = 0.15
     let CHECK_BOX_BUTTON_HEIGHT: CGFloat = 0.2
     
+    // Link to the user guide doc.
+    let USER_GUIDE_URL = "https://docs.wixstatic.com/ugd/ba13a8_bbcbf4b5f6314b5383f0a7f90d1b3075.pdf"
     
-    // Help screen text set in the interface builder.
-    @IBInspectable var helpText: String?
+    // Help screen text to display in the text view.
+    let HELP_PAGE_TEXT = "For more information and instructions on using the APP with children check out the "
+    
+    // Text to be converted into a hyper link to the app's user guide.
+    let HELP_PAGE_HYPERLINK_TEXT = "USER Guide."
+    
+    // Indices of the help page text to set as a hyperlink.
+    let HELP_PAGE_LINK_START_INDEX = 44
+    let HELP_PAGE_LINK_END_INDEX = 45
     
     // Disclaimer screen text set in the interface builder.
     @IBInspectable var disclaimerText: String?
@@ -120,12 +128,16 @@ class PopUpViewController: UIViewController {
             height: height * SCROLL_VIEW_HEIGHT))
         
         textView = UITextView(frame: frame)
+        textView.isSelectable = true
+        textView.font = TEXT_VIEW_FONT
+        textView.delegate = self
         textView.isScrollEnabled = true
         textView.isEditable = false
+        textView.isUserInteractionEnabled = true
+        
         textView.textAlignment = .justified
         textView.contentInset.left = TEXT_VIEW_SIDE_INSET
         textView.contentInset.right = TEXT_VIEW_SIDE_INSET
-        textView.font = UIFont(name: TEXT_VIEW_FONT, size: TEXT_VIEW_FONT_SIZE)
         
         scrollView.addSubview(textView)
         view.addSubview(scrollView)
@@ -233,7 +245,31 @@ class PopUpViewController: UIViewController {
             y: height * TEXT_VIEW_Y,
             width: width * TEXT_VIEW_WIDTH,
             height: height * TEXT_VIEW_HEIGHT_HELP_PAGE))
-        textView.text = helpText
+        
+        let helpText = NSMutableAttributedString(string: HELP_PAGE_TEXT)
+        helpText.setAttributes(
+            [.font: TEXT_VIEW_FONT],
+            range: NSMakeRange(0, helpText.length))
+        
+        // Create a hyperlink to the app's user guide.
+        let hyperLinkText = NSMutableAttributedString(string: HELP_PAGE_HYPERLINK_TEXT)
+        let url = URL(string: USER_GUIDE_URL)!
+        
+        // Set the 'click here' substring to be the link
+        hyperLinkText.setAttributes(
+            [.link: url, .font: TEXT_VIEW_FONT],
+            range: NSMakeRange(0, hyperLinkText.length))
+        
+        // Combine the help page text and hyper link.
+        hyperLinkText.insert(helpText, at: 0)
+        
+        textView.attributedText = hyperLinkText
+        
+        // Set how links should appear: blue and underlined
+        textView.linkTextAttributes = [
+            .foregroundColor: UIColor.blue,
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
         
         // Initialize the close button to call closePopUp on click.
         closeButton = UIButton(frame: CGRect(
@@ -247,9 +283,10 @@ class PopUpViewController: UIViewController {
         closeButton.titleLabel?.font = UIFont.boldSystemFont(
             ofSize: CLOSE_BUTTON_FONT_SIZE)
         
-        closeButton.addTarget(self,
-                              action: #selector(closePopUp(_:)),
-                              for: .touchUpInside)
+        closeButton.addTarget(
+            self,
+            action: #selector(closePopUp(_:)),
+            for: .touchUpInside)
         view.addSubview(closeButton)
     }
     
@@ -305,5 +342,18 @@ class PopUpViewController: UIViewController {
                     self.checkBoxUnselectedImage, for: .normal)
             }
         }
+    }
+}
+
+extension PopUpViewController: UITextViewDelegate {
+    
+    /**
+     * Allows the user to interact with the hyperlink in the text view.
+     */
+    func textView(_ textView: UITextView,
+                  shouldInteractWith URL: URL,
+                  in characterRange: NSRange,
+                  interaction: UITextItemInteraction) -> Bool {
+        return true
     }
 }
