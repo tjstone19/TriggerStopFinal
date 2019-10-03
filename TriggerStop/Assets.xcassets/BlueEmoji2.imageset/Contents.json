@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "BlueEmoji2X1.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "BlueEmoji2.png",
+      "filename" : "BlueEmoji2X2.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "BlueEmoji2X3.png",
       "scale" : "3x"
     }
   ],

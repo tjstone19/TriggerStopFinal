@@ -288,7 +288,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         Sets the background body image and face image.
      */
     func setBodyImage() {
-        bodyIV = UIImageView(image: UIImage(named: "BlackBody"))
+        bodyIV = UIImageView(image: UIImage(named: "BodyBlack"))
         bodyIV.contentMode = .scaleToFill
         bodyIV.translatesAutoresizingMaskIntoConstraints = false
 
@@ -319,22 +319,22 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         Initializes the green, blue, orange, and red lists of face images.
      */
     func loadFaceImages() {
-        greenFaceImages.append(UIImage(named: "GreenHappy")!)
-        greenFaceImages.append(UIImage(named: "GreenNoMouth")!)
+        greenFaceImages.append(UIImage(named: "GreenFace1")!)
+        greenFaceImages.append(UIImage(named: "GreenFace2")!)
         
-        blueFaceImages.append(UIImage(named: "BlueNoMouth")!)
-        blueFaceImages.append(UIImage(named: "BlueSad")!)
-        blueFaceImages.append(UIImage(named: "BlueSilly")!)
-        blueFaceImages.append(UIImage(named: "BlueWorried")!)
+        blueFaceImages.append(UIImage(named: "BlueFace1")!)
+        blueFaceImages.append(UIImage(named: "BlueFace2")!)
+        blueFaceImages.append(UIImage(named: "BlueFace3")!)
+        blueFaceImages.append(UIImage(named: "BlueFace4")!)
         
-        orangeFaceImages.append(UIImage(named: "OrangeMad")!)
-        orangeFaceImages.append(UIImage(named: "OrangeSad")!)
-        orangeFaceImages.append(UIImage(named: "OrangeSilly")!)
-        orangeFaceImages.append(UIImage(named: "OrangeWorried")!)
+        orangeFaceImages.append(UIImage(named: "OrangeFace1")!)
+        orangeFaceImages.append(UIImage(named: "OrangeFace2")!)
+        orangeFaceImages.append(UIImage(named: "OrangeFace3")!)
+        orangeFaceImages.append(UIImage(named: "OrangeFace4")!)
         
-        redFaceImages.append(UIImage(named: "RedMad")!)
-        redFaceImages.append(UIImage(named: "RedSad")!)
-        redFaceImages.append(UIImage(named: "RedWorried")!)
+        redFaceImages.append(UIImage(named: "RedFace1")!)
+        redFaceImages.append(UIImage(named: "RedFace2")!)
+        redFaceImages.append(UIImage(named: "RedFace3")!)
     }
     
     /**
@@ -618,10 +618,10 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     func loadBodyImages() {
-        bodyImages.append(UIImage(named: "WhiteBody")!)
-        bodyImages.append(UIImage(named: "YellowBody")!)
-        bodyImages.append(UIImage(named: "BrownBody")!)
-        bodyImages.append(UIImage(named: "BlackBody")!)
+        bodyImages.append(UIImage(named: "BodyWhite")!)
+        bodyImages.append(UIImage(named: "BodyYellow")!)
+        bodyImages.append(UIImage(named: "BodyBrown")!)
+        bodyImages.append(UIImage(named: "BodyBlack")!)
     }
     
     //MARK: Initialize body buttons.
