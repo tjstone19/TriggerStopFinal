@@ -100,9 +100,14 @@ extension MainViewController {
         
         // Get the changes in the X and Y directions relative to
         // the superview's coordinate space.
-        let translation = sender.translation(in: self.faceImageIV.superview)
+        let translation = sender.translation(in: self.view)
         
         if sender.state == .began {
+            // Temporarily disable face image layout constraints so it can be
+            // moved around the screen.
+            self.faceImageIV.horizontalConstraint?.isActive = false
+            self.faceImageIV.verticalConstraint?.isActive = false
+            
             // Save the view's original position.
             self.faceInitialCenter = self.faceImageIV.center
         }
@@ -120,6 +125,9 @@ extension MainViewController {
             else {
                 // Return face to original location if it is not
                 // being removed from the view.
+                
+                self.faceImageIV.horizontalConstraint?.isActive = true
+                self.faceImageIV.verticalConstraint?.isActive = true
                 self.faceImageIV.center = faceInitialCenter
             }
         }

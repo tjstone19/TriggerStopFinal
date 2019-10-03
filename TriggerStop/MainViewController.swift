@@ -54,11 +54,13 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     // Image view for the body.
     var bodyIV :UIImageView!
     
-    // Body image coordinates and size as a percentage of view's dimensions.
-    let BODY_IMAGE_X :CGFloat = 0.15
-    let BODY_IMAGE_Y :CGFloat = 0.24
-    let BODY_IMAGE_WIDTH :CGFloat = 0.67
+    let BODY_IMAGE_X: CGFloat = 0.98
+    let BODY_IMAGE_BOTTOM: CGFloat = 0.98
+    let BODY_IMAGE_WIDTH: CGFloat = 0.62
     let BODY_IMAGE_HEIGHT :CGFloat = 0.74
+    
+    // Body image's width as a percentage of the view's height.
+    let BODY_IMAGE_WIDTH_TO_HEIGHT_RATIO :CGFloat = 0.33
     
     // Body button dimensions as a percentage of the view's width and height.
     let BODY_BUTTON_X :CGFloat = 0.02
@@ -84,14 +86,14 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     var selectedBodyButton :UIButton!
     
     // Image view for the face image displayed over the body's head.
-    var faceImageIV :UIImageView!
+    var faceImageIV: CircleImageView!
     
-    // Face image dimensions as a percentage of the view's width and height.
-    let FACE_IMAGE_X: CGFloat = 0.325
-    let FACE_IMAGE_Y: CGFloat = 0.24
-    let FACE_IMAGE_WIDTH: CGFloat = 0.32
-    let FACE_IMAGE_HEIGHT: CGFloat = 0.22
+    // Face image width as a percentage of the view's height.
+    let FACE_IMAGE_WIDTH_TO_HEIGHT_RATIO: CGFloat = 0.3
     
+    // The face image is cropped to fit in a frame of this width and height.
+    let FACE_IMAGE_CROP_SIZE: CGFloat = 0.25
+
     /* Face image is removed from the view if it is placed beyond
      the max x or below the min y. */
     let FACE_IMAGE_MAX_X: CGFloat = 0.75
@@ -287,12 +289,28 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
      */
     func setBodyImage() {
         bodyIV = UIImageView(image: UIImage(named: "BlackBody"))
-        bodyIV.frame = CGRect(
-            x: width * BODY_IMAGE_X,
-            y: height * BODY_IMAGE_Y,
-            width: width * BODY_IMAGE_WIDTH,
-            height: height * BODY_IMAGE_HEIGHT)
+        bodyIV.contentMode = .scaleToFill
+        bodyIV.translatesAutoresizingMaskIntoConstraints = false
+
         view.addSubview(bodyIV)
+
+        let x = NSLayoutConstraint(
+            item: bodyIV!, attribute: .centerX, relatedBy: .equal, toItem: view,
+            attribute: .centerX, multiplier: BODY_IMAGE_X, constant: 0)
+
+        let bottom = NSLayoutConstraint(
+            item: bodyIV!, attribute: .bottom, relatedBy: .equal, toItem: view,
+            attribute: .bottom, multiplier: BODY_IMAGE_BOTTOM, constant: 0)
+        
+        let widthAnchor = bodyIV.widthAnchor.constraint(
+                equalTo: view.widthAnchor,
+                multiplier: BODY_IMAGE_WIDTH)
+        
+        let heightAnchor = bodyIV.heightAnchor.constraint(
+            equalTo: view.widthAnchor,
+            multiplier: view.frame.height / view.frame.width * BODY_IMAGE_HEIGHT)
+        
+        NSLayoutConstraint.activate([x, bottom, widthAnchor, heightAnchor])
     }
     
     //MARK:- Initialize Face images/buttons.
@@ -529,26 +547,56 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         if image == nil {return}
         
         if faceImageIV == nil {
-            faceImageIV = UIImageView(
-                frame: CGRect(x: width * FACE_IMAGE_X,
-                              y: height * FACE_IMAGE_Y,
-                              width: width * FACE_IMAGE_WIDTH,
-                              height: height * FACE_IMAGE_HEIGHT))
-            view.addSubview(faceImageIV)
-            view.sendSubviewToBack(faceImageIV)
-            view.sendSubviewToBack(bodyIV)
-            
+            faceImageIV = CircleImageView()
+            faceImageIV.layer.masksToBounds = true
+            faceImageIV.clipsToBounds = true
+            faceImageIV.translatesAutoresizingMaskIntoConstraints = false
             faceImageIV!.isUserInteractionEnabled = true
             
+            // Add gesture recognizer to move face around the screen.
             let panGesture = UIPanGestureRecognizer(
                 target: self,
                 action:Selector(("moveFace:")))
-            
             faceImageIV!.addGestureRecognizer(panGesture)
+            
+            view.addSubview(faceImageIV)
+
+            // Add layout constrains to determine size and position of the face.
+            let x = NSLayoutConstraint(
+                item: faceImageIV!, attribute: .centerX, relatedBy: .equal,
+                toItem: bodyIV, attribute: .centerX, multiplier: 1.0,
+                constant: 0)
+            
+            let top = NSLayoutConstraint(
+                item: faceImageIV!, attribute: .top, relatedBy: .equal,
+                toItem: bodyIV, attribute: .top, multiplier: 1.0, constant: -1)
+            
+            let widthAnchor = faceImageIV.widthAnchor.constraint(
+                equalTo: bodyIV.widthAnchor,
+                multiplier: bodyIV.frame.height / bodyIV.frame.width * FACE_IMAGE_WIDTH_TO_HEIGHT_RATIO)
+
+            let heightAnchor = faceImageIV.heightAnchor.constraint(
+                equalTo: bodyIV.widthAnchor,
+                multiplier: bodyIV.frame.height / bodyIV.frame.width * FACE_IMAGE_WIDTH_TO_HEIGHT_RATIO)
+            
+            NSLayoutConstraint.activate([widthAnchor, heightAnchor, x, top])
+            
+            faceImageIV.horizontalConstraint = x
+            faceImageIV.verticalConstraint = top
+            
+            view.sendSubviewToBack(faceImageIV)
+            view.sendSubviewToBack(bodyIV)
         }
         
+        // Crop the image to be a square before putting it in a circular frame.
+        // If the photo is not a square than the face image will appear as an oval.
+        let croppedFaceImageSize = faceImageIV.frame.height
+        let croppedImage = image?.cropToBounds(
+            width: croppedFaceImageSize,
+            height: croppedFaceImageSize)
+        
         DispatchQueue.main.async {
-            self.faceImageIV.image = image
+            self.faceImageIV.image = croppedImage
         }
     }
     
