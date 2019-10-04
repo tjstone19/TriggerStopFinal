@@ -25,6 +25,7 @@ extension MainViewController {
             let newEmoji: EmojiView = EmojiView(frame: newEmojiFrame)
             
             newEmoji.image = emojiView.image
+            newEmoji.contentMode = .scaleAspectFit
             newEmoji.isUserInteractionEnabled = true
             newEmoji.addGestureRecognizer(UIPanGestureRecognizer(
                 target: self,

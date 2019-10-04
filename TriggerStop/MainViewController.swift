@@ -464,6 +464,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
                 width: emojiButtonWidth,
                 height: emojiButtonHeight))
         emojiButton1.image = greenEmojiImages[0]
+        emojiButton1.contentMode = .scaleAspectFit
         emojiButton1.isUserInteractionEnabled = true
         emojiButton1.addGestureRecognizer(
             UIPanGestureRecognizer(
@@ -477,6 +478,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
                 width: emojiButtonWidth,
                 height: emojiButtonHeight))
         emojiButton2.image = greenEmojiImages[1]
+        emojiButton2.contentMode = .scaleAspectFit
         emojiButton2.isUserInteractionEnabled = true
         emojiButton2.addGestureRecognizer(
             UIPanGestureRecognizer(
@@ -490,6 +492,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
                 width: emojiButtonWidth,
                 height: emojiButtonHeight))
         emojiButton3.image = greenEmojiImages[2]
+        emojiButton3.contentMode = .scaleAspectFit
         emojiButton3.isUserInteractionEnabled = true
         emojiButton3.addGestureRecognizer(
             UIPanGestureRecognizer(
@@ -503,6 +506,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
                 width: emojiButtonWidth,
                 height: emojiButtonHeight))
         emojiButton4.image = greenEmojiImages[3]
+        emojiButton4.contentMode = .scaleAspectFit
         emojiButton4.isUserInteractionEnabled = true
         emojiButton4.addGestureRecognizer(
             UIPanGestureRecognizer(
@@ -516,6 +520,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
                 width: emojiButtonWidth,
                 height: emojiButtonHeight))
         emojiButton5.image = greenEmojiImages[4]
+        emojiButton5.contentMode = .scaleAspectFit
         emojiButton5.isUserInteractionEnabled = true
         emojiButton5.addGestureRecognizer(
             UIPanGestureRecognizer(
