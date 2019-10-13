@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import WebKit
 
 class PopUpViewController: UIViewController {
     var width: CGFloat!
@@ -38,9 +39,9 @@ class PopUpViewController: UIViewController {
     
     // Close button's dimensions as a percentage of the view's width and height.
     let CLOSE_BUTTON_X: CGFloat = 0.4
-    let CLOSE_BUTTON_Y: CGFloat = 0.85
+    let CLOSE_BUTTON_Y: CGFloat = 0.9
     let CLOSE_BUTTON_WIDTH: CGFloat = 0.2
-    let CLOSE_BUTTON_HEIGHT: CGFloat = 0.15
+    let CLOSE_BUTTON_HEIGHT: CGFloat = 0.1
     let CLOSE_BUTTON_FONT_SIZE: CGFloat = 25
     
     /* Enabled when the user accepts the TOS.  Removes the view from the
@@ -93,6 +94,9 @@ class PopUpViewController: UIViewController {
     // Indices of the help page text to set as a hyperlink.
     let HELP_PAGE_LINK_START_INDEX = 44
     let HELP_PAGE_LINK_END_INDEX = 45
+    
+    // Display's the user guide document.
+    var webView: WKWebView!
     
     // Disclaimer screen text set in the interface builder.
     @IBInspectable var disclaimerText: String?
@@ -292,10 +296,20 @@ class PopUpViewController: UIViewController {
     
     
     /**
-     *  Removes this view from the super view.
+     *  Deallocates the text view and web view before removing this view
+     *  from the super view.
      */
     @objc func closePopUp(_ sender: Any) {
         self.willMove(toParent: nil)
+        
+        textView = nil
+        
+        if webView != nil {
+            webView.removeConstraints(webView.constraints)
+            webView.stopLoading()
+            webView.removeFromSuperview()
+        }
+        
         self.view.removeFromSuperview()
         self.removeFromParent()
     }
@@ -345,7 +359,9 @@ class PopUpViewController: UIViewController {
     }
 }
 
+
 extension PopUpViewController: UITextViewDelegate {
+    
     
     /**
      * Allows the user to interact with the hyperlink in the text view.
@@ -354,6 +370,47 @@ extension PopUpViewController: UITextViewDelegate {
                   shouldInteractWith URL: URL,
                   in characterRange: NSRange,
                   interaction: UITextItemInteraction) -> Bool {
-        return true
+        
+        if URL.absoluteString == USER_GUIDE_URL {
+            
+            // Your webView code goes here
+            webView = WKWebView()
+            view.addSubview(webView)
+            
+            webView.translatesAutoresizingMaskIntoConstraints = false
+            webView.navigationDelegate = self
+            webView.allowsBackForwardNavigationGestures = false
+            webView.configuration.dataDetectorTypes = []
+            
+            webView.leftAnchor.anchorWithOffset(to: view.leftAnchor)
+            webView.topAnchor.anchorWithOffset(to: view.topAnchor)
+            webView.widthAnchor.constraint(
+                equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
+            webView.heightAnchor.constraint(
+                equalTo: view.heightAnchor, multiplier: 0.9).isActive = true
+            
+            let requestObj = URLRequest(url: URL)
+            webView.load(requestObj)
+            
+            return false
+        }
+        
+        return false
     }
 }
+
+
+extension PopUpViewController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView,
+                 decidePolicyFor navigationAction: WKNavigationAction,
+                 decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if webView.url?.absoluteString == USER_GUIDE_URL {
+            self.textView.removeFromSuperview()
+            decisionHandler(.allow)
+        }
+        else {
+            decisionHandler(.cancel)
+        }
+    }
+}
+

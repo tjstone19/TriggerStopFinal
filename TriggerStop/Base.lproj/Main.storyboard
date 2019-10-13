@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -46,7 +44,6 @@
                         <viewLayoutGuide key="safeArea" id="xkC-01-lfB"/>
                     </view>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="helpText" value="For more information and instructions  on using the APP with children check out the USER Guide."/>
                         <userDefinedRuntimeAttribute type="string" keyPath="disclaimerText">
                             <mutableString key="value">Welcome to Trauma Trigger Stop APP. This APP is intended for use for children who might not be able to access their words when their emotions are intense and they become dysregulated in the moment. Whether a result of a trauma trigger or emotional trigger in that moment, a child may not have access to the executive parts of their brain in charge of reasoning, logic or words.  The APP can be used to help a child communicate what they are feeling, experiencing emotionally or the sensations in their body during that emotional charge. An adult who hears how a child feels can better help them calm and regulate their emotions. Sometimes they do not know or cannot access words when dysregulated. This gives them an opportunity to share what they may be xperiencing by dragging images that match their internal state of sensations and emotions. It is best to proactively teach children when they are calm how to use the APP first. Introducing it when they are triggered, emotionally flooded and/or dysregulated is not recommended. Teaching when they are calm how to use the APP and the sensory objects they can use to communicate their emotions will help kids learn to use the APP before they are triggered.
 
