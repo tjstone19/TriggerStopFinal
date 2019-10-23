@@ -3,109 +3,109 @@
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "appicon40X40-1.png",
+      "filename" : "TriggerStopLogo40.png",
       "scale" : "2x"
     },
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "appicon60X60.png",
+      "filename" : "TriggerStopLogo60.png",
       "scale" : "3x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "appicon58X58.png",
+      "filename" : "TriggerStopLogo58.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "appicon87X87.png",
+      "filename" : "TriggerStopLogo87.png",
       "scale" : "3x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "appicon80X80.png",
+      "filename" : "TriggerStopLogo80.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "appiconX2-1.png",
+      "filename" : "TriggerStopLogo120.png",
       "scale" : "3x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "appiconX2.png",
+      "filename" : "TriggerStopLogo120-1.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "appiconX3.png",
+      "filename" : "TriggerStopLogo180.png",
       "scale" : "3x"
     },
     {
       "size" : "20x20",
       "idiom" : "ipad",
-      "filename" : "appicon20X20.png",
+      "filename" : "TriggerStopLogo20.png",
       "scale" : "1x"
     },
     {
       "size" : "20x20",
       "idiom" : "ipad",
-      "filename" : "appicon40X40-2.png",
+      "filename" : "TriggerStopLogo40-1.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "appicon29X29.png",
+      "filename" : "TriggerStopLogo29.png",
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "appicon58X58-1.png",
+      "filename" : "TriggerStopLogo58-1.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "appicon40X40.png",
+      "filename" : "TriggerStopLogo40-2.png",
       "scale" : "1x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "appicon80X80-1.png",
+      "filename" : "TriggerStopLogo80-1.png",
       "scale" : "2x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "appicon76X76.png",
+      "filename" : "TriggerStopLogo76.png",
       "scale" : "1x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "appicon152x152.png",
+      "filename" : "TriggerStopLogo152.png",
       "scale" : "2x"
     },
     {
       "size" : "83.5x83.5",
       "idiom" : "ipad",
-      "filename" : "appicon167x167.png",
+      "filename" : "TriggerStopLogo167.png",
       "scale" : "2x"
     },
     {
       "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "appicon1024x1024.png",
+      "filename" : "TriggerStopLogo1024.png",
       "scale" : "1x"
     }
   ],
