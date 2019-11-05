@@ -89,12 +89,12 @@ extension MainViewController {
  */
 extension MainViewController {
     /**
-     * Moves the face ImageView around the screen.
-     *
-     * Removes the face image from the screen if the user drags it up towards
-     * and intersects the toolbar.
-     *
-     - Parameter sender: The touch event caused by the user touching the screen.
+      Moves the face ImageView around the screen.
+     
+      Removes the face image from the screen if the user drags it up towards
+      and intersects the toolbar.
+     
+      - Parameter sender: The touch event caused by the user touching the screen.
      */
     @objc func moveFace(_ sender: UIPanGestureRecognizer) {
         guard sender.view != nil && sender.view == self.faceImageIV else {return}
@@ -150,7 +150,7 @@ extension MainViewController {
 
 
 /**
- * Extension for camera and camera roll functionality.
+  Extension for camera and camera roll functionality.
  */
 extension MainViewController: UIImagePickerControllerDelegate {
     
@@ -184,6 +184,13 @@ extension MainViewController: UIImagePickerControllerDelegate {
         selectImageFrom(.camera)
     }
     
+    /**
+      Presents the camera or photo gallery so the user can supply and photo
+      for the body face image.
+     
+      - Parameter source: Means in which the user will provide a photo for
+        the bodies face image. Must be .camera or .photoLibrary
+     */
     func selectImageFrom(_ source: ImageSource){
         imagePicker =  UIImagePickerController()
         imagePicker.delegate = self
@@ -225,6 +232,12 @@ extension MainViewController: UIImagePickerControllerDelegate {
         }
     }
     
+    /**
+      Display's a pop up message to the user with the given title and message.
+     
+      - Parameter title: Title of the pop up message.
+      - Parameter message: The text to be displayed in the pop up message.
+     */
     func showAlertWith(title: String, message: String) {
         let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))

@@ -83,7 +83,7 @@ class PopUpViewController: UIViewController {
     let CHECK_BOX_BUTTON_HEIGHT: CGFloat = 0.2
     
     // Link to the user guide doc.
-    let USER_GUIDE_URL = "https://docs.wixstatic.com/ugd/ba13a8_bbcbf4b5f6314b5383f0a7f90d1b3075.pdf"
+    let USER_GUIDE_URL = "https://f3b141ce-b718-4d05-b7a6-a90acced495f.filesusr.com/ugd/ba13a8_e836a6a120e541fd83be2a77250a911c.pdf"
     
     // Help screen text to display in the text view.
     let HELP_PAGE_TEXT = "For more information and instructions on using the APP with children check out the "

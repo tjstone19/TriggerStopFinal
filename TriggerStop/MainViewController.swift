@@ -544,8 +544,8 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     //MARK:- Face button functionality.
     
     /**
-     * Sets the face image to the provided UIImage.
-     *
+      Sets the face image to the provided UIImage.
+     
      - Parameter image: The image to display in the face image view.
      */
     func setFaceImage(image: UIImage?) {
@@ -608,7 +608,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     /**
         Called when a face button is pressed.
      
-        Creates and image view and sets it's image to the selected
+        Creates an image view and sets it's image to the selected
         face. The image view is presented over the body's head.
     */
     @objc func faceButtonPressed(_ sender: UIButton) {
@@ -792,6 +792,11 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
         view.addSubview(colorSlider)
     }
     
+    /**
+      Called when the color slider's selected color changes.
+      This function updates the face and emoji buttons based on
+      the selected color.
+     */
     @objc func changedColor(_ slider: ColorSlider) {
         let percentage: CGFloat = slider.currentPercentage * 100
         
@@ -848,6 +853,11 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     
     //MARK: Emoji Button functionality.
     
+    /**
+      Called when the user selects an emoji from the emoji column on the
+      right side of the view.  A new emoji is created to replace the emoji
+      the user is dragging around the screen.
+     */
     @objc func emojiButtonPressed(_ sender: UIButton) {
         
         let touchLocationInView = sender.frame.origin
