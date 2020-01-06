@@ -103,10 +103,10 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     var faceInitialCenter = CGPoint()
 
     // Image views for the face buttons.
-    var faceButton1 :UIButton!
-    var faceButton2 :UIButton!
-    var faceButton3 :UIButton!
-    var faceButton4 :UIButton!
+    var faceButton1 :UIImageView!
+    var faceButton2 :UIImageView!
+    var faceButton3 :UIImageView!
+    var faceButton4 :UIImageView!
     
     /* Face button container coordinates and size as a
        percentage of view's dimensions. */
@@ -144,7 +144,6 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     
     // The initial location of the emoji being moved by the user.
     var emojiInitialCenter = CGPoint()
-
     
     // Color slider coordinates and size as a percentage of view's dimensions.
     let COLOR_SLIDER_X :CGFloat = 0.05
@@ -166,6 +165,10 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func loadView() {
+        super.loadView()
         
         width = view.frame.width
         height = view.frame.height
@@ -345,64 +348,68 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
     func initializeFaceButtons() {
         loadFaceImages()
         
-        
         let faceButtonWidth = width * FACE_BUTTON_WIDTH
         let faceButtonHeight = height * FACE_BUTTON_HEIGHT
         let faceButtonY = height * FACE_BUTTON_HEIGHT
         let faceButtonX = width * FACE_BUTTON_X
         let faceBorderWidth :CGFloat = 0.5
         
-        faceButton1 = UIButton(frame: CGRect(
+        faceButton1 = UIImageView(frame: CGRect(
             x: faceButtonX,
             y: faceButtonY,
             width: faceButtonWidth,
             height: faceButtonHeight))
-        faceButton1.setImage(greenFaceImages[0], for: .normal)
-        faceButton1.contentVerticalAlignment = .fill
-        faceButton1.contentHorizontalAlignment = .fill
+        faceButton1.image = greenFaceImages[0]
+        faceButton1.contentMode = .scaleToFill
         faceButton1.layer.borderColor = UIColor.black.cgColor
         faceButton1.layer.borderWidth = faceBorderWidth
-        faceButton1.addTarget(self, action: Selector(("faceButtonPressed:")),
-                               for: .touchUpInside)
+        faceButton1.isUserInteractionEnabled = true
+        faceButton1.addGestureRecognizer(
+            UIPanGestureRecognizer(
+                target: self,
+                action:Selector(("moveFaceOnScreen:"))))
         
         
-        faceButton2 = UIButton(frame: CGRect(
+        faceButton2 = UIImageView(frame: CGRect(
             x: faceButtonX + faceButtonWidth,
             y: faceButtonY,
             width: faceButtonWidth,
             height: faceButtonHeight))
-        faceButton2.setImage(greenFaceImages[1], for: .normal)
-        faceButton2.contentVerticalAlignment = .fill
-        faceButton2.contentHorizontalAlignment = .fill
+        faceButton2.image = greenFaceImages[1]
+        faceButton2.contentMode = .scaleToFill
         faceButton2.layer.borderColor = UIColor.black.cgColor
         faceButton2.layer.borderWidth = faceBorderWidth
-        faceButton2.addTarget(self, action: Selector(("faceButtonPressed:")),
-                              for: .touchUpInside)
+        faceButton2.isUserInteractionEnabled = true
+        faceButton2.addGestureRecognizer(UIPanGestureRecognizer(
+            target: self,
+            action:Selector(("moveFaceOnScreen:"))))
         
         
-        faceButton3 = UIButton(frame: CGRect(
+        faceButton3 = UIImageView(frame: CGRect(
             x: faceButtonX + faceButtonWidth * 2,
             y: faceButtonY,
             width: faceButtonWidth,
             height: faceButtonHeight))
-        faceButton3.contentVerticalAlignment = .fill
-        faceButton3.contentHorizontalAlignment = .fill
+        faceButton3.contentMode = .scaleToFill
         faceButton3.layer.borderColor = UIColor.black.cgColor
         faceButton3.layer.borderWidth = 0
-        faceButton3.addTarget(self, action: Selector(("faceButtonPressed:")),
-                              for: .touchUpInside)
+        faceButton3.isUserInteractionEnabled = true
+        faceButton3.addGestureRecognizer(UIPanGestureRecognizer(
+            target: self,
+            action:Selector(("moveFaceOnScreen:"))))
         
-        faceButton4 = UIButton(frame: CGRect(
+        faceButton4 = UIImageView(frame: CGRect(
             x: faceButtonX + faceButtonWidth * 3,
             y: faceButtonY,
             width: faceButtonWidth,
             height: faceButtonHeight))
-        faceButton4.contentVerticalAlignment = .fill
-        faceButton4.contentHorizontalAlignment = .fill
+        faceButton4.contentMode = .scaleToFill
         faceButton4.layer.borderColor = UIColor.black.cgColor
         faceButton4.layer.borderWidth = 0
-        faceButton4.addTarget(self, action: Selector(("faceButtonPressed:")),
-                              for: .touchUpInside)
+        faceButton4.isUserInteractionEnabled = true
+        faceButton4.addGestureRecognizer(UIPanGestureRecognizer(
+            target: self,
+            action:Selector(("moveFaceOnScreen:"))))
         
         view.addSubview(faceButton1)
         view.addSubview(faceButton2)
@@ -561,7 +568,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
             // Add gesture recognizer to move face around the screen.
             let panGesture = UIPanGestureRecognizer(
                 target: self,
-                action:Selector(("moveFace:")))
+                action:Selector(("moveFaceOffScreen:")))
             faceImageIV!.addGestureRecognizer(panGesture)
             
             view.addSubview(faceImageIV)
@@ -828,24 +835,24 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
             self.emojiButton4.image = newEmojiImages[3]
             self.emojiButton5.image = newEmojiImages[4]
             
-            self.faceButton1.setImage(newFaceImages[0], for: .normal)
-            self.faceButton2.setImage(newFaceImages[1], for: .normal)
+            self.faceButton1.image = newFaceImages[0]
+            self.faceButton2.image = newFaceImages[1]
             
             if newFaceImages.count >= 3 {
-                self.faceButton3.setImage(newFaceImages[2], for: .normal)
+                self.faceButton3.image = newFaceImages[2]
                 self.faceButton3.layer.borderWidth = 0.5
             }
             else {
-                self.faceButton3.setImage(nil, for: .normal)
+                self.faceButton3.image = nil
                 self.faceButton3.layer.borderWidth = 0
             }
             
             if newFaceImages.count == 4 {
-                self.faceButton4.setImage(newFaceImages[3], for: .normal)
+                self.faceButton4.image = newFaceImages[3]
                 self.faceButton4.layer.borderWidth = 0.5
             }
             else {
-                self.faceButton4.setImage(nil, for: .normal)
+                self.faceButton4.image = nil
                 self.faceButton4.layer.borderWidth = 0
             }
         }

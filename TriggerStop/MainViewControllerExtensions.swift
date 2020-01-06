@@ -91,12 +91,13 @@ extension MainViewController {
     /**
       Moves the face ImageView around the screen.
      
-      Removes the face image from the screen if the user drags it up towards
-      and intersects the toolbar.
+      Removes the face image from the screen if it's center is not contained
+      within the body image view's bounds.
+      
      
       - Parameter sender: The touch event caused by the user touching the screen.
      */
-    @objc func moveFace(_ sender: UIPanGestureRecognizer) {
+    @objc func moveFaceOffScreen(_ sender: UIPanGestureRecognizer) {
         guard sender.view != nil && sender.view == self.faceImageIV else {return}
         
         // Get the changes in the X and Y directions relative to
@@ -126,7 +127,6 @@ extension MainViewController {
             else {
                 // Return face to original location if it is not
                 // being removed from the view.
-                
                 self.faceImageIV.horizontalConstraint?.isActive = true
                 self.faceImageIV.verticalConstraint?.isActive = true
                 self.faceImageIV.center = faceInitialCenter
@@ -144,6 +144,93 @@ extension MainViewController {
         else {
             // On cancellation, return the piece to its original location.
             self.faceImageIV.center = faceInitialCenter
+        }
+    }
+    
+    /**
+        Moves the face button around the screen.
+     
+        The selected face image's frame is enlarged when the user initiates the
+        pan gesture.  Sets the body's face image if the moved face image is
+        contained within the body image view's bounds at the end of the
+        drag sequence.
+     
+        - parameter sender: The pan gesture recogonizer attached to the moving
+            face image.
+     */
+    @objc func moveFaceOnScreen(_ sender: UIPanGestureRecognizer) {
+        guard sender.view != nil else {return}
+        guard let faceView: UIImageView = sender.view! as? UIImageView else {return}
+        
+//        let faceView: UIImageView = sender.view! as! UIImageView
+        
+        // Get the changes in the X and Y directions relative to
+        // the superview's coordinate space.
+        let translation = sender.translation(in: faceView.superview)
+        
+        if sender.state == .began {
+            // Save the view's original position.
+            self.faceInitialCenter = faceView.center
+            
+            // Add a replacement EmojiView in the emoji button column.
+            let newFaceFrame: CGRect = faceView.frame
+            
+            let newFace: UIImageView = UIImageView(frame: newFaceFrame)
+            newFace.image = faceView.image
+            newFace.contentMode = .scaleToFill
+            newFace.layer.borderColor = faceView.layer.borderColor
+            newFace.layer.borderWidth = faceView.layer.borderWidth
+            newFace.isUserInteractionEnabled = true
+            newFace.addGestureRecognizer(UIPanGestureRecognizer(
+                target: self,
+                action:Selector(("moveFaceOnScreen:"))))
+            self.view.addSubview(newFace)
+            
+            DispatchQueue.main.async {
+                if faceView == self.faceButton1 {
+                    self.faceButton1 = newFace
+                }
+                else if faceView == self.faceButton2 {
+                    self.faceButton2 = newFace
+                }
+                else if faceView == self.faceButton3 {
+                    self.faceButton3 = newFace
+                }
+                else if faceView == self.faceButton4 {
+                    self.faceButton4 = newFace
+                }
+            }
+            
+            // Increase width and height of moving face.
+            let faceViewHeightWidth = bodyIV.frame.width * (bodyIV.frame.height
+                / bodyIV.frame.width * FACE_IMAGE_WIDTH_TO_HEIGHT_RATIO)
+
+            faceView.frame = CGRect(
+                origin: faceView.frame.origin,
+                size: CGSize(
+                    width: faceViewHeightWidth,
+                    height: faceViewHeightWidth))
+            faceView.layer.masksToBounds = true
+            faceView.clipsToBounds = true
+            faceView.layer.cornerRadius = faceView.bounds.size.width / 2.0
+        }
+        
+        if sender.state == .ended {
+            
+            // Set the body face image if the dragged face's center is contained
+            // within the body image view.
+            if self.bodyIV.frame.contains(faceView.center) {
+                self.setFaceImage(image: faceView.image)
+            }
+            faceView.removeFromSuperview()
+        }
+        
+        if sender.state != .cancelled {
+            // Add the X and Y translation to the view's original position.
+            let newCenter = CGPoint(
+                x: faceInitialCenter.x + translation.x,
+                y: faceInitialCenter.y + translation.y)
+            faceView.center = newCenter
         }
     }
 }

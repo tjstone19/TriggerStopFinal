@@ -3,109 +3,109 @@
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "TriggerStopLogo40.png",
+      "filename" : "TriggerStopIcon40.png",
       "scale" : "2x"
     },
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "TriggerStopLogo60.png",
+      "filename" : "TriggerStopIcon60.png",
       "scale" : "3x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "TriggerStopLogo58.png",
+      "filename" : "TriggerStopIcon58.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "TriggerStopLogo87.png",
+      "filename" : "TriggerStopIcon87.png",
       "scale" : "3x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "TriggerStopLogo80.png",
+      "filename" : "TriggerStopIcon80.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "TriggerStopLogo120.png",
+      "filename" : "TriggerStopIcon120.png",
       "scale" : "3x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "TriggerStopLogo120-1.png",
+      "filename" : "TriggerStopIcon120-1.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "TriggerStopLogo180.png",
+      "filename" : "TriggerStopIcon180.png",
       "scale" : "3x"
     },
     {
       "size" : "20x20",
       "idiom" : "ipad",
-      "filename" : "TriggerStopLogo20.png",
+      "filename" : "TriggerStopIcon20.png",
       "scale" : "1x"
     },
     {
       "size" : "20x20",
       "idiom" : "ipad",
-      "filename" : "TriggerStopLogo40-1.png",
+      "filename" : "TriggerStopIcon40-1.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "TriggerStopLogo29.png",
+      "filename" : "TriggerStopIcon29.png",
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "TriggerStopLogo58-1.png",
+      "filename" : "TriggerStopIcon58-1.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "TriggerStopLogo40-2.png",
+      "filename" : "TriggerStopIcon40-2.png",
       "scale" : "1x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "TriggerStopLogo80-1.png",
+      "filename" : "TriggerStopIcon80-1.png",
       "scale" : "2x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "TriggerStopLogo76.png",
+      "filename" : "TriggerStopIcon76.png",
       "scale" : "1x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "TriggerStopLogo152.png",
+      "filename" : "TriggerStopIcon152.png",
       "scale" : "2x"
     },
     {
       "size" : "83.5x83.5",
       "idiom" : "ipad",
-      "filename" : "TriggerStopLogo167.png",
+      "filename" : "TriggerStopIcon167.png",
       "scale" : "2x"
     },
     {
       "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "TriggerStopLogo1024.png",
+      "filename" : "TriggerStopIcon1024.png",
       "scale" : "1x"
     }
   ],
