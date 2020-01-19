@@ -10,7 +10,6 @@
 		080114F722EE324E0025234D /* UserDefaults+isFirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080114F622EE324E0025234D /* UserDefaults+isFirstLaunch.swift */; };
 		0811C2C022E7D44E009AF4ED /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0811C2BF22E7D44E009AF4ED /* EmojiView.swift */; };
 		085BDD4D22D016200012A922 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 085BDD4C22D016200012A922 /* StoreKit.framework */; };
-		08B6381423BADB31005E20F1 /* FaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B6381323BADB31005E20F1 /* FaceView.swift */; };
 		08CC5CB222E511040081662E /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CC5CB122E511040081662E /* PopUpViewController.swift */; };
 		08CEAC322342CF870074E83C /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CEAC312342CF870074E83C /* UIImageExtension.swift */; };
 		08D463BA227E4D1900590B8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D463B9227E4D1900590B8F /* AppDelegate.swift */; };
@@ -49,7 +48,6 @@
 		080114F622EE324E0025234D /* UserDefaults+isFirstLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+isFirstLaunch.swift"; sourceTree = "<group>"; };
 		0811C2BF22E7D44E009AF4ED /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
 		085BDD4C22D016200012A922 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		08B6381323BADB31005E20F1 /* FaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceView.swift; sourceTree = "<group>"; };
 		08CC5CB122E511040081662E /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		08CEAC312342CF870074E83C /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		08D463B6227E4D1900590B8F /* TriggerStop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TriggerStop.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,7 +134,6 @@
 				08F71EB322E9030600535AD0 /* AtomicClass.swift */,
 				08EBED5D2343DFA10031BD85 /* CircleImageView.swift */,
 				0811C2BF22E7D44E009AF4ED /* EmojiView.swift */,
-				08B6381323BADB31005E20F1 /* FaceView.swift */,
 				08D463BB227E4D1900590B8F /* MainViewController.swift */,
 				08E88F5923296CFA00841DD1 /* MainViewControllerExtensions.swift */,
 				08CC5CB122E511040081662E /* PopUpViewController.swift */,
@@ -379,7 +376,6 @@
 				08CC5CB222E511040081662E /* PopUpViewController.swift in Sources */,
 				0811C2C022E7D44E009AF4ED /* EmojiView.swift in Sources */,
 				08E88F5A23296CFA00841DD1 /* MainViewControllerExtensions.swift in Sources */,
-				08B6381423BADB31005E20F1 /* FaceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
