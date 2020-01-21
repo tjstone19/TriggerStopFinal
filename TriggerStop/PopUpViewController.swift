@@ -382,6 +382,11 @@ extension PopUpViewController: UITextViewDelegate {
             webView.allowsBackForwardNavigationGestures = false
             webView.configuration.dataDetectorTypes = []
             
+            // Disable all interactions with the webview except scrolling.
+            // Prevents the user from interacting with any hyperlinks.
+            webView.scrollView.subviews.forEach { $0.isUserInteractionEnabled = false }
+
+            
             webView.leftAnchor.anchorWithOffset(to: view.leftAnchor)
             webView.topAnchor.anchorWithOffset(to: view.topAnchor)
             webView.widthAnchor.constraint(
@@ -404,7 +409,8 @@ extension PopUpViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView,
                  decidePolicyFor navigationAction: WKNavigationAction,
                  decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        if webView.url?.absoluteString == USER_GUIDE_URL {
+        if webView.url?.absoluteString == USER_GUIDE_URL
+            && navigationAction.navigationType != .linkActivated {
             self.textView.removeFromSuperview()
             decisionHandler(.allow)
         }
