@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import QuickLook
 
 /**
  * Extension for moving the emoji views around the screen.
@@ -332,3 +333,22 @@ extension MainViewController: UIImagePickerControllerDelegate {
     }
 }
 
+extension MainViewController: QLPreviewControllerDataSource {
+    func numberOfPreviewItemsInPreviewController(controller: QLPreviewController!) -> Int{
+        return 1
+    }
+    
+    func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
+        return 1;
+    }
+    
+    func previewController(_ controller: QLPreviewController,
+                           previewItemAt index: Int) -> QLPreviewItem {
+        let mainbundle = Bundle.main
+        let url = mainbundle.path(
+            forResource: "TriggerStopUserGuide",
+            ofType: "docx")!
+        let doc = NSURL(fileURLWithPath: url)
+        return doc
+    }
+}

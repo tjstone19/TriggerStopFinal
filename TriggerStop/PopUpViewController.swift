@@ -82,42 +82,15 @@ class PopUpViewController: UIViewController {
     let CHECK_BOX_BUTTON_WIDTH: CGFloat = 0.15
     let CHECK_BOX_BUTTON_HEIGHT: CGFloat = 0.2
     
-    // Link to the user guide doc.
-    let USER_GUIDE_URL = "https://f3b141ce-b718-4d05-b7a6-a90acced495f.filesusr.com/ugd/ba13a8_e836a6a120e541fd83be2a77250a911c.pdf"
-    
-    // Help screen text to display in the text view.
-    let HELP_PAGE_TEXT = "For more information and instructions on using the APP with children check out the "
-    
-    // Text to be converted into a hyper link to the app's user guide.
-    let HELP_PAGE_HYPERLINK_TEXT = "USER Guide."
-    
-    // Indices of the help page text to set as a hyperlink.
-    let HELP_PAGE_LINK_START_INDEX = 44
-    let HELP_PAGE_LINK_END_INDEX = 45
-    
-    // Display's the user guide document.
-    var webView: WKWebView!
-    
     // Disclaimer screen text set in the interface builder.
     @IBInspectable var disclaimerText: String?
-    
-    // If true, display help page text.  If false, display disclaimer text.
-    var isHelpPage: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        
         width = view.frame.width
         height = view.frame.height
-        
-        // Set the help page text to the text set in the interface builder.
-        if isHelpPage {
-            initializeHelpView()
-        }
-        else {
-            initializeDisclaimerView()
-        }
+        initializeDisclaimerView()
     }
     
     /**
@@ -134,7 +107,6 @@ class PopUpViewController: UIViewController {
         textView = UITextView(frame: frame)
         textView.isSelectable = true
         textView.font = TEXT_VIEW_FONT
-        textView.delegate = self
         textView.isScrollEnabled = true
         textView.isEditable = false
         textView.isUserInteractionEnabled = true
@@ -241,75 +213,12 @@ class PopUpViewController: UIViewController {
     }
     
     /**
-     * Sets the text to the help page text and initializes the close button.
-     */
-    func initializeHelpView() {
-        initializeTextViewWith(frame: CGRect(
-            x: width * TEXT_VIEW_X,
-            y: height * TEXT_VIEW_Y,
-            width: width * TEXT_VIEW_WIDTH,
-            height: height * TEXT_VIEW_HEIGHT_HELP_PAGE))
-        
-        let helpText = NSMutableAttributedString(string: HELP_PAGE_TEXT)
-        helpText.setAttributes(
-            [.font: TEXT_VIEW_FONT],
-            range: NSMakeRange(0, helpText.length))
-        
-        // Create a hyperlink to the app's user guide.
-        let hyperLinkText = NSMutableAttributedString(string: HELP_PAGE_HYPERLINK_TEXT)
-        let url = URL(string: USER_GUIDE_URL)!
-        
-        // Set the 'click here' substring to be the link
-        hyperLinkText.setAttributes(
-            [.link: url, .font: TEXT_VIEW_FONT],
-            range: NSMakeRange(0, hyperLinkText.length))
-        
-        // Combine the help page text and hyper link.
-        hyperLinkText.insert(helpText, at: 0)
-        
-        textView.attributedText = hyperLinkText
-        
-        // Set how links should appear: blue and underlined
-        textView.linkTextAttributes = [
-            .foregroundColor: UIColor.blue,
-            .underlineStyle: NSUnderlineStyle.single.rawValue
-        ]
-        
-        // Initialize the close button to call closePopUp on click.
-        closeButton = UIButton(frame: CGRect(
-            x: width * CLOSE_BUTTON_X,
-            y: height * CLOSE_BUTTON_Y,
-            width: width * CLOSE_BUTTON_WIDTH,
-            height: height * CLOSE_BUTTON_HEIGHT))
-        
-        closeButton.setTitle("Close", for: .normal)
-        closeButton.titleLabel?.textColor = UIColor.blue
-        closeButton.titleLabel?.font = UIFont.boldSystemFont(
-            ofSize: CLOSE_BUTTON_FONT_SIZE)
-        
-        closeButton.addTarget(
-            self,
-            action: #selector(closePopUp(_:)),
-            for: .touchUpInside)
-        view.addSubview(closeButton)
-    }
-    
-    
-    /**
      *  Deallocates the text view and web view before removing this view
      *  from the super view.
      */
     @objc func closePopUp(_ sender: Any) {
         self.willMove(toParent: nil)
-        
         textView = nil
-        
-        if webView != nil {
-            webView.removeConstraints(webView.constraints)
-            webView.stopLoading()
-            webView.removeFromSuperview()
-        }
-        
         self.view.removeFromSuperview()
         self.removeFromParent()
     }
@@ -358,65 +267,3 @@ class PopUpViewController: UIViewController {
         }
     }
 }
-
-
-extension PopUpViewController: UITextViewDelegate {
-    
-    
-    /**
-     * Allows the user to interact with the hyperlink in the text view.
-     */
-    func textView(_ textView: UITextView,
-                  shouldInteractWith URL: URL,
-                  in characterRange: NSRange,
-                  interaction: UITextItemInteraction) -> Bool {
-        
-        if URL.absoluteString == USER_GUIDE_URL {
-            
-            // Your webView code goes here
-            webView = WKWebView()
-            view.addSubview(webView)
-            
-            webView.translatesAutoresizingMaskIntoConstraints = false
-            webView.navigationDelegate = self
-            webView.allowsBackForwardNavigationGestures = false
-            webView.configuration.dataDetectorTypes = []
-            
-            // Disable all interactions with the webview except scrolling.
-            // Prevents the user from interacting with any hyperlinks.
-            webView.scrollView.subviews.forEach { $0.isUserInteractionEnabled = false }
-
-            
-            webView.leftAnchor.anchorWithOffset(to: view.leftAnchor)
-            webView.topAnchor.anchorWithOffset(to: view.topAnchor)
-            webView.widthAnchor.constraint(
-                equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
-            webView.heightAnchor.constraint(
-                equalTo: view.heightAnchor, multiplier: 0.9).isActive = true
-            
-            let requestObj = URLRequest(url: URL)
-            webView.load(requestObj)
-            
-            return false
-        }
-        
-        return false
-    }
-}
-
-
-extension PopUpViewController: WKNavigationDelegate {
-    func webView(_ webView: WKWebView,
-                 decidePolicyFor navigationAction: WKNavigationAction,
-                 decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        if webView.url?.absoluteString == USER_GUIDE_URL
-            && navigationAction.navigationType != .linkActivated {
-            self.textView.removeFromSuperview()
-            decisionHandler(.allow)
-        }
-        else {
-            decisionHandler(.cancel)
-        }
-    }
-}
-

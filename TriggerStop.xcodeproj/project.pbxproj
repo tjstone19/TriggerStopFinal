@@ -10,6 +10,8 @@
 		080114F722EE324E0025234D /* UserDefaults+isFirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080114F622EE324E0025234D /* UserDefaults+isFirstLaunch.swift */; };
 		0811C2C022E7D44E009AF4ED /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0811C2BF22E7D44E009AF4ED /* EmojiView.swift */; };
 		085BDD4D22D016200012A922 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 085BDD4C22D016200012A922 /* StoreKit.framework */; };
+		08AD1BF023DE627200B9ED7A /* UserGuideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AD1BEF23DE627200B9ED7A /* UserGuideController.swift */; };
+		08AD1BF223DE64AC00B9ED7A /* TriggerStopUserGuide.docx in Resources */ = {isa = PBXBuildFile; fileRef = 08AD1BF123DE64AC00B9ED7A /* TriggerStopUserGuide.docx */; };
 		08CC5CB222E511040081662E /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CC5CB122E511040081662E /* PopUpViewController.swift */; };
 		08CEAC322342CF870074E83C /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CEAC312342CF870074E83C /* UIImageExtension.swift */; };
 		08D463BA227E4D1900590B8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D463B9227E4D1900590B8F /* AppDelegate.swift */; };
@@ -48,6 +50,8 @@
 		080114F622EE324E0025234D /* UserDefaults+isFirstLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+isFirstLaunch.swift"; sourceTree = "<group>"; };
 		0811C2BF22E7D44E009AF4ED /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
 		085BDD4C22D016200012A922 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		08AD1BEF23DE627200B9ED7A /* UserGuideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGuideController.swift; sourceTree = "<group>"; };
+		08AD1BF123DE64AC00B9ED7A /* TriggerStopUserGuide.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = TriggerStopUserGuide.docx; sourceTree = "<group>"; };
 		08CC5CB122E511040081662E /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		08CEAC312342CF870074E83C /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		08D463B6227E4D1900590B8F /* TriggerStop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TriggerStop.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +129,7 @@
 		08D463B8227E4D1900590B8F /* TriggerStop */ = {
 			isa = PBXGroup;
 			children = (
+				08AD1BF123DE64AC00B9ED7A /* TriggerStopUserGuide.docx */,
 				08D463BD227E4D1900590B8F /* Main.storyboard */,
 				08D463C5227E4D1A00590B8F /* LaunchScreen.storyboard */,
 				08D463C3227E4D1A00590B8F /* Assets.xcassets */,
@@ -140,6 +145,7 @@
 				08F71EB122E8F06500535AD0 /* UIColorExtenions.swift */,
 				08CEAC312342CF870074E83C /* UIImageExtension.swift */,
 				080114F622EE324E0025234D /* UserDefaults+isFirstLaunch.swift */,
+				08AD1BEF23DE627200B9ED7A /* UserGuideController.swift */,
 			);
 			path = TriggerStop;
 			sourceTree = "<group>";
@@ -291,6 +297,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08AD1BF223DE64AC00B9ED7A /* TriggerStopUserGuide.docx in Resources */,
 				08D463C7227E4D1A00590B8F /* LaunchScreen.storyboard in Resources */,
 				08D463C4227E4D1A00590B8F /* Assets.xcassets in Resources */,
 				08D463BF227E4D1900590B8F /* Main.storyboard in Resources */,
@@ -366,6 +373,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08EBED5E2343DFA10031BD85 /* CircleImageView.swift in Sources */,
+				08AD1BF023DE627200B9ED7A /* UserGuideController.swift in Sources */,
 				080114F722EE324E0025234D /* UserDefaults+isFirstLaunch.swift in Sources */,
 				08D463C2227E4D1900590B8F /* TriggerStop.xcdatamodeld in Sources */,
 				08F71EB422E9030600535AD0 /* AtomicClass.swift in Sources */,
@@ -552,7 +560,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 79UQ23VF9M;
 				INFOPLIST_FILE = TriggerStop/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -573,7 +581,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 79UQ23VF9M;
 				INFOPLIST_FILE = TriggerStop/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

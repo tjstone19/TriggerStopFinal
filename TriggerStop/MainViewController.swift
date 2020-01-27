@@ -196,7 +196,6 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
                     name: "Main", bundle: nil).instantiateViewController(
                         withIdentifier: "popUpView") as? PopUpViewController
                 
-                popOverVC!.isHelpPage = false
                 popOverVC!.view.frame = self.view.frame
                 
                 self.addChild(popOverVC!)
@@ -758,16 +757,18 @@ class MainViewController: UIViewController, UINavigationControllerDelegate {
      * Displays the help page over the current view.
      */
     @IBAction func showHelpPage(_ sender: Any) {
-        weak var popOverVC: PopUpViewController? = UIStoryboard(
-            name: "Main", bundle: nil).instantiateViewController(
-                withIdentifier: "popUpView") as? PopUpViewController
-
-        popOverVC!.view.frame = view.frame
-        popOverVC!.isHelpPage = true
-        
-        self.addChild(popOverVC!)
-        self.view.addSubview(popOverVC!.view)
-        popOverVC!.didMove(toParent: self)
+//        weak var popOverVC: PopUpViewController? = UIStoryboard(
+//            name: "Main", bundle: nil).instantiateViewController(
+//                withIdentifier: "popUpView") as? PopUpViewController
+//
+//        popOverVC!.view.frame = view.frame
+//
+//        self.addChild(popOverVC!)
+//        self.view.addSubview(popOverVC!.view)
+//        popOverVC!.didMove(toParent: self)
+        let userGuideView = UserGuideController()
+        userGuideView.dataSource = self
+        present(userGuideView, animated: true, completion: nil)
     }
     
     
